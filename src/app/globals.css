@@ -24,29 +24,31 @@
   --font-serif: var(--f-display);
   --font-sans: var(--f-body);
 
-  --shadow-card: 0 1px 2px rgb(15 23 42 / 0.04), 0 4px 16px rgb(15 23 42 / 0.05);
+  /* Warm, diffuse, low-contrast shadow — soft like daylight, not UI-sharp */
+  --shadow-card: 0 1px 2px rgb(60 42 24 / 0.04), 0 12px 34px -16px rgb(60 42 24 / 0.14);
 }
 
-/* ── Ignite brand: ember orange accent, warm near-black ink, warm paper ── */
+/* ── Ignite brand: warm clay accent, soft oat paper, calm editorial type.
+   Reads "holistic wellness / coaching," keeps a hint of the "ignite" warmth
+   in the clay-to-honey accent — no neon, no SaaS gradient. ── */
 :root {
-  --p-background: #faf7f3;
-  --p-surface: #ffffff;
-  --p-foreground: #17120e;
-  --p-muted: #6f665e;
-  --p-subtle: #e7ded3;
-  --p-accent: #f24d1a;
-  --p-accent-strong: #cc3a10;
-  --p-accent-soft: #fde4d8;
+  --p-background: #f5f0e7;
+  --p-surface: #fffdf8;
+  --p-foreground: #2c2620;
+  --p-muted: #7c7266;
+  --p-subtle: #e6ddce;
+  --p-accent: #bf6a43;
+  --p-accent-strong: #9c5230;
+  --p-accent-soft: #f0e4d6;
 
-  /* Signature hero gradient — ember → magenta, the "ignite" spark */
+  /* Signature gradient — clay → honeyed sand. Gentle and warm, not a spark. */
   --ignite-gradient: linear-gradient(
     115deg,
-    #f24d1a 0%,
-    #ff7a1a 38%,
-    #ff2e8b 100%
+    #bf6a43 0%,
+    #d79c6e 100%
   );
 
-  --f-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --f-display: var(--font-fraunces), Georgia, serif;
   --f-body: var(--font-inter), system-ui, sans-serif;
 }
 

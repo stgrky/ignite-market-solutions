@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 
+import { CursorHalo } from "@/components/motion/CursorHalo";
+import { GrainOverlay } from "@/components/motion/GrainOverlay";
+import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
 import { site } from "@/lib/content";
@@ -13,10 +16,11 @@ const inter = Inter({
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const fraunces = Fraunces({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-space-grotesk",
+  style: ["normal", "italic"],
+  variable: "--font-fraunces",
   display: "swap",
 });
 
@@ -42,9 +46,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <GrainOverlay />
+        <ScrollProgress />
+        <CursorHalo />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

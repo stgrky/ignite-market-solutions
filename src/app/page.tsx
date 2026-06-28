@@ -1,4 +1,5 @@
 import { Container } from "@/components/Container";
+import { GradientMesh } from "@/components/motion/GradientMesh";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { Reveal } from "@/components/motion/Reveal";
 import { WordReveal } from "@/components/motion/WordReveal";
@@ -24,11 +25,7 @@ export default function HomePage() {
         id="top"
         className="relative overflow-hidden bg-[var(--color-surface)]"
       >
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -top-40 right-[-12%] h-[520px] w-[520px] rounded-full opacity-20 blur-3xl"
-          style={{ background: "var(--ignite-gradient)" }}
-        />
+        <GradientMesh className="absolute inset-0" />
         <Container className="relative py-24 md:py-32">
           <div className="max-w-3xl">
             <Reveal distance={12} duration={0.7}>
@@ -37,9 +34,11 @@ export default function HomePage() {
               </p>
             </Reveal>
 
-            <h1 className="mt-6 font-serif text-[2.7rem] font-bold leading-[1.05] tracking-tight text-[var(--color-foreground)] md:text-[4.2rem]">
+            <h1 className="mt-6 font-serif text-[2.7rem] font-semibold leading-[1.07] tracking-[-0.01em] text-[var(--color-foreground)] md:text-[4.3rem]">
               <WordReveal text={hero.headlineLead} />{" "}
-              <span className="text-gradient">{hero.headlineAccent}</span>
+              <span className="text-gradient italic font-medium">
+                {hero.headlineAccent}
+              </span>
             </h1>
 
             <Reveal delay={0.35} distance={18} duration={0.85}>
@@ -93,7 +92,7 @@ export default function HomePage() {
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
             {problems.items.map((item, i) => (
               <Reveal key={item} delay={0.06 * i}>
-                <div className="flex h-full items-start gap-3 rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-6">
+                <div className="flex h-full items-start gap-3 rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)]/40 hover:shadow-[var(--shadow-card)]">
                   <span
                     aria-hidden
                     className="mt-0.5 text-lg text-[var(--color-accent)]"
@@ -415,7 +414,7 @@ export default function HomePage() {
           <div className="mx-auto mt-10 grid max-w-xl gap-4 sm:grid-cols-2">
             {referral.cards.map((card, i) => (
               <Reveal key={card.label} delay={0.1 + i * 0.06}>
-                <div className="rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-7 text-left">
+                <div className="rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-7 text-left transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)]/40 hover:shadow-[var(--shadow-card)]">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--color-muted)]">
                     {card.label}
                   </p>
