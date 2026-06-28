@@ -51,7 +51,7 @@ export function Header() {
           ))}
           <a
             href="#contact"
-            className="inline-flex items-center rounded-full bg-[var(--color-foreground)] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--color-accent)]"
+            className="inline-flex items-center rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--color-accent-strong)]"
           >
             Book a call
           </a>
@@ -84,7 +84,7 @@ export function Header() {
             <a
               href="#contact"
               onClick={() => setOpen(false)}
-              className="mt-2 inline-flex items-center justify-center rounded-full bg-[var(--color-foreground)] px-5 py-3 text-sm font-semibold text-white"
+              className="mt-2 inline-flex items-center justify-center rounded-full bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-white"
             >
               Book a call
             </a>
