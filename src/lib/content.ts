@@ -37,6 +37,22 @@ export const hero = {
     "No cookie-cutter templates. No monthly platform ransom. No code degree required to update it.",
 };
 
+export const marquee = [
+  "Therapists",
+  "Counselors",
+  "Coaches",
+  "Wellness practitioners",
+  "Psychotherapy",
+  "Holistic health",
+  "Mindfulness",
+  "Private practice",
+];
+
+export const manifesto = {
+  line: "Your practice deserves a website as considered as the work you do in it.",
+  sub: "Calm, fast, and unmistakably yours — built to earn trust the second someone lands on it.",
+};
+
 export const problems = {
   heading: "Sound familiar?",
   intro:

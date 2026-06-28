@@ -3,11 +3,15 @@ import { GradientMesh } from "@/components/motion/GradientMesh";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { Reveal } from "@/components/motion/Reveal";
 import { WordReveal } from "@/components/motion/WordReveal";
+import { HeroShowcase } from "@/components/site/HeroShowcase";
+import { Marquee } from "@/components/site/Marquee";
 import {
   contact,
   faqs,
   finalCta,
   hero,
+  manifesto,
+  marquee,
   pricing,
   problems,
   process,
@@ -27,19 +31,20 @@ export default function HomePage() {
       >
         <GradientMesh className="absolute inset-0" />
         <Container className="relative py-24 md:py-32">
-          <div className="max-w-3xl">
+          <div className="grid items-center gap-12 md:grid-cols-[1.08fr_0.92fr] md:gap-10">
+            <div>
             <Reveal distance={12} duration={0.7}>
               <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-accent-strong)]">
                 {hero.eyebrow}
               </p>
             </Reveal>
 
-            <h1 className="mt-6 font-serif text-[2.7rem] font-semibold leading-[1.07] tracking-[-0.01em] text-[var(--color-foreground)] md:text-[4.3rem]">
+            <h1 className="mt-6 font-serif text-[2.7rem] font-semibold leading-[1.07] tracking-[-0.01em] text-[var(--color-foreground)] md:text-[3.5rem]">
               <WordReveal text={hero.headlineLead} />{" "}
               <span className="text-gradient italic font-medium">
                 {hero.headlineAccent}
               </span>
-            </h1>
+            </h1>{/* md headline sized for the 2-col layout below */}
 
             <Reveal delay={0.35} distance={18} duration={0.85}>
               <p className="mt-7 max-w-2xl text-lg leading-relaxed text-[var(--color-muted)]">
@@ -70,9 +75,22 @@ export default function HomePage() {
                 {hero.trustLine}
               </p>
             </Reveal>
+            </div>
+
+            <Reveal
+              className="hidden md:block"
+              delay={0.3}
+              distance={24}
+              duration={1}
+            >
+              <HeroShowcase />
+            </Reveal>
           </div>
         </Container>
       </section>
+
+      {/* ─────────────────── NICHE MARQUEE ────────────────────── */}
+      <Marquee items={marquee} />
 
       {/* ─────────────────────── PROBLEMS ─────────────────────── */}
       <section className="bg-[var(--color-background)] py-20 md:py-28">
@@ -109,6 +127,27 @@ export default function HomePage() {
           <Reveal delay={0.2}>
             <p className="mt-10 font-serif text-2xl font-bold text-[var(--color-foreground)]">
               {problems.closer}
+            </p>
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* ─────────────────────── MANIFESTO ────────────────────── */}
+      <section className="relative overflow-hidden bg-[var(--color-foreground)] py-24 md:py-32">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 top-1/2 h-[150%] w-[85%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-25 blur-3xl"
+          style={{ background: "var(--ignite-gradient)" }}
+        />
+        <Container className="relative text-center">
+          <Reveal>
+            <p className="mx-auto max-w-4xl font-serif text-[1.9rem] font-medium italic leading-[1.3] text-[var(--color-background)] md:text-[2.9rem]">
+              {manifesto.line}
+            </p>
+          </Reveal>
+          <Reveal delay={0.12}>
+            <p className="mx-auto mt-7 max-w-xl text-lg leading-relaxed text-[var(--color-background)]/70">
+              {manifesto.sub}
             </p>
           </Reveal>
         </Container>
