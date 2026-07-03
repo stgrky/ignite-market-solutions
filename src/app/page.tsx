@@ -17,6 +17,7 @@ import {
   process,
   referral,
   site,
+  system,
   value,
   work,
 } from "@/lib/content";
@@ -185,6 +186,78 @@ export default function HomePage() {
         </Container>
       </section>
 
+      {/* ─────────────────── THE TEMPLATE SYSTEM ──────────────── */}
+      <section className="bg-[var(--color-background)] py-20 md:py-28">
+        <Container>
+          <div className="grid items-start gap-12 md:grid-cols-[1.05fr_0.95fr] md:gap-16">
+            <div>
+              <Reveal>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-accent-strong)]">
+                  {system.eyebrow}
+                </p>
+              </Reveal>
+              <Reveal delay={0.06}>
+                <h2 className="mt-4 font-serif text-3xl font-bold leading-[1.15] text-[var(--color-foreground)] md:text-[2.4rem]">
+                  {system.heading}
+                </h2>
+              </Reveal>
+              <Reveal delay={0.12}>
+                <p className="mt-5 text-lg leading-relaxed text-[var(--color-muted)]">
+                  {system.intro}
+                </p>
+              </Reveal>
+              <Reveal delay={0.18}>
+                <p className="mt-6 rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-accent-soft)]/60 p-5 text-[15px] leading-relaxed text-[var(--color-foreground)]">
+                  {system.note}
+                </p>
+              </Reveal>
+            </div>
+            <div className="space-y-5">
+              <Reveal delay={0.1}>
+                <div className="rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-7">
+                  <h3 className="font-serif text-lg font-bold text-[var(--color-foreground)]">
+                    {system.included.title}
+                  </h3>
+                  <ul className="mt-4 space-y-2.5">
+                    {system.included.items.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-2.5 text-[15px] text-[var(--color-foreground)]"
+                      >
+                        <span aria-hidden className="mt-0.5 font-bold text-[var(--color-accent)]">
+                          ✓
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+              <Reveal delay={0.18}>
+                <div className="rounded-2xl border border-dashed border-[var(--color-subtle)] p-7">
+                  <h3 className="font-serif text-lg font-bold text-[var(--color-muted)]">
+                    {system.excluded.title}
+                  </h3>
+                  <ul className="mt-4 space-y-2.5">
+                    {system.excluded.items.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-2.5 text-[15px] text-[var(--color-muted)]"
+                      >
+                        <span aria-hidden className="mt-0.5">
+                          —
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* ─────────────────────── PROCESS ──────────────────────── */}
       <section
         id="process"
@@ -271,6 +344,9 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
+              <p className="mt-6 border-t border-[var(--color-subtle)] pt-5 text-sm italic leading-relaxed text-[var(--color-muted)]">
+                {pricing.build.overageNote}
+              </p>
             </div>
           </Reveal>
 
@@ -305,7 +381,10 @@ export default function HomePage() {
                       Recommended
                     </span>
                   ) : null}
-                  <h4 className="font-serif text-xl font-bold text-[var(--color-foreground)]">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
+                    {tier.tierLabel}
+                  </p>
+                  <h4 className="mt-2 font-serif text-xl font-bold text-[var(--color-foreground)]">
                     {tier.name}
                   </h4>
                   <p className="mt-3 flex items-baseline gap-1">
@@ -332,6 +411,9 @@ export default function HomePage() {
                       </li>
                     ))}
                   </ul>
+                  <p className="mt-6 border-t border-[var(--color-subtle)] pt-5 text-sm italic leading-relaxed text-[var(--color-muted)]">
+                    {tier.bestFor}
+                  </p>
                   <a
                     href="#contact"
                     className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition ${
@@ -361,22 +443,81 @@ export default function HomePage() {
             </Reveal>
           </div>
           <Reveal delay={0.12}>
-            <div className="mx-auto mt-8 grid max-w-3xl gap-x-10 sm:grid-cols-2">
+            <div className="mx-auto mt-8 grid max-w-3xl items-start gap-x-10 sm:grid-cols-2">
               {pricing.addOns.map((item) => (
-                <div
+                <details
                   key={item.label}
-                  className="flex items-baseline justify-between gap-4 border-b border-[var(--color-subtle)] py-3"
+                  className="group border-b border-[var(--color-subtle)] [&_summary::-webkit-details-marker]:hidden"
                 >
-                  <span className="text-[15px] text-[var(--color-foreground)]">
-                    {item.label}
-                  </span>
-                  <span className="whitespace-nowrap font-serif font-semibold text-[var(--color-foreground)]">
-                    {item.price}
-                  </span>
-                </div>
+                  <summary className="flex cursor-pointer select-none items-baseline justify-between gap-4 py-3">
+                    <span className="flex items-center gap-2 text-[15px] text-[var(--color-foreground)]">
+                      {item.label}
+                      <svg
+                        aria-hidden
+                        viewBox="0 0 20 20"
+                        width="11"
+                        height="11"
+                        className="flex-shrink-0 text-[var(--color-muted)] transition-transform duration-300 group-open:rotate-180"
+                      >
+                        <path
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5 8l5 5 5-5"
+                        />
+                      </svg>
+                    </span>
+                    <span className="whitespace-nowrap font-serif font-semibold text-[var(--color-foreground)]">
+                      {item.price}
+                    </span>
+                  </summary>
+                  <div className="space-y-3 pb-5 pt-1">
+                    {(
+                      [
+                        { kicker: "What", body: item.what },
+                        { kicker: "Why", body: item.why },
+                        { kicker: "Who it's for", body: item.whoFor },
+                      ] as const
+                    ).map((row) => (
+                      <div key={row.kicker}>
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-muted)]">
+                          {row.kicker}
+                        </p>
+                        <p className="mt-1 text-sm leading-relaxed text-[var(--color-muted)]">
+                          {row.body}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </details>
               ))}
             </div>
           </Reveal>
+
+          {/* Terms */}
+          <div className="mx-auto mt-20 max-w-2xl text-center">
+            <Reveal>
+              <h3 className="font-serif text-2xl font-bold leading-tight text-[var(--color-foreground)] md:text-3xl">
+                {pricing.terms.heading}
+              </h3>
+            </Reveal>
+          </div>
+          <div className="mx-auto mt-8 grid max-w-3xl gap-5 sm:grid-cols-2">
+            {pricing.terms.items.map((term, i) => (
+              <Reveal key={term.title} delay={0.06 * i}>
+                <div className="h-full rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-6">
+                  <h4 className="font-serif text-base font-bold text-[var(--color-foreground)]">
+                    {term.title}
+                  </h4>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--color-muted)]">
+                    {term.body}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
 
           <Reveal delay={0.16}>
             <p className="mx-auto mt-10 max-w-2xl text-center text-sm font-medium text-[var(--color-foreground)]">
