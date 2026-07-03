@@ -8,11 +8,11 @@
  */
 
 export const site = {
-  name: "Ignite Market Solutions",
+  name: "Ignite Creative Co",
   shortName: "Ignite",
   tagline: "Web design & digital services for the wellness space",
   description:
-    "Ignite Market Solutions is a web design and digital-services studio with a focus on the mental health, wellness, and coaching space. Fast, beautiful websites you own and can update yourself — a low one-time build fee, then a simple monthly plan.",
+    "Ignite Creative Co is a web design and digital-services studio with a focus on the mental health, wellness, and coaching space. Fast, beautiful websites you own and can update yourself — a low one-time build fee, then a simple monthly plan.",
   url: "https://ignitemarket.solutions",
   email: "hello@grantkyle.com",
   location: "Austin, TX",

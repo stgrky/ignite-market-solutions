@@ -1,4 +1,4 @@
-# Ignite Market Solutions — site backlog
+# Ignite Creative Co — site backlog
 
 Pending tasks for the ignitemarket.solutions marketing site.
 

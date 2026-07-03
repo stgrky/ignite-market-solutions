@@ -9,7 +9,7 @@ export function GrainOverlay() {
       aria-hidden
       className="pointer-events-none fixed inset-0 z-[1] h-full w-full opacity-[0.04] mix-blend-multiply"
     >
-      <filter id="ims-grain">
+      <filter id="icc-grain">
         <feTurbulence
           type="fractalNoise"
           baseFrequency="0.82"
@@ -17,7 +17,7 @@ export function GrainOverlay() {
           stitchTiles="stitch"
         />
       </filter>
-      <rect width="100%" height="100%" filter="url(#ims-grain)" />
+      <rect width="100%" height="100%" filter="url(#icc-grain)" />
     </svg>
   );
 }

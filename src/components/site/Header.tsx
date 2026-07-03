@@ -35,7 +35,7 @@ export function Header() {
           </span>
           <span className="font-serif text-[17px] font-bold tracking-tight text-[var(--color-foreground)]">
             {site.shortName}
-            <span className="text-[var(--color-muted)]"> Market Solutions</span>
+            <span className="text-[var(--color-muted)]"> Creative Co</span>
           </span>
         </a>
 
