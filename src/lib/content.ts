@@ -13,7 +13,7 @@ export const site = {
   tagline: "Web design & digital services for the wellness space",
   description:
     "Ignite Creative Co is a web design and digital-services studio with a focus on the mental health, wellness, and coaching space. Fast, beautiful websites you own and can update yourself — a low one-time build fee, then a simple monthly plan.",
-  url: "https://ignitemarket.solutions",
+  url: "https://ignitecreativeco.world",
   email: "hello@grantkyle.com",
   location: "Austin, TX",
 };
