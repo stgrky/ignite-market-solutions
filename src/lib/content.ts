@@ -14,7 +14,9 @@ export const site = {
   description:
     "Ignite Creative Co is a web design and digital-services studio with a focus on the mental health, wellness, and coaching space. Fast, beautiful websites you own and can update yourself — a low one-time build fee, then a simple monthly plan.",
   url: "https://ignitecreativeco.world",
-  email: "hello@grantkyle.com",
+  email: "grant@ignitecreativeco.world",
+  phone: "(737) 420-2743",
+  phoneHref: "tel:+17374202743",
   location: "Austin, TX",
 };
 
@@ -120,6 +122,42 @@ export const system = {
     ],
   },
   note: "Want something beyond the included scope? No problem — extra work is simply quoted at $60/hour and agreed in writing before anything starts. No surprise invoices.",
+};
+
+export const styleDirections = {
+  eyebrow: "Five ready-built designs",
+  heading: "Pick the design that already feels like your practice",
+  intro:
+    "Every design below is a real, complete site — not a mockup. Each has its own palette, type, and layout, so you're choosing a finished direction, not staring at a blank page.",
+  designs: [
+    {
+      name: "Meridian",
+      vibe: "Clean & clinical",
+      swatch: "#1e4d6b",
+      href: "https://icc-meridian-demo.vercel.app",
+    },
+    {
+      name: "Bloom",
+      vibe: "Warm & editorial",
+      swatch: "#c4623f",
+    },
+    {
+      name: "Haven",
+      vibe: "Soft & somatic",
+      swatch: "#8897bf",
+    },
+    {
+      name: "Anchor",
+      vibe: "Grounded & modern",
+      swatch: "#2f8f83",
+    },
+    {
+      name: "Grove",
+      vibe: "Warm & relational",
+      swatch: "#6b8e7f",
+    },
+  ],
+  note: "See a link above? It's live — click through. The rest are finishing final touches before their own demo links go live.",
 };
 
 export const process = {
@@ -315,7 +353,7 @@ export const work = {
       name: "dateable()af",
       tag: "Brand site · CMS · Podcast hub",
       body: "A relationships-podcast brand with a bold editorial design, a custom content editor the founders run themselves, and a built-in Spotify podcast hub.",
-      href: "https://ims-getdateable-i624.vercel.app",
+      href: "https://ims-getdateable.vercel.app",
       linkLabel: "View site",
     },
   ],
@@ -378,4 +416,5 @@ export const contact = {
   heading: "Let's talk",
   body: "Tell me a little about your business and what you're hoping for. I read every message myself and reply within a day.",
   emailLabel: "Email me directly",
+  phoneLabel: "Or call/text",
 };
