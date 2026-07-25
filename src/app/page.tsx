@@ -2,6 +2,7 @@ import { Container } from "@/components/Container";
 import { GradientMesh } from "@/components/motion/GradientMesh";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { Reveal } from "@/components/motion/Reveal";
+import { TiltCard } from "@/components/motion/TiltCard";
 import { WordReveal } from "@/components/motion/WordReveal";
 import { HeroShowcase } from "@/components/site/HeroShowcase";
 import { Marquee } from "@/components/site/Marquee";
@@ -17,6 +18,7 @@ import {
   process,
   referral,
   site,
+  styleDirections,
   system,
   value,
   work,
@@ -169,20 +171,105 @@ export default function HomePage() {
               </p>
             </Reveal>
           </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div
+            className="mt-12 grid gap-6 md:grid-cols-3"
+            style={{ perspective: 1000 }}
+          >
             {value.cards.map((card, i) => (
               <Reveal key={card.title} delay={0.08 * (i % 3)} className="h-full">
-                <div className="flex h-full flex-col rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-background)] p-7 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-card)]">
-                  <h3 className="font-serif text-xl font-bold leading-tight text-[var(--color-foreground)]">
-                    {card.title}
-                  </h3>
-                  <p className="mt-3 flex-grow text-[15px] leading-relaxed text-[var(--color-muted)]">
-                    {card.body}
-                  </p>
-                </div>
+                <TiltCard className="h-full">
+                  <div className="flex h-full flex-col rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-background)] p-7 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-card)]">
+                    <h3 className="font-serif text-xl font-bold leading-tight text-[var(--color-foreground)]">
+                      {card.title}
+                    </h3>
+                    <p className="mt-3 flex-grow text-[15px] leading-relaxed text-[var(--color-muted)]">
+                      {card.body}
+                    </p>
+                  </div>
+                </TiltCard>
               </Reveal>
             ))}
           </div>
+        </Container>
+      </section>
+
+      {/* ─────────────── FIVE READY-BUILT DESIGNS ─────────────── */}
+      <section className="bg-[var(--color-surface)] py-20 md:py-28">
+        <Container>
+          <div className="max-w-2xl">
+            <Reveal>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-accent-strong)]">
+                {styleDirections.eyebrow}
+              </p>
+            </Reveal>
+            <Reveal delay={0.06}>
+              <h2 className="mt-4 font-serif text-3xl font-bold leading-[1.15] text-[var(--color-foreground)] md:text-[2.4rem]">
+                {styleDirections.heading}
+              </h2>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <p className="mt-5 text-lg leading-relaxed text-[var(--color-muted)]">
+                {styleDirections.intro}
+              </p>
+            </Reveal>
+          </div>
+
+          <div
+            className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5"
+            style={{ perspective: 1000 }}
+          >
+            {styleDirections.designs.map((design, i) => {
+              const card = (
+                <div className="flex h-full flex-col rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-background)] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)]/50 hover:shadow-[var(--shadow-card)]">
+                  <span
+                    aria-hidden
+                    className="block h-10 w-10 rounded-full"
+                    style={{ background: design.swatch }}
+                  />
+                  <h3 className="mt-5 font-serif text-lg font-bold text-[var(--color-foreground)]">
+                    {design.name}
+                  </h3>
+                  <p className="mt-1 text-sm text-[var(--color-muted)]">
+                    {design.vibe}
+                  </p>
+                  {design.href ? (
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent-strong)]">
+                      View live demo
+                      <span aria-hidden>→</span>
+                    </span>
+                  ) : (
+                    <span className="mt-4 inline-flex items-center text-xs font-medium uppercase tracking-[0.14em] text-[var(--color-muted)]">
+                      In progress
+                    </span>
+                  )}
+                </div>
+              );
+              return (
+                <Reveal key={design.name} delay={0.06 * i} className="h-full">
+                  <TiltCard className="h-full">
+                    {design.href ? (
+                      <a
+                        href={design.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block h-full"
+                      >
+                        {card}
+                      </a>
+                    ) : (
+                      card
+                    )}
+                  </TiltCard>
+                </Reveal>
+              );
+            })}
+          </div>
+
+          <Reveal delay={0.2}>
+            <p className="mt-8 text-sm text-[var(--color-muted)]">
+              {styleDirections.note}
+            </p>
+          </Reveal>
         </Container>
       </section>
 
@@ -664,12 +751,23 @@ export default function HomePage() {
                 {finalCta.cta.label}
                 <span aria-hidden>→</span>
               </MagneticButton>
-              <a
-                href={`mailto:${site.email}`}
-                className="text-sm text-white/60 transition-colors hover:text-white"
-              >
-                {contact.emailLabel}: {site.email}
-              </a>
+              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm text-white/60">
+                <a
+                  href={`mailto:${site.email}`}
+                  className="transition-colors hover:text-white"
+                >
+                  {contact.emailLabel}: {site.email}
+                </a>
+                <span aria-hidden className="text-white/30">
+                  ·
+                </span>
+                <a
+                  href={site.phoneHref}
+                  className="transition-colors hover:text-white"
+                >
+                  {contact.phoneLabel}: {site.phone}
+                </a>
+              </div>
             </div>
           </Reveal>
         </Container>

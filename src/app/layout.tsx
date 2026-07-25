@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 
-import { CursorHalo } from "@/components/motion/CursorHalo";
 import { GrainOverlay } from "@/components/motion/GrainOverlay";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { Footer } from "@/components/site/Footer";
@@ -51,7 +50,6 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col">
         <GrainOverlay />
         <ScrollProgress />
-        <CursorHalo />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

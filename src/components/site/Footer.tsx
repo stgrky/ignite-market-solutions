@@ -52,6 +52,12 @@ export function Footer() {
                 {site.email}
               </a>
               <a
+                href={site.phoneHref}
+                className="text-sm text-[var(--color-foreground)] transition-colors hover:text-[var(--color-accent-strong)]"
+              >
+                {site.phone}
+              </a>
+              <a
                 href="#contact"
                 className="text-sm text-[var(--color-foreground)] transition-colors hover:text-[var(--color-accent-strong)]"
               >
