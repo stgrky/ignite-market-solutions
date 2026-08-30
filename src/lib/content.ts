@@ -223,7 +223,7 @@ export const process = {
 export const pricing = {
   heading: "Simple, transparent pricing",
   intro:
-    "A low one-time build fee gets you online. Then a flat monthly plan keeps you fast, healthy, and growing. No hidden fees, no surprise invoices six months in.",
+    "A low one-time build fee gets you online. Then one flat plan keeps you fast, healthy, and growing. No hidden fees, no surprise invoices six months in.",
   build: {
     label: "One-time",
     name: "Initial Build",

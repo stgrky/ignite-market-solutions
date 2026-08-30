@@ -516,7 +516,10 @@ export default function HomePage() {
                       : "border-[var(--color-subtle)] bg-[var(--color-surface)]"
                   }`}
                 >
-                  {tier.featured ? (
+                  {/* "Recommended" only means something next to an alternative.
+                      With a single plan the badge is noise, so it appears only
+                      if a second tier is ever reintroduced. */}
+                  {tier.featured && pricing.tiers.length > 1 ? (
                     <span
                       className="absolute -top-3 left-8 inline-flex items-center rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white"
                       style={{ background: "var(--ignite-gradient)" }}
