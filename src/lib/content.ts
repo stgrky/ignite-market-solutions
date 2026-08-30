@@ -223,7 +223,11 @@ export const process = {
 export const pricing = {
   heading: "Simple, transparent pricing",
   intro:
-    "A low one-time build fee gets you online. Then one flat plan keeps you fast, healthy, and growing. No hidden fees, no surprise invoices six months in.",
+    "It works in three steps: pick your website, keep it running, add anything extra. That's the whole model — you'll know your full cost before you pay a cent, and there are no hidden fees or surprise invoices six months in.",
+  buildStep: "Step 1",
+  buildHeading: "Pick your website",
+  buildStepIntro:
+    "Choose the one closest to your vision. We tailor it to your brand and hand it over, built and live — a single fee, paid once.",
   build: {
     label: "One-time",
     name: "Initial Build",
@@ -239,7 +243,8 @@ export const pricing = {
     overageNote:
       "Need more than the included revisions? Extra work is $60/hour — always quoted and agreed in writing before it happens.",
   },
-  tiersHeading: "Then keep it running",
+  tiersStep: "Step 2",
+  tiersHeading: "Keep it running",
   tiersIntro:
     "One plan, one price. Everything your site needs to stay online, secure, and healthy — with no tiers to compare and nothing to upgrade into later.",
   tiers: [
@@ -265,7 +270,9 @@ export const pricing = {
       featured: true,
     },
   ],
-  addOnsHeading: "Add-ons, if you want them",
+  addOnsStep: "Step 3",
+  addOnsStepNote: "optional",
+  addOnsHeading: "Add anything extra",
   addOnsIntro:
     "À la carte, added at intake and billed once. The base package covers what most practices actually need — tap any add-on for the what, the why, and who it's for.",
   addOns: [

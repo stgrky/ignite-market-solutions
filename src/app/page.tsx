@@ -26,6 +26,51 @@ import {
   work,
 } from "@/lib/content";
 
+/**
+ * Heading for one step of the pricing journey.
+ *
+ * Pricing is genuinely sequential — you pick a site, then you host it, then you
+ * add extras — so the numbers carry real information rather than decorating
+ * three unrelated price lists. All three steps share this so they read as one
+ * path instead of three separate asks.
+ */
+function StepHeading({
+  step,
+  title,
+  intro,
+  note,
+}: {
+  step: string;
+  title: string;
+  intro: string;
+  note?: string;
+}) {
+  return (
+    <div className="mx-auto max-w-2xl text-center">
+      <Reveal>
+        <p className="flex items-center justify-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--color-accent-strong)]">
+          {step}
+          {note ? (
+            <span className="rounded-full bg-[var(--color-accent-soft)] px-2 py-0.5 text-[10px] font-semibold normal-case tracking-normal text-[var(--color-accent-strong)]">
+              {note}
+            </span>
+          ) : null}
+        </p>
+      </Reveal>
+      <Reveal delay={0.06}>
+        <h3 className="mt-3 font-serif text-2xl font-bold leading-tight text-[var(--color-foreground)] md:text-3xl">
+          {title}
+        </h3>
+      </Reveal>
+      <Reveal delay={0.12}>
+        <p className="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
+          {intro}
+        </p>
+      </Reveal>
+    </div>
+  );
+}
+
 export default function HomePage() {
   return (
     <>
@@ -455,9 +500,16 @@ export default function HomePage() {
             </Reveal>
           </div>
 
-          {/* Initial build */}
+          {/* Step 1 — Initial build */}
+          <div className="mt-16">
+            <StepHeading
+              step={pricing.buildStep}
+              title={pricing.buildHeading}
+              intro={pricing.buildStepIntro}
+            />
+          </div>
           <Reveal delay={0.1}>
-            <div className="mx-auto mt-14 max-w-2xl rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-8 shadow-[var(--shadow-card)] md:p-10">
+            <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-8 shadow-[var(--shadow-card)] md:p-10">
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--color-muted)]">
@@ -493,18 +545,13 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          {/* Monthly tiers */}
-          <div className="mx-auto mt-20 max-w-2xl text-center">
-            <Reveal>
-              <h3 className="font-serif text-2xl font-bold leading-tight text-[var(--color-foreground)] md:text-3xl">
-                {pricing.tiersHeading}
-              </h3>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <p className="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
-                {pricing.tiersIntro}
-              </p>
-            </Reveal>
+          {/* Step 2 — Hosting */}
+          <div className="mt-20">
+            <StepHeading
+              step={pricing.tiersStep}
+              title={pricing.tiersHeading}
+              intro={pricing.tiersIntro}
+            />
           </div>
           <div className="mx-auto mt-10 grid max-w-xl items-start gap-6">
             {pricing.tiers.map((tier, i) => (
@@ -580,18 +627,14 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Add-ons */}
-          <div className="mx-auto mt-20 max-w-2xl text-center">
-            <Reveal>
-              <h3 className="font-serif text-2xl font-bold leading-tight text-[var(--color-foreground)] md:text-3xl">
-                {pricing.addOnsHeading}
-              </h3>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <p className="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
-                {pricing.addOnsIntro}
-              </p>
-            </Reveal>
+          {/* Step 3 — Add-ons */}
+          <div className="mt-20">
+            <StepHeading
+              step={pricing.addOnsStep}
+              note={pricing.addOnsStepNote}
+              title={pricing.addOnsHeading}
+              intro={pricing.addOnsIntro}
+            />
           </div>
           <Reveal delay={0.12}>
             <div className="mx-auto mt-8 grid max-w-3xl items-start gap-x-10 sm:grid-cols-2">
