@@ -4,8 +4,10 @@ import { MagneticButton } from "@/components/motion/MagneticButton";
 import { Reveal } from "@/components/motion/Reveal";
 import { TiltCard } from "@/components/motion/TiltCard";
 import { WordReveal } from "@/components/motion/WordReveal";
+import { ContactForm } from "@/components/site/ContactForm";
 import { HeroShowcase } from "@/components/site/HeroShowcase";
 import { Marquee } from "@/components/site/Marquee";
+import { ProcessSection } from "@/components/site/ProcessSection";
 import {
   contact,
   faqs,
@@ -45,7 +47,11 @@ export default function HomePage() {
             <h1 className="mt-6 font-serif text-[2.7rem] font-semibold leading-[1.07] tracking-[-0.01em] text-[var(--color-foreground)] md:text-[3.5rem]">
               <WordReveal text={hero.headlineLead} />{" "}
               <span className="text-gradient italic font-medium">
-                {hero.headlineAccent}
+                {hero.headlineAccent1}
+              </span>{" "}
+              <WordReveal text={hero.headlineMid} />{" "}
+              <span className="text-gradient italic font-medium">
+                {hero.headlineAccent2}
               </span>
             </h1>{/* md headline sized for the 2-col layout below */}
 
@@ -112,7 +118,17 @@ export default function HomePage() {
           </div>
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
             {problems.items.map((item, i) => (
-              <Reveal key={item} delay={0.06 * i}>
+              <Reveal
+                key={item}
+                delay={0.06 * i}
+                className={
+                  i === problems.items.length - 1
+                    ? "sm:col-span-2"
+                    : i === 1
+                      ? "sm:row-span-2"
+                      : undefined
+                }
+              >
                 <div className="flex h-full items-start gap-3 rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)]/40 hover:shadow-[var(--shadow-card)]">
                   <span
                     aria-hidden
@@ -176,12 +192,24 @@ export default function HomePage() {
             style={{ perspective: 1000 }}
           >
             {value.cards.map((card, i) => (
-              <Reveal key={card.title} delay={0.08 * (i % 3)} className="h-full">
+              <Reveal
+                key={card.title}
+                delay={0.08 * (i % 3)}
+                className={`h-full ${[2, 1, 1, 2, 2, 1][i] === 2 ? "md:col-span-2" : "md:col-span-1"}`}
+              >
                 <TiltCard className="h-full">
                   <div className="flex h-full flex-col rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-background)] p-7 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-card)]">
-                    <h3 className="font-serif text-xl font-bold leading-tight text-[var(--color-foreground)]">
-                      {card.title}
-                    </h3>
+                    <div className="flex items-start gap-3">
+                      <span
+                        aria-hidden
+                        className="mt-1 text-lg text-[var(--color-accent)]"
+                      >
+                        ✓
+                      </span>
+                      <h3 className="font-serif text-xl font-bold leading-tight text-[var(--color-foreground)]">
+                        {card.title}
+                      </h3>
+                    </div>
                     <p className="mt-3 flex-grow text-[15px] leading-relaxed text-[var(--color-muted)]">
                       {card.body}
                     </p>
@@ -194,7 +222,7 @@ export default function HomePage() {
       </section>
 
       {/* ─────────────── FIVE READY-BUILT DESIGNS ─────────────── */}
-      <section className="bg-[var(--color-surface)] py-20 md:py-28">
+      <section id="shop" className="bg-[var(--color-background)] py-20 md:py-28">
         <Container>
           <div className="max-w-2xl">
             <Reveal>
@@ -204,13 +232,25 @@ export default function HomePage() {
             </Reveal>
             <Reveal delay={0.06}>
               <h2 className="mt-4 font-serif text-3xl font-bold leading-[1.15] text-[var(--color-foreground)] md:text-[2.4rem]">
-                {styleDirections.heading}
+                <span className="text-gradient">
+                  {styleDirections.headingCount}
+                </span>
+                {styleDirections.headingRest}
               </h2>
             </Reveal>
             <Reveal delay={0.12}>
               <p className="mt-5 text-lg leading-relaxed text-[var(--color-muted)]">
                 {styleDirections.intro}
               </p>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <a
+                href="#pricing"
+                className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent-strong)] hover:text-[var(--color-accent)]"
+              >
+                {styleDirections.scopeLinkLabel}
+                <span aria-hidden>→</span>
+              </a>
             </Reveal>
           </div>
 
@@ -220,7 +260,7 @@ export default function HomePage() {
           >
             {styleDirections.designs.map((design, i) => {
               const card = (
-                <div className="flex h-full flex-col rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-background)] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)]/50 hover:shadow-[var(--shadow-card)]">
+                <div className="flex h-full flex-col rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)]/50 hover:shadow-[var(--shadow-card)]">
                   <span
                     aria-hidden
                     className="block h-10 w-10 rounded-full"
@@ -274,7 +314,7 @@ export default function HomePage() {
       </section>
 
       {/* ─────────────────── THE TEMPLATE SYSTEM ──────────────── */}
-      <section className="bg-[var(--color-background)] py-20 md:py-28">
+      <section className="bg-[var(--color-surface)] py-20 md:py-28">
         <Container>
           <div className="grid items-start gap-12 md:grid-cols-[1.05fr_0.95fr] md:gap-16">
             <div>
@@ -291,11 +331,6 @@ export default function HomePage() {
               <Reveal delay={0.12}>
                 <p className="mt-5 text-lg leading-relaxed text-[var(--color-muted)]">
                   {system.intro}
-                </p>
-              </Reveal>
-              <Reveal delay={0.18}>
-                <p className="mt-6 rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-accent-soft)]/60 p-5 text-[15px] leading-relaxed text-[var(--color-foreground)]">
-                  {system.note}
                 </p>
               </Reveal>
             </div>
@@ -340,43 +375,64 @@ export default function HomePage() {
                   </ul>
                 </div>
               </Reveal>
+              <Reveal delay={0.26}>
+                <p className="rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-accent-soft)]/60 p-5 text-[15px] leading-relaxed text-[var(--color-foreground)]">
+                  {system.note}
+                </p>
+              </Reveal>
             </div>
           </div>
         </Container>
       </section>
 
       {/* ─────────────────────── PROCESS ──────────────────────── */}
-      <section
-        id="process"
-        className="bg-[var(--color-foreground)] py-20 md:py-28"
-      >
+      <ProcessSection process={process} />
+
+      {/* ───────────────────────── WORK ───────────────────────── */}
+      <section id="work" className="bg-[var(--color-surface)] py-20 md:py-28">
         <Container>
           <div className="max-w-2xl">
             <Reveal>
-              <h2 className="font-serif text-3xl font-bold leading-[1.1] text-white md:text-[2.6rem]">
-                {process.heading}
+              <h2 className="font-serif text-3xl font-bold leading-[1.15] text-[var(--color-foreground)] md:text-[2.4rem]">
+                {work.heading}
               </h2>
             </Reveal>
             <Reveal delay={0.08}>
-              <p className="mt-5 text-lg leading-relaxed text-white/70">
-                {process.intro}
+              <p className="mt-5 text-lg leading-relaxed text-[var(--color-muted)]">
+                {work.intro}
               </p>
             </Reveal>
           </div>
-          <div className="mt-14 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-            {process.steps.map((step, i) => (
-              <Reveal key={step.title} delay={0.08 * i}>
-                <div className="border-t-2 border-white/15 pt-5">
-                  <span className="text-gradient font-serif text-3xl font-bold">
-                    0{i + 1}
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {work.projects.map((project, i) => (
+              <Reveal key={project.name} delay={0.08 * i} className="h-full">
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex h-full flex-col justify-between rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-background)] p-8 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-card)]"
+                >
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-accent-strong)]">
+                      {project.tag}
+                    </p>
+                    <h3 className="mt-4 font-serif text-2xl font-bold text-[var(--color-foreground)]">
+                      {project.name}
+                    </h3>
+                    <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-muted)]">
+                      {project.body}
+                    </p>
+                  </div>
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-accent-strong)]">
+                    {project.linkLabel}
+                    <span
+                      aria-hidden
+                      className="transition-transform duration-300 group-hover:translate-x-1"
+                    >
+                      →
+                    </span>
                   </span>
-                  <h3 className="mt-3 font-serif text-lg font-bold text-white">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-white/65">
-                    {step.body}
-                  </p>
-                </div>
+                </a>
               </Reveal>
             ))}
           </div>
@@ -450,7 +506,7 @@ export default function HomePage() {
               </p>
             </Reveal>
           </div>
-          <div className="mx-auto mt-10 grid max-w-3xl items-start gap-6 md:grid-cols-2">
+          <div className="mx-auto mt-10 grid max-w-xl items-start gap-6">
             {pricing.tiers.map((tier, i) => (
               <Reveal key={tier.name} delay={0.08 * i} className="h-full">
                 <div
@@ -474,13 +530,18 @@ export default function HomePage() {
                   <h4 className="mt-2 font-serif text-xl font-bold text-[var(--color-foreground)]">
                     {tier.name}
                   </h4>
-                  <p className="mt-3 flex items-baseline gap-1">
+                  <p className="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1">
                     <span className="font-serif text-4xl font-bold text-[var(--color-foreground)]">
                       {tier.price}
                     </span>
                     <span className="text-sm text-[var(--color-muted)]">
                       {tier.cadence}
                     </span>
+                    {"altPrice" in tier && tier.altPrice ? (
+                      <span className="text-[13px] text-[var(--color-muted)]/80">
+                        {tier.altPrice}
+                      </span>
+                    ) : null}
                   </p>
                   <p className="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
                     {tier.blurb}
@@ -494,7 +555,7 @@ export default function HomePage() {
                         <span aria-hidden className="mt-0.5 font-bold text-[var(--color-accent)]">
                           ✓
                         </span>
-                        {f}
+                        <span>{f}</span>
                       </li>
                     ))}
                   </ul>
@@ -583,6 +644,17 @@ export default function HomePage() {
             </div>
           </Reveal>
 
+          <Reveal delay={0.18}>
+            <p className="mx-auto mt-8 max-w-3xl rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-6 text-[15px] leading-relaxed text-[var(--color-muted)]">
+              {pricing.addOnsNote}
+            </p>
+          </Reveal>
+          <Reveal delay={0.22}>
+            <p className="mx-auto mt-4 max-w-3xl rounded-2xl border border-[var(--color-accent)]/30 bg-[var(--color-accent-soft)]/50 p-6 text-[15px] leading-relaxed text-[var(--color-foreground)]">
+              {pricing.addOnsCustomNote}
+            </p>
+          </Reveal>
+
           {/* Terms */}
           <div className="mx-auto mt-20 max-w-2xl text-center">
             <Reveal>
@@ -614,51 +686,23 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* ───────────────────────── WORK ───────────────────────── */}
-      <section id="work" className="bg-[var(--color-surface)] py-20 md:py-28">
+      {/* ───────────────────────── FAQ ────────────────────────── */}
+      <section className="bg-[var(--color-surface)] py-20 md:py-28">
         <Container>
-          <div className="max-w-2xl">
-            <Reveal>
-              <h2 className="font-serif text-3xl font-bold leading-[1.15] text-[var(--color-foreground)] md:text-[2.4rem]">
-                {work.heading}
-              </h2>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <p className="mt-5 text-lg leading-relaxed text-[var(--color-muted)]">
-                {work.intro}
-              </p>
-            </Reveal>
-          </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {work.projects.map((project, i) => (
-              <Reveal key={project.name} delay={0.08 * i} className="h-full">
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex h-full flex-col justify-between rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-background)] p-8 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-card)]"
-                >
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-accent-strong)]">
-                      {project.tag}
-                    </p>
-                    <h3 className="mt-4 font-serif text-2xl font-bold text-[var(--color-foreground)]">
-                      {project.name}
-                    </h3>
-                    <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-muted)]">
-                      {project.body}
-                    </p>
-                  </div>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-accent-strong)]">
-                    {project.linkLabel}
-                    <span
-                      aria-hidden
-                      className="transition-transform duration-300 group-hover:translate-x-1"
-                    >
-                      →
-                    </span>
-                  </span>
-                </a>
+          <Reveal>
+            <h2 className="font-serif text-3xl font-bold leading-[1.15] text-[var(--color-foreground)] md:text-[2.4rem]">
+              {faqs.heading}
+            </h2>
+          </Reveal>
+          <div className="mt-10 grid gap-x-12 gap-y-8 md:grid-cols-2">
+            {faqs.items.map((item, i) => (
+              <Reveal key={item.q} delay={0.06 * i}>
+                <h3 className="scroll-mt-24 font-serif text-lg font-bold text-[var(--color-foreground)]">
+                  {item.q}
+                </h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-[var(--color-muted)]">
+                  {item.a}
+                </p>
               </Reveal>
             ))}
           </div>
@@ -692,29 +736,6 @@ export default function HomePage() {
                     {card.note}
                   </p>
                 </div>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* ───────────────────────── FAQ ────────────────────────── */}
-      <section className="bg-[var(--color-background)] py-20 md:py-28">
-        <Container>
-          <Reveal>
-            <h2 className="font-serif text-3xl font-bold leading-[1.15] text-[var(--color-foreground)] md:text-[2.4rem]">
-              {faqs.heading}
-            </h2>
-          </Reveal>
-          <div className="mt-10 grid gap-x-12 gap-y-8 md:grid-cols-2">
-            {faqs.items.map((item, i) => (
-              <Reveal key={item.q} delay={0.06 * i}>
-                <h3 className="font-serif text-lg font-bold text-[var(--color-foreground)]">
-                  {item.q}
-                </h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-[var(--color-muted)]">
-                  {item.a}
-                </p>
               </Reveal>
             ))}
           </div>
@@ -768,6 +789,13 @@ export default function HomePage() {
                   {contact.phoneLabel}: {site.phone}
                 </a>
               </div>
+
+              <div className="mt-4 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-white/40">
+                <span className="h-px w-10 bg-white/20" aria-hidden />
+                Or send a message
+                <span className="h-px w-10 bg-white/20" aria-hidden />
+              </div>
+              <ContactForm />
             </div>
           </Reveal>
         </Container>

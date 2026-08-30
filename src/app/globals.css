@@ -17,6 +17,8 @@
   --color-accent: var(--p-accent);
   --color-accent-strong: var(--p-accent-strong);
   --color-accent-soft: var(--p-accent-soft);
+  --color-sage: var(--p-sage);
+  --color-amber: var(--p-amber);
 
   --font-display: var(--f-display);
   --font-body: var(--f-body);
@@ -24,28 +26,41 @@
   --font-serif: var(--f-display);
   --font-sans: var(--f-body);
 
-  /* Warm, diffuse, low-contrast shadow — soft like daylight, not UI-sharp */
-  --shadow-card: 0 1px 2px rgb(60 42 24 / 0.04), 0 12px 34px -16px rgb(60 42 24 / 0.14);
+  /* Cool, diffuse, low-contrast shadow — soft like daylight, not UI-sharp */
+  --shadow-card: 0 1px 2px rgb(20 30 48 / 0.05), 0 12px 34px -16px rgb(20 30 48 / 0.16);
 }
 
-/* ── Ignite brand: warm clay accent, soft oat paper, calm editorial type.
-   Reads "holistic wellness / coaching," keeps a hint of the "ignite" warmth
-   in the clay-to-honey accent — no neon, no SaaS gradient. ── */
+/* ── Ignite brand: cooling flame-blue accent, warm-white paper, calm
+   editorial type. Reads "clear-headed and grounded" — the flame stays,
+   the heat doesn't; a hint of amber keeps it from going cold/corporate. ── */
 :root {
-  --p-background: #f5f0e7;
-  --p-surface: #fffdf8;
-  --p-foreground: #2c2620;
-  --p-muted: #7c7266;
-  --p-subtle: #e6ddce;
-  --p-accent: #bf6a43;
-  --p-accent-strong: #9c5230;
-  --p-accent-soft: #f0e4d6;
+  --p-background: #f8f5ef;
+  --p-surface: #ffffff;
+  --p-foreground: #2b2b2b;
+  --p-muted: #64748b;
+  --p-subtle: #e3e8ef;
+  --p-accent: #256bff;
+  --p-accent-strong: #1741c4;
+  --p-accent-soft: #e7f1ff;
 
-  /* Signature gradient — clay → honeyed sand. Gentle and warm, not a spark. */
+  /* Secondary brand hues, used sparingly — a cool green for quiet
+     confirmations, a warm amber ember for the rare highlight. */
+  --p-sage: #8ea38a;
+  --p-amber: #f8a93a;
+
+  /* Signature gradient — Ignite Blue → Sky. The flame, cooled. */
   --ignite-gradient: linear-gradient(
     115deg,
-    #bf6a43 0%,
-    #d79c6e 100%
+    #256bff 0%,
+    #8ec5ff 100%
+  );
+
+  /* Tighter gradient for text — stays saturated so accent words pop
+     instead of fading pale at the tail end. */
+  --text-gradient: linear-gradient(
+    115deg,
+    #256bff 0%,
+    #4d82ff 100%
   );
 
   --f-display: var(--font-fraunces), Georgia, serif;
@@ -76,8 +91,48 @@ body {
 
 /* Brand wordmark gradient helper */
 .text-gradient {
-  background: var(--ignite-gradient);
+  background: var(--text-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
+
+/* Blog body copy. Scoped so it can't leak into the marketing page. */
+.prose-icc {
+  color: var(--color-muted);
+  font-size: 17px;
+  line-height: 1.75;
+}
+.prose-icc p { margin: 0 0 1.35em; }
+.prose-icc h2 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-foreground);
+  margin: 2.2em 0 0.6em;
+}
+.prose-icc h3 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-foreground);
+  margin: 1.8em 0 0.5em;
+}
+.prose-icc a {
+  color: var(--color-accent-strong);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose-icc a:hover { color: var(--color-accent); }
+.prose-icc blockquote {
+  border-left: 3px solid var(--color-accent);
+  margin: 1.8em 0;
+  padding: 0.2em 0 0.2em 1.2em;
+  font-style: italic;
+  color: var(--color-foreground);
+}
+.prose-icc ul, .prose-icc ol { margin: 0 0 1.35em; padding-left: 1.3em; }
+.prose-icc li { margin-bottom: 0.5em; }
+.prose-icc strong { color: var(--color-foreground); font-weight: 600; }
+.prose-icc img { border-radius: 12px; margin: 1.8em 0; }

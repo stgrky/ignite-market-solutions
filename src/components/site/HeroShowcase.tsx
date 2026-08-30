@@ -69,7 +69,7 @@ export function HeroShowcase() {
                 ? undefined
                 : { rotateX, rotateY, transformStyle: "preserve-3d" }
             }
-            className="relative overflow-hidden rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] shadow-[0_40px_80px_-30px_rgba(60,42,24,0.45)]"
+            className="relative overflow-hidden rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] shadow-[0_40px_80px_-30px_rgba(43,43,43,0.45)]"
           >
             {/* browser chrome */}
             <div className="flex items-center gap-2 border-b border-[var(--color-subtle)] bg-[var(--color-background)] px-4 py-3">
@@ -98,7 +98,7 @@ export function HeroShowcase() {
                 className="absolute inset-0"
                 style={{
                   background:
-                    "linear-gradient(0deg, rgba(44,38,32,0.55) 0%, rgba(44,38,32,0.05) 45%, transparent 65%)",
+                    "linear-gradient(0deg, rgba(43,43,43,0.55) 0%, rgba(43,43,43,0.05) 45%, transparent 65%)",
                 }}
               />
               <div className="absolute inset-x-5 bottom-5 space-y-2.5">
@@ -137,7 +137,7 @@ export function HeroShowcase() {
       </motion.div>
 
       {/* floating trust chips */}
-      <Chip className="-left-5 top-10" delay={0.2} label="~1 week to launch" icon="⚡" />
+      <Chip className="-left-5 top-10" delay={0.2} label="Live in a week or two" icon="⚡" />
       <Chip className="-right-4 top-1/3" delay={0.5} label="You own it" icon="✦" />
       <Chip className="bottom-8 -left-3" delay={0.35} label="Edit it yourself" icon="✎" />
     </div>
@@ -158,7 +158,7 @@ function Chip({
   return (
     <Float duration={7} distance={7}>
       <div
-        className={`absolute ${className} flex items-center gap-1.5 rounded-full border border-[var(--color-subtle)] bg-[var(--color-surface)] px-3 py-1.5 text-xs font-semibold text-[var(--color-foreground)] shadow-[0_14px_30px_-14px_rgba(60,42,24,0.4)]`}
+        className={`absolute ${className} flex items-center gap-1.5 rounded-full border border-[var(--color-subtle)] bg-[var(--color-surface)] px-3 py-1.5 text-xs font-semibold text-[var(--color-foreground)] shadow-[0_14px_30px_-14px_rgba(43,43,43,0.4)]`}
         style={{ animationDelay: `${delay}s` }}
       >
         <span className="text-[var(--color-accent-strong)]" aria-hidden>

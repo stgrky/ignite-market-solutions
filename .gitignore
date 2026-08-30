@@ -29,3 +29,7 @@ yarn-debug.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# sanity studio build output
+/dist
+/.sanity

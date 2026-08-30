@@ -21,22 +21,26 @@ export const site = {
 };
 
 export const nav = [
-  { label: "What you get", href: "#value" },
-  { label: "Process", href: "#process" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Work", href: "#work" },
+  { label: "What you get", href: "/#value" },
+  { label: "Shop", href: "/#shop" },
+  { label: "Process", href: "/#process" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "Work", href: "/#work" },
+  { label: "About", href: "/about" },
 ];
 
 export const hero = {
   eyebrow: "Web & digital services · mental health, wellness & coaching",
-  headlineLead: "Websites that turn visitors into",
-  headlineAccent: "clients.",
+  headlineLead: "Websites that give",
+  headlineAccent1: "personality",
+  headlineMid: "to your",
+  headlineAccent2: "practice.",
   subhead:
-    "We design and build fast, beautiful websites — and the digital services around them — with a focus on therapists, coaches, and wellness practitioners. Sites you own, can update yourself, and never pay rising platform fees to keep. A low one-time build fee, then a simple monthly plan, and you're live in about a week.",
+    "We design and build fast, beautiful websites, and the digital services around them, with a focus on the wellness space. Sites you own, can update yourself, and never pay rising platform fees to keep. A low one-time build fee, then a simple monthly plan, and you're live in about a week or two.",
   primaryCta: { label: "Book a free intro call", href: "#contact" },
-  secondaryCta: { label: "See recent work", href: "#work" },
+  secondaryCta: { label: "See recent work", href: "/#work" },
   trustLine:
-    "No cookie-cutter templates. No monthly platform ransom. No code degree required to update it.",
+    "No cookie-cutter templates. No monthly platform ransom. No code degree required to update it. No surprise billing or shady sales tactics.",
 };
 
 export const marquee = [
@@ -48,22 +52,23 @@ export const marquee = [
   "Holistic health",
   "Mindfulness",
   "Private practice",
+  "Yoga instructors",
 ];
 
 export const manifesto = {
-  line: "Your practice deserves a website as considered as the work you do in it.",
-  sub: "Calm, fast, and unmistakably yours — built to earn trust the second someone lands on it.",
+  line: "You've put a lot of thought into your practice.",
+  sub: "We build websites that are just as thoughtful, so your energy can go where it actually matters — your clients.",
 };
 
 export const problems = {
   heading: "Sound familiar?",
   intro:
-    "Most small-business owners are stuck with a website that quietly works against them.",
+    "Countless practitioners get stuck with expensive, bloated website platforms, webmasters, and hosting providers that try to get an extra dime out of them at every turn.",
   items: [
-    "Your site looks nothing like the quality of the work you actually do.",
-    "You pay Squarespace or Wix every month and still can't make it look right.",
-    "Someone built it once, disappeared, and now you can't change a single word.",
-    "It loads slowly, breaks on phones, and never shows up on Google.",
+    "Your site does not reflect the quality of work you actually do.",
+    "You pay Squarespace, Wix, or WordPress every month, still aren't satisfied, and get asked for more money every time you want to do anything remotely useful. We call this being stuck in \"plugin hell.\"",
+    "When something breaks, there's no real person to call. Just unanswered emails and calls.",
+    "Someone built it once, disappeared, and now you can't change a single word. Meanwhile it loads slowly, breaks on phones, and never shows up on Google.",
   ],
   closer: "That's exactly what we fix.",
 };
@@ -71,15 +76,15 @@ export const problems = {
 export const value = {
   heading: "A website that earns its place in your business",
   intro:
-    "Everything is built around one goal: turning the people who find you into people who book you.",
+    "Everything is built around one goal: making the right people feel confident reaching out to you.",
   cards: [
     {
       title: "Custom design, not a template",
-      body: "A site designed around your business and your clients — not a theme thousands of other businesses are already using.",
+      body: "A site designed around your business and your clients, not a theme thousands of other businesses are already using.",
     },
     {
-      title: "Built to book clients",
-      body: "Every page guides visitors toward one thing: reaching out to you. Clear calls to action, zero clutter.",
+      title: "Calm by design",
+      body: "Clear pages and quiet layouts, so someone who's nervous about reaching out can find what they need without friction.",
     },
     {
       title: "You own it, fully",
@@ -101,10 +106,10 @@ export const value = {
 };
 
 export const system = {
-  eyebrow: "How we keep it fast & affordable",
-  heading: "Start from a proven design, not a blank page",
+  eyebrow: "We keep it fast & affordable",
+  heading: "Start from a real website, not a blank page",
   intro:
-    "We maintain a set of complete, ready-built practice websites — real, live sites, not mockups. You pick the one closest to your vision and we customize it to your brand. That's how a professional custom-feeling site gets delivered in about a week at a price a solo practice can actually justify.",
+    "Every site in our collection is a complete, one-of-a-kind website we built ourselves. Not a mockup, not a recycled template. You pick the one closest to your vision, we tailor it to your brand, and once it's claimed we retire it and build something entirely new to take its place. That's how you get a genuinely custom site delivered in about a week or two, at a price your practice can justify.",
   included: {
     title: "Customized to you",
     items: [
@@ -117,69 +122,100 @@ export const system = {
   excluded: {
     title: "Kept out of scope (it's how the price stays low)",
     items: [
-      "Ground-up custom builds",
+      "A brand-new concept designed from scratch around your specific brief",
       "Unlimited open-ended revisions",
     ],
   },
-  note: "Want something beyond the included scope? No problem — extra work is simply quoted at $60/hour and agreed in writing before anything starts. No surprise invoices.",
+  note: "Want something beyond the included scope? No problem. Extra work is simply quoted at $60/hour and agreed in writing before anything starts. No surprise invoices.",
 };
 
+/**
+ * The live inventory. Add or remove an entry here and every "how many are
+ * available" mention across the site updates itself — headline, eyebrow, and
+ * the pricing blurb all count this array rather than hardcoding a number.
+ */
+const availableWebsites = [
+  {
+    name: "Meridian",
+    vibe: "Clean & clinical",
+    swatch: "#1e4d6b",
+    href: "https://icc-meridian-demo.vercel.app",
+  },
+  {
+    name: "Bloom",
+    vibe: "Warm & editorial",
+    swatch: "#c4623f",
+    href: "https://icc-bloom-demo.vercel.app",
+  },
+  {
+    name: "Haven",
+    vibe: "Soft & somatic",
+    swatch: "#8897bf",
+    href: "https://icc-haven-demo.vercel.app",
+  },
+  {
+    name: "Anchor",
+    vibe: "Grounded & modern",
+    swatch: "#2f8f83",
+    href: "https://icc-anchor-demo.vercel.app",
+  },
+  {
+    name: "Grove",
+    vibe: "Warm & relational",
+    swatch: "#6b8e7f",
+    href: "https://icc-grove-demo.vercel.app",
+  },
+];
+
+// Spelled-out numbers read better in a headline than digits do.
+const NUMBER_WORDS = [
+  "Zero", "One", "Two", "Three", "Four", "Five", "Six",
+  "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve",
+];
+
+const availableCount = availableWebsites.length;
+const countWord = NUMBER_WORDS[availableCount] ?? String(availableCount);
+const s = availableCount === 1 ? "" : "s";
+
 export const styleDirections = {
-  eyebrow: "Five ready-built designs",
-  heading: "Pick the design that already feels like your practice",
-  intro:
-    "Every design below is a real, complete site — not a mockup. Each has its own palette, type, and layout, so you're choosing a finished direction, not staring at a blank page.",
-  designs: [
-    {
-      name: "Meridian",
-      vibe: "Clean & clinical",
-      swatch: "#1e4d6b",
-      href: "https://icc-meridian-demo.vercel.app",
-    },
-    {
-      name: "Bloom",
-      vibe: "Warm & editorial",
-      swatch: "#c4623f",
-    },
-    {
-      name: "Haven",
-      vibe: "Soft & somatic",
-      swatch: "#8897bf",
-    },
-    {
-      name: "Anchor",
-      vibe: "Grounded & modern",
-      swatch: "#2f8f83",
-    },
-    {
-      name: "Grove",
-      vibe: "Warm & relational",
-      swatch: "#6b8e7f",
-    },
-  ],
-  note: "See a link above? It's live — click through. The rest are finishing final touches before their own demo links go live.",
+  eyebrow: `${countWord} available website${s}`,
+  headingCount: countWord,
+  headingRest: ` website${s} currently available, ready to become yours`,
+  intro: `These aren't templates or mockups. These are ${countWord.toLowerCase()} complete, fully custom website${s}, live right now. Pick the one that already feels like your practice and we'll tailor it to your brand, with any reasonable finishing touches, until you're happy to put your name on it. Once a site is claimed it's retired for good and we build a new one to take its place — so what's available here changes regularly. If one feels like yours, reach out before someone else claims it.`,
+  scopeLinkLabel: "See exact scope & pricing",
+  designs: availableWebsites,
+  note: "Every website above is real, live, and available right now. Feel free to click through and explore.",
 };
 
 export const process = {
   heading: "How it works",
   intro:
-    "From first hello to live site in about a week — with the scope, the price, and the process in writing at every step.",
+    "From first hello to live site in about a week or two, with the scope, the price, and the process in writing at every step.",
   steps: [
     {
-      title: "Tell us about your practice",
-      body: "Fill out a short intake form — your practice, your style, your colors and fonts. Then we hop on a free 45-minute consult to pick your design and scope your customizations. No pressure, no pitch.",
+      title: "Tell me about your practice",
+      body: "Fill out a short intake form — your practice, your style, your colors and fonts. Then we hop on a free 45-minute consult to pick your website and scope your customizations. No pressure, no pitch.",
     },
     {
-      title: "Confirm scope & pay",
-      body: "After the call you get a written summary: exactly what's included, any add-ons you chose, and a secure payment link. Pay once, upfront — then the build begins.",
+      title: "Confirm scope and pay a deposit",
+      bodyLead:
+        "After the call you get a written summary: exactly what's included, any add-ons you chose, and a secure payment link. ",
+      bodyHighlight: "Pay a 20% deposit of the build price",
+      bodyAfter: " — then the build begins.",
+      marker: "†",
+      note: "Your 20% deposit covers the consultation and scoping work that happens before your build starts, so it isn't refundable. If you decide not to move forward before launch, that's completely fine — you simply don't owe the remaining balance.",
     },
     {
       title: "We build, you review",
-      body: "Your site is customized to your brand in about a week. Two rounds of revisions are included — handled over email, on your schedule.",
+      bodyLead: "Your site is customized to your brand in about a week or two. ",
+      bodyHighlight: "Two rounds of revisions are included",
+      bodyAfter: " — handled over email, on your schedule.",
+      marker: "*",
+      note: "Two rounds of revisions means up to 4 hours of back-and-forth included in your build. Anything beyond that scope gets noted as a separate request. We'll quote it, and nothing extra happens until you approve it. Full scope and expectations are agreed upfront, before any work begins.",
     },
     {
       title: "Go live — with support",
-      body: "We launch on your domain, walk you through editing everything yourself, and your monthly plan quietly takes over: hosting, monitoring, maintenance.",
+      body: "We launch on your domain, walk you through editing everything yourself, and your monthly plan quietly takes over: hosting, monitoring, maintenance, and whatever else you need for your success.",
     },
   ],
 };
@@ -191,57 +227,41 @@ export const pricing = {
   build: {
     label: "One-time",
     name: "Initial Build",
-    price: "$333",
+    price: "$329",
     blurb:
-      "A 5-page professional website — Home, About, Services, Blog, and Contact — customized from one of our ready-built designs and delivered in about a week.",
+      `A 5-page professional website — Home, About, Services, Blog, and Contact — customized from one of our ${countWord.toLowerCase()} available website${s} and delivered in about a week or two.`,
     features: [
       "Five pages: Home, About, Services, Blog, Contact",
       "Customized to your brand: palette, fonts, imagery, layout",
       "Two rounds of revisions included (up to 4 hours, async)",
-      "Basic Google Analytics, set up via delegated access",
       "Your own secure login — manage every word, photo, and post",
     ],
     overageNote:
       "Need more than the included revisions? Extra work is $60/hour — always quoted and agreed in writing before it happens.",
   },
-  tiersHeading: "Then choose your plan",
+  tiersHeading: "Then keep it running",
   tiersIntro:
-    "Pick the level of ongoing support that fits how active you want your site to be. Change tiers anytime, or cancel — your site comes with you.",
+    "One plan, one price. Everything your site needs to stay online, secure, and healthy — with no tiers to compare and nothing to upgrade into later.",
   tiers: [
     {
-      tierLabel: "Tier 1 · Hosting & Maintenance",
-      name: "Essentials",
-      price: "$39",
-      cadence: "/month",
-      blurb: "Keep your site online, fast, and healthy. Quiet, reliable, hands-off.",
+      tierLabel: "Hosting & care",
+      name: "Everything included",
+      price: "$120",
+      cadence: "/year",
+      altPrice: "or $12/month",
+      blurb:
+        "Your site stays fast, secure, and backed up — and if anything breaks, it's on me to fix it.",
       features: [
         "Hosting and infrastructure",
-        "Security monitoring",
+        "Security monitoring and updates",
         "Outage monitoring and alerts",
+        "Domain and SSL expiry monitoring",
+        "Automated backups, so nothing is ever lost",
         "Maintenance — bugs, errors, and outages fixed",
+        "Quick questions and small changes, on the house — just email, no ticket queue",
       ],
       bestFor:
-        "Best for practitioners who want a dependable online presence that asks nothing of them — a professional digital business card that just works.",
-      featured: false,
-    },
-    {
-      tierLabel: "Tier 2 · Hosting + Full Support",
-      name: "Growth",
-      price: "$59",
-      cadence: "/month",
-      blurb:
-        "Everything in Essentials, plus active growth support — analytics, SEO, and a monthly hour of dev work on the house.",
-      features: [
-        "Everything in Essentials",
-        "One hour of development work per month",
-        "Advanced analytics + monthly performance reviews",
-        "Google Business Profile management",
-        "Contact form, set up and ready",
-        "Testimonial collection + monthly curation",
-        "SEO setup + monthly monitoring",
-      ],
-      bestFor:
-        "Best for practitioners who want the site actively growing the practice — continuous optimization and marketing insight, with zero technical work on their end.",
+        "Cancel or change it whenever you like. Your site is yours either way — it comes with you.",
       featured: true,
     },
   ],
@@ -268,7 +288,7 @@ export const pricing = {
       price: "$49",
       what: "A proper inquiry form on your site — visitors write to you without opening their email app, and submissions land in your inbox.",
       why: "For an anxious first-time visitor, a quiet form is a lower bar than composing an email. Lower bar, more inquiries.",
-      whoFor: "Anyone whose contact page is currently just an email address. (Included free with the Growth plan.)",
+      whoFor: "Anyone whose contact page is currently just an email address."
     },
     {
       label: "Scheduling integration (Calendly / Cal.com)",
@@ -278,18 +298,12 @@ export const pricing = {
       whoFor: "Anyone who already uses a scheduler — or can spare 10 minutes to set one up.",
     },
     {
-      label: "Testimonial collection (Typeform)",
-      price: "$49",
-      what: "A polished form where past clients submit testimonials. You review and approve before anything goes live.",
-      why: "Choosing a practitioner is an emotional decision — social proof matters. A streamlined process means you actually end up with quotes.",
-      whoFor: "Established practices with happy clients who'd give a review if asked.",
-    },
-    {
       label: "Google Business Profile setup",
-      price: "$49",
-      what: "We claim or create your Google Business Profile via delegated access, optimize it with photos, hours, and services, and link it to your site.",
-      why: "Most people find a nearby practitioner through Google's map. Without a profile, you're invisible to local search.",
-      whoFor: "Anyone with a physical office — even part-time. Telehealth-only practices benefit less.",
+      price: "$79",
+      what: "We claim or optimize your Google Business Profile — photos, hours, service area, categories — and add local-business structured data to your site so search engines understand your practice.",
+      why: "Most people looking for a nearby practitioner start in Google Maps. Without a claimed, complete profile you're effectively invisible to local search.",
+      whoFor:
+        "Anyone with a physical office who wants to show up in Google Map searches for their practice. Telehealth-only practices benefit less.",
     },
     {
       label: "Content migration from your old site",
@@ -301,7 +315,7 @@ export const pricing = {
     {
       label: "SEO setup",
       price: "$99",
-      what: "Meta titles and descriptions for every page, an XML sitemap, local-business schema markup, and keyword research for your niche.",
+      what: "Meta titles and descriptions for every page, an XML sitemap, and keyword research for your niche.",
       why: "Helps the right kind of clients find you on Google. Most of the work is one-time; the payoff compounds.",
       whoFor: "Practices that want long-term organic traffic instead of paying for ads forever.",
     },
@@ -324,12 +338,12 @@ export const pricing = {
     heading: "Straight terms, in writing",
     items: [
       {
-        title: "Payment upfront",
-        body: "The build fee and any add-ons are paid in full before work begins — one secure Stripe link, no deposits or installment juggling.",
+        title: "Pay in two simple steps",
+        body: "A 20% deposit gets your build started, and the balance is due before your site goes live. One secure Stripe link each time, no installment juggling.",
       },
       {
         title: "Fair cancellation",
-        body: "Change your mind after paying? You get 75% back. We keep 25% to cover the consultation and scoping already done. It's in the agreement, not fine print.",
+        body: "Change your mind before launch? You simply don't pay the remaining balance. The 20% deposit stays with us to cover the consultation and scoping already done. It's in the agreement, not fine print.",
       },
       {
         title: "No surprise overages",
@@ -341,8 +355,12 @@ export const pricing = {
       },
     ],
   },
+  addOnsCustomNote:
+    "Need something that isn't listed? Content writing, SEO, and most other digital work fall well within what I do — they're quoted per project rather than listed here, because scope varies too much to put a fixed number on. Bring it up on your intro call and you'll get a straight price in writing before anything starts.",
+  addOnsNote:
+    "Not planning to blog, but you'd like a contact form? Want a photo gallery on your services page? Just ask. We're glad to discuss swaps and small additions that keep the same overall scope and structure. The goal is a site you're genuinely happy with, not a rigid checklist.",
   footnote:
-    "Not sure which fits? The intro consult sorts it out — and you'll have the full scope in writing before you pay a dollar.",
+    "Not sure what you need? That's exactly what the free intro call is for. You'll have the full scope and final price in writing before you pay anything.",
 };
 
 export const work = {
@@ -353,7 +371,7 @@ export const work = {
       name: "dateable()af",
       tag: "Brand site · CMS · Podcast hub",
       body: "A relationships-podcast brand with a bold editorial design, a custom content editor the founders run themselves, and a built-in Spotify podcast hub.",
-      href: "https://ims-getdateable.vercel.app",
+      href: "https://dateableaf.com",
       linkLabel: "View site",
     },
   ],
@@ -364,7 +382,7 @@ export const faqs = {
   items: [
     {
       q: "How long does it take?",
-      a: "About a week from payment to launch, once your content and photos are in hand. If we're gathering content together it can stretch a little — but this is a productized build, not a three-month agency project.",
+      a: "About a week or two from payment to launch, once your content and photos are in hand. If we're gathering content together it can stretch a little — but this is a productized build, not a three-month agency project.",
     },
     {
       q: "Do I need to be technical?",
@@ -372,19 +390,19 @@ export const faqs = {
     },
     {
       q: "Who writes the website copy?",
-      a: "You bring the words — your bio, your services, your voice. We shape and place them so they land well, but nobody knows your practice like you do. (Blog posts you write later publish through your own editor in minutes.)",
+      a: "You bring the words — your bio, your services, your voice. We shape and place them so they land well, but nobody knows your practice like you do. Want help getting it written? That's available as an add-on — just ask. (Blog posts you write later publish through your own editor in minutes.)",
     },
     {
       q: "What does it cost to keep running?",
-      a: "$333 once, then $39 or $59/month for hosting, maintenance, and support — plus your domain (about $15/year, which you own). No surprise platform fees, ever.",
+      a: "$329 once, then $120/year for hosting, maintenance, and support — or $12/month if you'd rather. Plus your domain, about $15/year, which you own. No surprise platform fees, ever."
     },
     {
       q: "What if I want changes after the included revisions?",
-      a: "Two revision rounds are included with the build. Beyond that, work is $60/hour — always quoted and agreed in writing before it happens. Growth-plan members also get an hour of dev work every month.",
+      a: "Two revision rounds are included with the build. Beyond that, work is $60/hour — always quoted and agreed in writing before it happens. Once you're on hosting, quick questions and small changes are on the house; just email me."
     },
     {
       q: "What if I change my mind?",
-      a: "If you back out after paying, you're refunded 75% of the build fee — we keep 25% to cover the consultation and scoping already done. It's written into the agreement, not buried in fine print.",
+      a: "No problem at all. You pay a 20% deposit to start and the balance only when your site is ready to go live — so if you decide not to move forward before launch, you simply don't owe the rest. The deposit covers the consultation and scoping already done. It's written into the agreement, not buried in fine print.",
     },
     {
       q: "I already have a website — can you help?",
@@ -399,10 +417,10 @@ export const faqs = {
 
 export const referral = {
   heading: "Know someone who needs a site?",
-  body: "Send them my way. If they sign up, you both get three months of free hosting at your respective tier. No limits, no catches, no fine print.",
+  body: "Send them my way. If they sign up, you both get three months of hosting free. No limits, no catches, no fine print.",
   cards: [
-    { label: "You get", amount: "3 months free", note: "at your tier" },
-    { label: "They get", amount: "3 months free", note: "at their tier" },
+    { label: "You get", amount: "3 months free", note: "on your hosting" },
+    { label: "They get", amount: "3 months free", note: "on their hosting" },
   ],
 };
 
@@ -417,4 +435,99 @@ export const contact = {
   body: "Tell me a little about your business and what you're hoping for. I read every message myself and reply within a day.",
   emailLabel: "Email me directly",
   phoneLabel: "Or call/text",
+};
+
+export const privacy = {
+  heading: "Privacy Policy",
+  lastUpdated: "August 7, 2026",
+  intro:
+    "This policy explains what information Ignite Creative Co collects when you visit this website, why we collect it, and what choices you have. We keep this deliberately plain — no dense legal hedging.",
+  sections: [
+    {
+      title: "Who we are",
+      body: [
+        "Ignite Creative Co LLC is a web design and digital services studio based in Austin, Texas. For any privacy question, or to request access to or deletion of your information, email grant@ignitecreativeco.world.",
+      ],
+    },
+    {
+      title: "Information you give us directly",
+      body: [
+        "If you fill out the contact form on this site, we collect what you type into it:",
+      ],
+      bullets: [
+        "Your first and last name",
+        "Your email address",
+        "Your phone number, if you choose to provide it",
+        "The content of your message",
+      ],
+    },
+    {
+      title: "Information collected automatically",
+      body: [
+        "Like most websites, this site collects some information automatically as you browse. This includes pages you view, how long you spend on them, the approximate region you are visiting from, the type of device and browser you use, and the site or search that referred you.",
+        "Our hosting provider also keeps standard server logs, which include IP addresses, as part of delivering and securing the site.",
+      ],
+    },
+    {
+      title: "Cookies and tracking",
+      body: [
+        "This site uses two analytics services, both of which set cookies in your browser:",
+      ],
+      bullets: [
+        "Google Analytics — measures overall site traffic and which pages people find useful.",
+        "HubSpot — our customer relationship system. Its cookie lets us connect a contact form submission to the pages that visitor viewed beforehand, so we understand what someone was looking for before they reached out.",
+      ],
+    },
+    {
+      title: "How we use this information",
+      body: [
+        "We use the information above to respond to your inquiry, to understand which parts of the site are working, and to improve the site over time.",
+        "We do not sell your information. We do not run advertising on this site. We do not add you to a marketing email list or automated drip campaign from a contact form submission — if you hear from us, it is a real person replying to you directly.",
+      ],
+    },
+    {
+      title: "Who we share it with",
+      body: [
+        "We share information only with the service providers that make this site work, and only so they can provide their service to us. These include our website host, our analytics providers, our customer relationship system, our email provider, and — if you become a client — our payment processor.",
+        "Each of these providers handles data under its own privacy terms. We may also disclose information if required by law.",
+      ],
+    },
+    {
+      title: "How long we keep it",
+      body: [
+        "We keep contact form submissions for as long as needed to respond to you and maintain our business records. Analytics data is retained according to each provider's standard retention period. You can ask us to delete your information at any time.",
+      ],
+    },
+    {
+      title: "Your choices",
+      body: [
+        "You can browse this site without submitting any personal information. Most browsers let you block or delete cookies through their settings, and Google offers a browser add-on that opts you out of Google Analytics entirely.",
+        "You may also email us at grant@ignitecreativeco.world to ask what information we hold about you, to correct it, or to have it deleted. Depending on where you live, you may have additional rights under laws such as the Texas Data Privacy and Security Act, the CCPA, or the GDPR. We honor these requests regardless of where you live.",
+      ],
+    },
+    {
+      title: "Security",
+      body: [
+        "We use reputable providers and industry-standard measures to protect the information we hold. That said, no method of transmitting or storing data online is completely secure, and we cannot guarantee absolute security.",
+      ],
+    },
+    {
+      title: "Children",
+      body: [
+        "This site is intended for business owners and practitioners. It is not directed at children under 13, and we do not knowingly collect information from them.",
+      ],
+    },
+    {
+      title: "Changes to this policy",
+      body: [
+        "If we change how we handle information, we will update this page and revise the date at the top. Material changes will be reflected here before they take effect.",
+      ],
+    },
+    {
+      title: "Contact",
+      body: [
+        "Questions about this policy, or about your information, can go to grant@ignitecreativeco.world.",
+      ],
+    },
+  ],
 };

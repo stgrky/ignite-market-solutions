@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import { Container } from "@/components/Container";
-import { nav, site } from "@/lib/content";
+import { nav } from "@/lib/content";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,17 +26,23 @@ export function Header() {
       }`}
     >
       <Container className="flex h-16 items-center justify-between">
-        <a href="#top" className="group flex items-center gap-2.5">
-          <span
-            aria-hidden
-            className="grid h-8 w-8 place-items-center rounded-lg text-sm font-bold text-white"
-            style={{ background: "var(--ignite-gradient)" }}
-          >
-            ✦
-          </span>
-          <span className="font-serif text-[17px] font-bold tracking-tight text-[var(--color-foreground)]">
-            {site.shortName}
-            <span className="text-[var(--color-muted)]"> Creative Co</span>
+        <a href="#top" className="flex items-center gap-2.5">
+          <Image
+            src="/brand/flame.png"
+            alt=""
+            width={153}
+            height={281}
+            priority
+            unoptimized
+            className="h-8 w-auto"
+          />
+          <span className="flex flex-col leading-none">
+            <span className="font-sans text-lg font-semibold tracking-tight text-[var(--color-foreground)]">
+              Ignite
+            </span>
+            <span className="font-sans text-[9px] font-semibold uppercase tracking-[0.22em] text-[var(--color-muted)]">
+              Creative Co.
+            </span>
           </span>
         </a>
 
