@@ -23,7 +23,6 @@ import {
   styleDirections,
   system,
   value,
-  work,
 } from "@/lib/content";
 
 /**
@@ -39,11 +38,13 @@ function StepHeading({
   title,
   intro,
   note,
+  backLink,
 }: {
   step: string;
   title: string;
   intro: string;
   note?: string;
+  backLink?: { label: string; href: string };
 }) {
   return (
     <div className="mx-auto max-w-2xl text-center">
@@ -67,6 +68,19 @@ function StepHeading({
           {intro}
         </p>
       </Reveal>
+      {/* Step 1 happens further up the page, so it points back rather than
+          asking for something the reader has already scrolled past. */}
+      {backLink ? (
+        <Reveal delay={0.16}>
+          <a
+            href={backLink.href}
+            className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent-strong)] hover:text-[var(--color-accent)]"
+          >
+            <span aria-hidden>↑</span>
+            {backLink.label}
+          </a>
+        </Reveal>
+      ) : null}
     </div>
   );
 }
@@ -266,100 +280,8 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* ─────────────── FIVE READY-BUILT DESIGNS ─────────────── */}
-      <section id="shop" className="bg-[var(--color-background)] py-20 md:py-28">
-        <Container>
-          <div className="max-w-2xl">
-            <Reveal>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-accent-strong)]">
-                {styleDirections.eyebrow}
-              </p>
-            </Reveal>
-            <Reveal delay={0.06}>
-              <h2 className="mt-4 font-serif text-3xl font-bold leading-[1.15] text-[var(--color-foreground)] md:text-[2.4rem]">
-                <span className="text-gradient">
-                  {styleDirections.headingCount}
-                </span>
-                {styleDirections.headingRest}
-              </h2>
-            </Reveal>
-            <Reveal delay={0.12}>
-              <p className="mt-5 text-lg leading-relaxed text-[var(--color-muted)]">
-                {styleDirections.intro}
-              </p>
-            </Reveal>
-            <Reveal delay={0.16}>
-              <a
-                href="#pricing"
-                className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent-strong)] hover:text-[var(--color-accent)]"
-              >
-                {styleDirections.scopeLinkLabel}
-                <span aria-hidden>→</span>
-              </a>
-            </Reveal>
-          </div>
-
-          <div
-            className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5"
-            style={{ perspective: 1000 }}
-          >
-            {styleDirections.designs.map((design, i) => {
-              const card = (
-                <div className="flex h-full flex-col rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)]/50 hover:shadow-[var(--shadow-card)]">
-                  <span
-                    aria-hidden
-                    className="block h-10 w-10 rounded-full"
-                    style={{ background: design.swatch }}
-                  />
-                  <h3 className="mt-5 font-serif text-lg font-bold text-[var(--color-foreground)]">
-                    {design.name}
-                  </h3>
-                  <p className="mt-1 text-sm text-[var(--color-muted)]">
-                    {design.vibe}
-                  </p>
-                  {design.href ? (
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent-strong)]">
-                      View live demo
-                      <span aria-hidden>→</span>
-                    </span>
-                  ) : (
-                    <span className="mt-4 inline-flex items-center text-xs font-medium uppercase tracking-[0.14em] text-[var(--color-muted)]">
-                      In progress
-                    </span>
-                  )}
-                </div>
-              );
-              return (
-                <Reveal key={design.name} delay={0.06 * i} className="h-full">
-                  <TiltCard className="h-full">
-                    {design.href ? (
-                      <a
-                        href={design.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block h-full"
-                      >
-                        {card}
-                      </a>
-                    ) : (
-                      card
-                    )}
-                  </TiltCard>
-                </Reveal>
-              );
-            })}
-          </div>
-
-          <Reveal delay={0.2}>
-            <p className="mt-8 text-sm text-[var(--color-muted)]">
-              {styleDirections.note}
-            </p>
-          </Reveal>
-        </Container>
-      </section>
-
       {/* ─────────────────── THE TEMPLATE SYSTEM ──────────────── */}
-      <section className="bg-[var(--color-surface)] py-20 md:py-28">
+      <section className="bg-[var(--color-background)] py-20 md:py-28">
         <Container>
           <div className="grid items-start gap-12 md:grid-cols-[1.05fr_0.95fr] md:gap-16">
             <div>
@@ -430,59 +352,100 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* ─────────────────────── PROCESS ──────────────────────── */}
-      <ProcessSection process={process} />
-
-      {/* ───────────────────────── WORK ───────────────────────── */}
-      <section id="work" className="bg-[var(--color-surface)] py-20 md:py-28">
+      {/* ─────────────── FIVE READY-BUILT DESIGNS ─────────────── */}
+      <section id="shop" className="bg-[var(--color-surface)] py-20 md:py-28">
         <Container>
           <div className="max-w-2xl">
             <Reveal>
-              <h2 className="font-serif text-3xl font-bold leading-[1.15] text-[var(--color-foreground)] md:text-[2.4rem]">
-                {work.heading}
-              </h2>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <p className="mt-5 text-lg leading-relaxed text-[var(--color-muted)]">
-                {work.intro}
+              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-accent-strong)]">
+                {styleDirections.eyebrow}
               </p>
             </Reveal>
+            <Reveal delay={0.06}>
+              <h2 className="mt-4 font-serif text-3xl font-bold leading-[1.15] text-[var(--color-foreground)] md:text-[2.4rem]">
+                <span className="text-gradient">
+                  {styleDirections.headingCount}
+                </span>
+                {styleDirections.headingRest}
+              </h2>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <p className="mt-5 text-lg leading-relaxed text-[var(--color-muted)]">
+                {styleDirections.intro}
+              </p>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <a
+                href="#pricing"
+                className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent-strong)] hover:text-[var(--color-accent)]"
+              >
+                {styleDirections.scopeLinkLabel}
+                <span aria-hidden>→</span>
+              </a>
+            </Reveal>
           </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {work.projects.map((project, i) => (
-              <Reveal key={project.name} delay={0.08 * i} className="h-full">
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex h-full flex-col justify-between rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-background)] p-8 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-card)]"
-                >
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-accent-strong)]">
-                      {project.tag}
-                    </p>
-                    <h3 className="mt-4 font-serif text-2xl font-bold text-[var(--color-foreground)]">
-                      {project.name}
-                    </h3>
-                    <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-muted)]">
-                      {project.body}
-                    </p>
-                  </div>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-accent-strong)]">
-                    {project.linkLabel}
-                    <span
-                      aria-hidden
-                      className="transition-transform duration-300 group-hover:translate-x-1"
-                    >
-                      →
+
+          <div
+            className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5"
+            style={{ perspective: 1000 }}
+          >
+            {styleDirections.designs.map((design, i) => {
+              const card = (
+                <div className="flex h-full flex-col rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-background)] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)]/50 hover:shadow-[var(--shadow-card)]">
+                  <span
+                    aria-hidden
+                    className="block h-10 w-10 rounded-full"
+                    style={{ background: design.swatch }}
+                  />
+                  <h3 className="mt-5 font-serif text-lg font-bold text-[var(--color-foreground)]">
+                    {design.name}
+                  </h3>
+                  <p className="mt-1 text-sm text-[var(--color-muted)]">
+                    {design.vibe}
+                  </p>
+                  {design.href ? (
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent-strong)]">
+                      View live demo
+                      <span aria-hidden>→</span>
                     </span>
-                  </span>
-                </a>
-              </Reveal>
-            ))}
+                  ) : (
+                    <span className="mt-4 inline-flex items-center text-xs font-medium uppercase tracking-[0.14em] text-[var(--color-muted)]">
+                      In progress
+                    </span>
+                  )}
+                </div>
+              );
+              return (
+                <Reveal key={design.name} delay={0.06 * i} className="h-full">
+                  <TiltCard className="h-full">
+                    {design.href ? (
+                      <a
+                        href={design.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block h-full"
+                      >
+                        {card}
+                      </a>
+                    ) : (
+                      card
+                    )}
+                  </TiltCard>
+                </Reveal>
+              );
+            })}
           </div>
+
+          <Reveal delay={0.2}>
+            <p className="mt-8 text-sm text-[var(--color-muted)]">
+              {styleDirections.note}
+            </p>
+          </Reveal>
         </Container>
       </section>
+
+      {/* ─────────────────────── PROCESS ──────────────────────── */}
+      <ProcessSection process={process} />
 
       {/* ─────────────────────── PRICING ──────────────────────── */}
       <section id="pricing" className="bg-[var(--color-background)] py-20 md:py-28">
@@ -506,6 +469,7 @@ export default function HomePage() {
               step={pricing.buildStep}
               title={pricing.buildHeading}
               intro={pricing.buildStepIntro}
+              backLink={pricing.buildStepBackLink}
             />
           </div>
           <Reveal delay={0.1}>

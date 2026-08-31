@@ -5,7 +5,16 @@ import nextTs from "eslint-config-next/typescript";
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
-  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
+  // dist/ and .sanity/ are Sanity Studio build output — vendored bundles that
+  // drowned real findings in ~1,340 warnings.
+  globalIgnores([
+    ".next/**",
+    "out/**",
+    "build/**",
+    "dist/**",
+    ".sanity/**",
+    "next-env.d.ts",
+  ]),
 ]);
 
 export default eslintConfig;

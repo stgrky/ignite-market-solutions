@@ -49,7 +49,7 @@ export function ContactForm() {
           Message sent.
         </p>
         <p className="mt-2 text-sm leading-relaxed text-[var(--color-muted)]">
-          Thanks for reaching out — I'll get back to you within a day.
+          Thanks for reaching out &mdash; I&rsquo;ll get back to you within a day.
         </p>
       </div>
     );
@@ -79,7 +79,7 @@ export function ContactForm() {
       </div>
       <div className="mt-4">
         <label className="block text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-muted)]">
-          Website you're interested in
+          Website you&rsquo;re interested in
         </label>
         <select
           name="website"

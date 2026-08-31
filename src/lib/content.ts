@@ -12,7 +12,7 @@ export const site = {
   shortName: "Ignite",
   tagline: "Web design & digital services for the wellness space",
   description:
-    "Ignite Creative Co is a web design and digital-services studio with a focus on the mental health, wellness, and coaching space. Fast, beautiful websites you own and can update yourself — a low one-time build fee, then a simple monthly plan.",
+    "Ignite Creative Co is a web design and digital-services studio with a focus on the mental health, wellness, and coaching space. Fast, beautiful websites you own and can update yourself — a low one-time build fee, then one simple plan.",
   url: "https://ignitecreativeco.world",
   email: "grant@ignitecreativeco.world",
   phone: "(737) 420-2743",
@@ -25,7 +25,6 @@ export const nav = [
   { label: "Shop", href: "/#shop" },
   { label: "Process", href: "/#process" },
   { label: "Pricing", href: "/#pricing" },
-  { label: "Work", href: "/#work" },
   { label: "About", href: "/about" },
 ];
 
@@ -36,9 +35,9 @@ export const hero = {
   headlineMid: "to your",
   headlineAccent2: "practice.",
   subhead:
-    "We design and build fast, beautiful websites, and the digital services around them, with a focus on the wellness space. Sites you own, can update yourself, and never pay rising platform fees to keep. A low one-time build fee, then a simple monthly plan, and you're live in about a week or two.",
+    "We design and build fast, beautiful websites, and the digital services around them, with a focus on the wellness space. Sites you own, can update yourself, and never pay rising platform fees to keep. A low one-time build fee, then one simple plan, and you're live in about a week or two.",
   primaryCta: { label: "Book a free intro call", href: "#contact" },
-  secondaryCta: { label: "See recent work", href: "/#work" },
+  secondaryCta: { label: "See available websites", href: "/#shop" },
   trustLine:
     "No cookie-cutter templates. No monthly platform ransom. No code degree required to update it. No surprise billing or shady sales tactics.",
 };
@@ -211,11 +210,11 @@ export const process = {
       bodyHighlight: "Two rounds of revisions are included",
       bodyAfter: " — handled over email, on your schedule.",
       marker: "*",
-      note: "Two rounds of revisions means up to 4 hours of back-and-forth included in your build. Anything beyond that scope gets noted as a separate request. We'll quote it, and nothing extra happens until you approve it. Full scope and expectations are agreed upfront, before any work begins.",
+      note: "Two rounds of revisions means up to 2 hours of back-and-forth included in your build. Anything beyond that scope gets noted as a separate request. We'll quote it, and nothing extra happens until you approve it. Full scope and expectations are agreed upfront, before any work begins.",
     },
     {
       title: "Go live — with support",
-      body: "We launch on your domain, walk you through editing everything yourself, and your monthly plan quietly takes over: hosting, monitoring, maintenance, and whatever else you need for your success.",
+      body: "We launch on your domain, walk you through editing everything yourself, and your hosting plan quietly takes over: hosting, monitoring, maintenance, and whatever else you need for your success.",
     },
   ],
 };
@@ -228,16 +227,20 @@ export const pricing = {
   buildHeading: "Pick your website",
   buildStepIntro:
     "Choose the one closest to your vision. We tailor it to your brand and hand it over, built and live — a single fee, paid once.",
+  buildStepBackLink: {
+    label: `Browse the ${countWord.toLowerCase()} available website${s}`,
+    href: "#shop",
+  },
   build: {
     label: "One-time",
     name: "Initial Build",
-    price: "$329",
+    price: "$330",
     blurb:
       `A 5-page professional website — Home, About, Services, Blog, and Contact — customized from one of our ${countWord.toLowerCase()} available website${s} and delivered in about a week or two.`,
     features: [
       "Five pages: Home, About, Services, Blog, Contact",
       "Customized to your brand: palette, fonts, imagery, layout",
-      "Two rounds of revisions included (up to 4 hours, async)",
+      "Two rounds of revisions included (up to 2 hours, async)",
       "Your own secure login — manage every word, photo, and post",
     ],
     overageNote:
@@ -278,35 +281,35 @@ export const pricing = {
   addOns: [
     {
       label: "Extra page",
-      price: "$49 / page",
+      price: "$50 / page",
       what: "A page beyond the base five — an FAQ, a specialties breakdown, a telehealth explainer, a resource library.",
       why: "Sometimes one page can't carry everything a visitor needs to know. Extra pages give specific topics room to breathe.",
       whoFor: "Practitioners with multiple specialties or services, group practices, or anyone cramming three topics into one section.",
     },
     {
       label: "Legal / disclaimer pages",
-      price: "$29 / page",
+      price: "$30 / page",
       what: "Privacy policy, HIPAA notice, terms of service, accessibility statement — placed and formatted from copy you or your attorney provide.",
       why: "Cheaper than a regular page because we're placing your provided copy into a clean template — regulators and insurance carriers like to see these.",
       whoFor: "Every licensed practice eventually. Often required for ad networks and some referral directories.",
     },
     {
       label: "Contact form",
-      price: "$49",
+      price: "$50",
       what: "A proper inquiry form on your site — visitors write to you without opening their email app, and submissions land in your inbox.",
       why: "For an anxious first-time visitor, a quiet form is a lower bar than composing an email. Lower bar, more inquiries.",
       whoFor: "Anyone whose contact page is currently just an email address."
     },
     {
       label: "Scheduling integration (Calendly / Cal.com)",
-      price: "$49",
+      price: "$50",
       what: "Your booking widget embedded directly on the site so visitors can pick a consult time without leaving.",
       why: "Removes the click between “interested” and “booked.” For a hesitant prospective client, that click is the conversion-killer.",
       whoFor: "Anyone who already uses a scheduler — or can spare 10 minutes to set one up.",
     },
     {
       label: "Google Business Profile setup",
-      price: "$79",
+      price: "$80",
       what: "We claim or optimize your Google Business Profile — photos, hours, service area, categories — and add local-business structured data to your site so search engines understand your practice.",
       why: "Most people looking for a nearby practitioner start in Google Maps. Without a claimed, complete profile you're effectively invisible to local search.",
       whoFor:
@@ -314,28 +317,28 @@ export const pricing = {
     },
     {
       label: "Content migration from your old site",
-      price: "from $49",
-      what: "We move your existing blog posts — text, images, dates — from your current site into your new editor. $49 up to 25 posts, $99 up to 100, custom beyond.",
+      price: "from $50",
+      what: "We move your existing blog posts — text, images, dates — from your current site into your new editor. $50 up to 25 posts, $100 up to 100, custom beyond.",
       why: "Keeps the writing and search ranking you've already built. No re-typing, no starting your blog at zero.",
       whoFor: "Anyone moving from WordPress, Squarespace, or Webflow with posts worth keeping.",
     },
     {
       label: "SEO setup",
-      price: "$99",
+      price: "$100",
       what: "Meta titles and descriptions for every page, an XML sitemap, and keyword research for your niche.",
       why: "Helps the right kind of clients find you on Google. Most of the work is one-time; the payoff compounds.",
       whoFor: "Practices that want long-term organic traffic instead of paying for ads forever.",
     },
     {
       label: "Advanced Analytics setup",
-      price: "$99",
+      price: "$100",
       what: "Google Analytics 4 with conversion goals and event tracking for the actions that matter — booking clicks, form submissions, calls.",
       why: "You can finally answer “is the site actually working?” with data instead of guesses.",
       whoFor: "Practitioners spending on marketing who want to know what's pulling its weight.",
     },
     {
       label: "Custom logo design",
-      price: "$99",
+      price: "$100",
       what: "A simple, professional wordmark or lockup for your practice, with a round or two of revisions.",
       why: "A logo signals you're a real practice, not a side project — used in your header, favicon, and email signature.",
       whoFor: "New practices, rebrands, or anyone still using a Canva template.",
@@ -358,7 +361,7 @@ export const pricing = {
       },
       {
         title: "Leave anytime",
-        body: "Change tiers or cancel whenever. You own your code — your site can offboard to any developer or agency you choose.",
+        body: "Switch between monthly and annual, or cancel, whenever you like. You own your code — your site can offboard to any developer or agency you choose.",
       },
     ],
   },
@@ -370,6 +373,17 @@ export const pricing = {
     "Not sure what you need? That's exactly what the free intro call is for. You'll have the full scope and final price in writing before you pay anything.",
 };
 
+/**
+ * Parked, not deleted.
+ *
+ * A section headed "Recent work" that holds a single project reads as "one
+ * client" — worse than showing nothing. The proof itself still appears, as an
+ * answer to "Can I see something you've built?" in the FAQ, which is where a
+ * skeptic looks anyway and which doesn't promise a portfolio.
+ *
+ * Restore the section on the homepage once there are enough projects that the
+ * heading is telling the truth (Steven's bar: ~10 clients).
+ */
 export const work = {
   heading: "Recent work",
   intro: "Real sites, built to be owned and run by the people who use them.",
@@ -392,6 +406,10 @@ export const faqs = {
       a: "About a week or two from payment to launch, once your content and photos are in hand. If we're gathering content together it can stretch a little — but this is a productized build, not a three-month agency project.",
     },
     {
+      q: "Can I see something you've built?",
+      a: "Every website in the collection above is a real, finished site — not a mockup or a screenshot. Click any of them and you're on the live build. For a site that's out in the world with a client running it day to day, have a look at dateableaf.com: custom design, and a content editor the founders update themselves without touching code.",
+    },
+    {
       q: "Do I need to be technical?",
       a: "Not at all. If you can use email, you can update your site. You get your own secure login and a walkthrough at launch.",
     },
@@ -401,7 +419,7 @@ export const faqs = {
     },
     {
       q: "What does it cost to keep running?",
-      a: "$329 once, then $120/year for hosting, maintenance, and support — or $12/month if you'd rather. Plus your domain, about $15/year, which you own. No surprise platform fees, ever."
+      a: "$330 once, then $120/year for hosting, maintenance, and support — or $12/month if you'd rather. Plus your domain, about $15/year, which you own. No surprise platform fees, ever."
     },
     {
       q: "What if I want changes after the included revisions?",
@@ -413,7 +431,7 @@ export const faqs = {
     },
     {
       q: "I already have a website — can you help?",
-      a: "Yes. We can migrate your blog and content and rebuild it properly. Migration starts at $49 as a simple add-on.",
+      a: "Yes. We can migrate your blog and content and rebuild it properly. Migration starts at $50 as a simple add-on.",
     },
     {
       q: "Do I need to buy anything else?",
