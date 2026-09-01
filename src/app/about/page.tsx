@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { Container } from "@/components/Container";
 import { Reveal } from "@/components/motion/Reveal";
+import { site } from "@/lib/content";
 import { safeFetch } from "@/sanity/client";
 import { urlForImage } from "@/sanity/image";
 import { aboutPageQuery } from "@/sanity/queries";
@@ -25,8 +26,46 @@ export default async function AboutPageRoute() {
   const about = await safeFetch<AboutPage | null>(aboutPageQuery, {}, null);
   const hasContent = Boolean(about?.heading || about?.body?.length);
 
+  // Person schema, not just Organization. ICC is one person by design, and the
+  // authority signal search engines and AI assistants need is that a real,
+  // named human does this work — so the page has to say who, not just what.
+  // Emitted only once there's content, so an empty page makes no claims.
+  const personSchema = hasContent
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: "Steven Grant Kyle",
+        alternateName: "Grant Kyle",
+        jobTitle: "Founder & Web Designer",
+        url: `${site.url}/about`,
+        description: about?.metaDescription ?? about?.intro ?? undefined,
+        image: about?.portrait
+          ? urlForImage(about.portrait).width(800).height(800).url()
+          : undefined,
+        email: site.email,
+        worksFor: {
+          "@type": "Organization",
+          name: site.name,
+          url: site.url,
+        },
+        knowsAbout: [
+          "Web design",
+          "Web development",
+          "Search engine optimization",
+          "Websites for therapists and private practice",
+          "Websites for wellness practitioners",
+        ],
+      }
+    : null;
+
   return (
     <section className="bg-[var(--color-surface)] py-20 md:py-28">
+      {personSchema ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
+      ) : null}
       <Container className="max-w-3xl">
         {hasContent ? (
           <>
