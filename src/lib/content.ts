@@ -165,6 +165,12 @@ const availableWebsites = [
     swatch: "#6b8e7f",
     href: "https://icc-grove-demo.vercel.app",
   },
+  {
+    name: "Willow",
+    vibe: "Gentle & resilient",
+    swatch: "#b97c68",
+    href: "https://icc-willow-demo.vercel.app",
+  },
 ];
 
 // Spelled-out numbers read better in a headline than digits do.
