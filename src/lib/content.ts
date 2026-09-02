@@ -457,14 +457,6 @@ export const finalCta = {
   secondaryCta: { label: "Email me" },
 };
 
-export const contact = {
-  heading: "Let's talk",
-  body: "Tell me a little about your business and what you're hoping for. I read every message myself and reply within a day.",
-  emailLabel: "Email me directly",
-  phoneLabel: "Call or text",
-  smsLabel: "Text me",
-};
-
 export const privacy = {
   heading: "Privacy Policy",
   lastUpdated: "August 7, 2026",

@@ -11,7 +11,6 @@ import { HeroShowcase } from "@/components/site/HeroShowcase";
 import { Marquee } from "@/components/site/Marquee";
 import { ProcessSection } from "@/components/site/ProcessSection";
 import {
-  contact,
   faqs,
   finalCta,
   hero,
@@ -781,37 +780,35 @@ export default function HomePage() {
                   There's no booking calendar, so "book a call" has to mean
                   reaching a person — texting is how this audience actually
                   does that. */}
-              <div className="flex flex-wrap items-center justify-center gap-3">
-                <MagneticButton
-                  href={site.smsHref}
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-[var(--color-foreground)] transition hover:bg-[var(--color-accent)] hover:text-white"
-                >
-                  {finalCta.cta.label}
-                  <span aria-hidden>→</span>
-                </MagneticButton>
-                <MagneticButton
-                  href={`mailto:${site.email}`}
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-white/25 px-8 py-4 text-sm font-semibold text-white transition hover:border-white"
-                >
-                  {finalCta.secondaryCta.label}
-                </MagneticButton>
-              </div>
-              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm text-white/60">
-                <a
-                  href={`mailto:${site.email}`}
-                  className="transition-colors hover:text-white"
-                >
-                  {site.email}
-                </a>
-                <span aria-hidden className="text-white/30">
-                  ·
-                </span>
-                <a
-                  href={site.phoneHref}
-                  className="transition-colors hover:text-white"
-                >
-                  {contact.phoneLabel}: {site.phone}
-                </a>
+              {/* Each button carries its own address beneath it as plain,
+                  selectable text — the button is the link, so the text is
+                  there to be read and copied instead. select-all grabs the
+                  whole address in one click, and it doubles as the fallback
+                  on desktop, where sms: links are inert. */}
+              <div className="flex flex-wrap items-start justify-center gap-x-3 gap-y-6">
+                <div className="flex flex-col items-center gap-2.5">
+                  <MagneticButton
+                    href={site.smsHref}
+                    className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-[var(--color-foreground)] transition hover:bg-[var(--color-accent)] hover:text-white"
+                  >
+                    {finalCta.cta.label}
+                    <span aria-hidden>→</span>
+                  </MagneticButton>
+                  <span className="select-all text-sm text-white/60">
+                    {site.phone}
+                  </span>
+                </div>
+                <div className="flex flex-col items-center gap-2.5">
+                  <MagneticButton
+                    href={`mailto:${site.email}`}
+                    className="inline-flex items-center gap-2 rounded-full border-2 border-white/25 px-8 py-4 text-sm font-semibold text-white transition hover:border-white"
+                  >
+                    {finalCta.secondaryCta.label}
+                  </MagneticButton>
+                  <span className="select-all text-sm text-white/60">
+                    {site.email}
+                  </span>
+                </div>
               </div>
 
               <div className="mt-4 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-white/40">
