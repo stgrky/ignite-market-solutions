@@ -19,6 +19,7 @@ export type AboutPage = {
   heading?: string;
   intro?: string;
   portrait?: Image & { alt?: string };
+  portraitDimensions?: { width: number; height: number } | null;
   body?: PortableTextBlock[];
   metaDescription?: string;
 };

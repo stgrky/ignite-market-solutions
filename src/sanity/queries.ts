@@ -30,6 +30,12 @@ export const aboutPageQuery = groq`
     heading,
     intro,
     portrait,
+    // Dimensions come out as a separate field rather than by dereferencing
+    // inside the portrait projection — dereferencing there would replace the
+    // asset reference that urlForImage needs to build a URL at all.
+    // Lets the portrait render at its own aspect ratio: a headshot forced into
+    // a fixed landscape box loses the top of the head and the chin.
+    "portraitDimensions": portrait.asset->metadata.dimensions { width, height },
     body,
     metaDescription
   }

@@ -26,6 +26,11 @@ export default async function AboutPageRoute() {
   const about = await safeFetch<AboutPage | null>(aboutPageQuery, {}, null);
   const hasContent = Boolean(about?.heading || about?.body?.length);
 
+  // Falls back to a 4:5 portrait if Sanity didn't return dimensions — next/image
+  // needs both numbers, and a portrait guess beats a landscape one for a headshot.
+  const dims = about?.portraitDimensions;
+  const portraitSize = dims?.width && dims?.height ? dims : { width: 800, height: 1000 };
+
   // Person schema, not just Organization. ICC is one person by design, and the
   // authority signal search engines and AI assistants need is that a real,
   // named human does this work — so the page has to say who, not just what.
@@ -93,16 +98,21 @@ export default async function AboutPageRoute() {
 
             {about?.portrait ? (
               <Reveal delay={0.18}>
-                <div className="relative mt-12 aspect-[4/3] w-full overflow-hidden rounded-2xl">
+                {/* Sized as a portrait, not a banner: a headshot at the full
+                    768px column width dominates the page and pushes the
+                    writing below the fold. Rendered at the asset's own aspect
+                    ratio so nothing gets cropped, whatever shape it is. */}
+                <figure className="mt-10 max-w-[320px]">
                   <Image
-                    src={urlForImage(about.portrait).width(1000).height(750).url()}
+                    src={urlForImage(about.portrait).width(760).fit("max").auto("format").url()}
                     alt={about.portrait.alt ?? ""}
-                    fill
+                    width={portraitSize.width}
+                    height={portraitSize.height}
                     priority
-                    sizes="(max-width: 768px) 100vw, 768px"
-                    className="object-cover"
+                    sizes="320px"
+                    className="h-auto w-full rounded-2xl border border-[var(--color-subtle)]"
                   />
-                </div>
+                </figure>
               </Reveal>
             ) : null}
 
