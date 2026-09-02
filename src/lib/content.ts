@@ -219,6 +219,27 @@ export const process = {
   ],
 };
 
+/**
+ * Soft launch: the build fee is waived for the first cohort of practices.
+ *
+ * Flip `active` to false when the slots are gone and every mention reverts to
+ * the standard $330 build — the price display, the step intro, and the cost
+ * FAQ all read this flag rather than hardcoding the offer.
+ *
+ * `slots` is the honest number, so change it as they fill. It matches the
+ * available-website count today because each site is retired once claimed,
+ * which caps how many builds can exist at all.
+ */
+export const softLaunch = {
+  active: true,
+  slots: availableCount,
+  badge: "Soft launch",
+  priceLabel: "Free",
+  valueNote: "$330 value",
+  headline: `Free for the first ${availableCount} practices`,
+  note: "I'm building my portfolio in this space, and a handful of practices get their build at no cost because of it. You pay for hosting and nothing else. Same scope, same ownership, same support — the fee is simply waived while these slots last.",
+};
+
 export const pricing = {
   heading: "Simple, transparent pricing",
   intro:
@@ -226,7 +247,7 @@ export const pricing = {
   buildStep: "Step 1",
   buildHeading: "Pick your website",
   buildStepIntro:
-    "Choose the one closest to your vision. We tailor it to your brand and hand it over, built and live — a single fee, paid once.",
+    "Choose the one closest to your vision. We tailor it to your brand and hand it over, built and live. Normally a single fee, paid once — right now, for a handful of practices, it's free.",
   buildStepBackLink: {
     label: `Browse the ${countWord.toLowerCase()} available website${s}`,
     href: "#shop",
@@ -419,7 +440,7 @@ export const faqs = {
     },
     {
       q: "What does it cost to keep running?",
-      a: "$330 once, then $120/year for hosting, maintenance, and support — or $12/month if you'd rather. Plus your domain, about $15/year, which you own. No surprise platform fees, ever."
+      a: "Right now the build is free for the first few practices — normally $330 — so all you pay is $120/year for hosting, maintenance, and support, or $12/month if you'd rather. Plus your domain, about $15/year, which you own. No surprise platform fees, ever."
     },
     {
       q: "What if I want changes after the included revisions?",

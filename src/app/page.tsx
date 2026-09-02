@@ -20,6 +20,7 @@ import {
   process,
   referral,
   site,
+  softLaunch,
   styleDirections,
   system,
   value,
@@ -473,7 +474,21 @@ export default function HomePage() {
             />
           </div>
           <Reveal delay={0.1}>
-            <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-8 shadow-[var(--shadow-card)] md:p-10">
+            <div
+              className={`relative mx-auto mt-8 max-w-2xl rounded-2xl border bg-[var(--color-surface)] p-8 shadow-[var(--shadow-card)] md:p-10 ${
+                softLaunch.active
+                  ? "border-[var(--color-accent)]"
+                  : "border-[var(--color-subtle)]"
+              }`}
+            >
+              {softLaunch.active ? (
+                <span
+                  className="absolute -top-3 left-8 inline-flex items-center rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white"
+                  style={{ background: "var(--ignite-gradient)" }}
+                >
+                  {softLaunch.badge} · {softLaunch.headline}
+                </span>
+              ) : null}
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--color-muted)]">
@@ -483,9 +498,24 @@ export default function HomePage() {
                     {pricing.build.name}
                   </h3>
                 </div>
-                <span className="font-serif text-5xl font-bold text-[var(--color-foreground)]">
-                  {pricing.build.price}
-                </span>
+                {/* During the soft launch the fee is genuinely waived, so the
+                    headline number is "Free" and $330 stays visible only as
+                    the value it replaces. Reverts automatically when the
+                    softLaunch flag is switched off. */}
+                {softLaunch.active ? (
+                  <div className="text-right">
+                    <span className="font-serif text-5xl font-bold text-[var(--color-accent)]">
+                      {softLaunch.priceLabel}
+                    </span>
+                    <p className="mt-1 text-sm text-[var(--color-muted)]">
+                      ({softLaunch.valueNote})
+                    </p>
+                  </div>
+                ) : (
+                  <span className="font-serif text-5xl font-bold text-[var(--color-foreground)]">
+                    {pricing.build.price}
+                  </span>
+                )}
               </div>
               <p className="mt-5 text-[15px] leading-relaxed text-[var(--color-muted)]">
                 {pricing.build.blurb}
@@ -503,6 +533,13 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
+              {/* Says plainly why it's free — an unexplained giveaway reads as
+                  a catch, which is the opposite of what this page is for. */}
+              {softLaunch.active ? (
+                <p className="mt-6 rounded-2xl border border-[var(--color-accent)]/30 bg-[var(--color-accent-soft)]/60 p-5 text-[15px] leading-relaxed text-[var(--color-foreground)]">
+                  {softLaunch.note}
+                </p>
+              ) : null}
               <p className="mt-6 border-t border-[var(--color-subtle)] pt-5 text-sm italic leading-relaxed text-[var(--color-muted)]">
                 {pricing.build.overageNote}
               </p>
