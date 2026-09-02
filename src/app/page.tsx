@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Container } from "@/components/Container";
 import { GradientMesh } from "@/components/motion/GradientMesh";
 import { MagneticButton } from "@/components/motion/MagneticButton";
@@ -576,8 +578,8 @@ export default function HomePage() {
                   <p className="mt-6 border-t border-[var(--color-subtle)] pt-5 text-sm italic leading-relaxed text-[var(--color-muted)]">
                     {tier.bestFor}
                   </p>
-                  <a
-                    href="#contact"
+                  <Link
+                    href="/#contact"
                     className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition ${
                       tier.featured
                         ? "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-strong)]"
@@ -585,7 +587,7 @@ export default function HomePage() {
                     }`}
                   >
                     Get started
-                  </a>
+                  </Link>
                 </div>
               </Reveal>
             ))}
@@ -775,19 +777,31 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.2}>
             <div className="mt-10 flex flex-col items-center gap-4">
-              <MagneticButton
-                href={`mailto:${site.email}`}
-                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-[var(--color-foreground)] transition hover:bg-[var(--color-accent)] hover:text-white"
-              >
-                {finalCta.cta.label}
-                <span aria-hidden>→</span>
-              </MagneticButton>
+              {/* Two real actions rather than one button that only scrolled.
+                  There's no booking calendar, so "book a call" has to mean
+                  reaching a person — texting is how this audience actually
+                  does that. */}
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <MagneticButton
+                  href={site.smsHref}
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-[var(--color-foreground)] transition hover:bg-[var(--color-accent)] hover:text-white"
+                >
+                  {finalCta.cta.label}
+                  <span aria-hidden>→</span>
+                </MagneticButton>
+                <MagneticButton
+                  href={`mailto:${site.email}`}
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-white/25 px-8 py-4 text-sm font-semibold text-white transition hover:border-white"
+                >
+                  {finalCta.secondaryCta.label}
+                </MagneticButton>
+              </div>
               <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm text-white/60">
                 <a
                   href={`mailto:${site.email}`}
                   className="transition-colors hover:text-white"
                 >
-                  {contact.emailLabel}: {site.email}
+                  {site.email}
                 </a>
                 <span aria-hidden className="text-white/30">
                   ·

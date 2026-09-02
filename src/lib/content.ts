@@ -17,6 +17,7 @@ export const site = {
   email: "grant@ignitecreativeco.world",
   phone: "(737) 420-2743",
   phoneHref: "tel:+17374202743",
+  smsHref: "sms:+17374202743",
   location: "Austin, TX",
 };
 
@@ -36,7 +37,7 @@ export const hero = {
   headlineAccent2: "practice.",
   subhead:
     "We design and build fast, beautiful websites, and the digital services around them, with a focus on the wellness space. Sites you own, can update yourself, and never pay rising platform fees to keep. A low one-time build fee, then one simple plan, and you're live in about a week or two.",
-  primaryCta: { label: "Book a free intro call", href: "#contact" },
+  primaryCta: { label: "Book a free intro call", href: "/#contact" },
   secondaryCta: { label: "See available websites", href: "/#shop" },
   trustLine:
     "No cookie-cutter templates. No monthly platform ransom. No code degree required to update it. No surprise billing or shady sales tactics.",
@@ -451,15 +452,17 @@ export const referral = {
 
 export const finalCta = {
   heading: "Ready to ignite your online presence?",
-  body: "Book a free 20-minute intro call. We'll talk through what your business needs — no pressure, no jargon, no obligation.",
-  cta: { label: "Book your free intro call", href: "#contact" },
+  body: "Text or email me and we'll find twenty minutes to talk through what your business needs — no pressure, no jargon, no obligation. It reaches me directly, not a scheduling robot.",
+  cta: { label: "Text me" },
+  secondaryCta: { label: "Email me" },
 };
 
 export const contact = {
   heading: "Let's talk",
   body: "Tell me a little about your business and what you're hoping for. I read every message myself and reply within a day.",
   emailLabel: "Email me directly",
-  phoneLabel: "Or call/text",
+  phoneLabel: "Call or text",
+  smsLabel: "Text me",
 };
 
 export const privacy = {

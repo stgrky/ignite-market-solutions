@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { Container } from "@/components/Container";
 import { nav, site } from "@/lib/content";
@@ -65,12 +66,12 @@ export function Footer() {
               >
                 {site.phone}
               </a>
-              <a
-                href="#contact"
+              <Link
+                href="/#contact"
                 className="text-sm text-[var(--color-foreground)] transition-colors hover:text-[var(--color-accent-strong)]"
               >
                 Book a free intro call
-              </a>
+              </Link>
             </div>
           </div>
         </div>
