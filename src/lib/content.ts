@@ -324,6 +324,14 @@ export const pricing = {
       whoFor: "Anyone moving from WordPress, Squarespace, or Webflow with posts worth keeping.",
     },
     {
+      label: "Domain transfer & DNS setup",
+      price: "from $50",
+      what: "We move your existing domain to a new registrar, or safely repoint its DNS in place, without breaking anything already running on it — most commonly your email.",
+      why: "A domain rarely lives alone. Get one DNS record wrong and you can silently break inbound email for days before anyone notices. We handle the transfer and the records so nothing goes down.",
+      whoFor:
+        "Anyone bringing a domain they already own, especially if email or anything else is already running on it. (Buying a domain fresh for a new site is already covered — see the cost FAQ below.)",
+    },
+    {
       label: "SEO setup",
       price: "$100",
       what: "Meta titles and descriptions for every page, an XML sitemap, and keyword research for your niche.",
