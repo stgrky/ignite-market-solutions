@@ -452,7 +452,7 @@ export const referral = {
 
 export const finalCta = {
   heading: "Ready to ignite your online presence?",
-  body: "Text or email me and we'll find twenty minutes to talk through what your business needs — no pressure, no jargon, no obligation. It reaches me directly, not a scheduling robot.",
+  body: "Text or email me and we'll find twenty minutes to talk through your business needs. No pressure, no jargon, no obligation. It reaches me directly, btw.",
   cta: { label: "Text me" },
   secondaryCta: { label: "Email me" },
 };
