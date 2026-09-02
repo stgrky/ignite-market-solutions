@@ -325,8 +325,8 @@ export const pricing = {
     },
     {
       label: "Domain transfer & DNS setup",
-      price: "from $50",
-      what: "We move your existing domain to a new registrar, or safely repoint its DNS in place, without breaking anything already running on it — most commonly your email.",
+      price: "from $60/hour",
+      what: "We move your existing domain to a new registrar, or safely repoint its DNS in place, without breaking anything already running on it — most commonly your email. Billed for time spent, since a simple repoint and a full registrar transfer take very different amounts of work.",
       why: "A domain rarely lives alone. Get one DNS record wrong and you can silently break inbound email for days before anyone notices. We handle the transfer and the records so nothing goes down.",
       whoFor:
         "Anyone bringing a domain they already own, especially if email or anything else is already running on it. (Buying a domain fresh for a new site is already covered — see the cost FAQ below.)",
