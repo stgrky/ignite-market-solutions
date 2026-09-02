@@ -96,35 +96,36 @@ export default async function AboutPageRoute() {
               </Reveal>
             ) : null}
 
-            {about?.portrait ? (
-              <Reveal delay={0.18}>
-                {/* Sized as a portrait, not a banner: a headshot at the full
-                    768px column width dominates the page and pushes the
-                    writing below the fold. Rendered at the asset's own aspect
-                    ratio so nothing gets cropped, whatever shape it is. */}
-                <figure className="mt-10 max-w-[320px]">
-                  <Image
-                    src={urlForImage(about.portrait).width(760).fit("max").auto("format").url()}
-                    alt={about.portrait.alt ?? ""}
-                    width={portraitSize.width}
-                    height={portraitSize.height}
-                    priority
-                    sizes="320px"
-                    className="h-auto w-full rounded-2xl border border-[var(--color-subtle)]"
-                  />
-                </figure>
-              </Reveal>
-            ) : null}
-
             {about?.body?.length ? (
               <Reveal delay={0.24}>
                 <div className="prose-icc mt-12">
+                  {/* The portrait lives inside the prose so the writing can wrap
+                      around it — a float only affects text in its own block
+                      formatting context, so this can't be a sibling of the
+                      body. No Reveal wrapper for the same reason: the extra
+                      div would be the thing that floats, not the figure.
+                      Floats only at lg and up: below that the remaining column
+                      is ~40 characters, which reads worse than stacking. */}
+                  {about.portrait ? (
+                    <figure className="mb-6 max-w-[300px] lg:float-left lg:mr-7 lg:mt-2 lg:mb-4 lg:max-w-[240px]">
+                      <Image
+                        src={urlForImage(about.portrait).width(760).fit("max").auto("format").url()}
+                        alt={about.portrait.alt ?? ""}
+                        width={portraitSize.width}
+                        height={portraitSize.height}
+                        priority
+                        sizes="(max-width: 1024px) 300px, 240px"
+                        className="h-auto w-full rounded-2xl border border-[var(--color-subtle)]"
+                      />
+                    </figure>
+                  ) : null}
                   <PortableText value={about.body} />
                 </div>
               </Reveal>
             ) : null}
 
-            <div className="mt-16 border-t border-[var(--color-subtle)] pt-10 text-center">
+            {/* clear-both so a portrait taller than the copy can't overlap this */}
+            <div className="clear-both mt-16 border-t border-[var(--color-subtle)] pt-10 text-center">
               <p className="font-serif text-xl font-bold text-[var(--color-foreground)]">
                 Want to talk it through?
               </p>
