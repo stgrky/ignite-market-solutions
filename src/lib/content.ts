@@ -295,7 +295,7 @@ export const pricing = {
     {
       label: "Extra page",
       price: "$50 / page",
-      what: "A page beyond the base five — an FAQ, a specialties breakdown, a telehealth explainer, a resource library.",
+      what: "A page beyond the base five — a specialties breakdown, a telehealth explainer, a resource library.",
       why: "Sometimes one page can't carry everything a visitor needs to know. Extra pages give specific topics room to breathe.",
       whoFor: "Practitioners with multiple specialties or services, group practices, or anyone cramming three topics into one section.",
     },
@@ -346,8 +346,8 @@ export const pricing = {
     {
       label: "SEO setup",
       price: "$100",
-      what: "Meta titles and descriptions for every page, an XML sitemap, and keyword research for your niche.",
-      why: "Helps the right kind of clients find you on Google. Most of the work is one-time; the payoff compounds.",
+      what: "Five things: meta titles and descriptions for every page, an XML sitemap (a file that helps Google find every page on your site), keyword research built around how your ideal clients actually search for someone like you, a dedicated FAQ section on your site, and structured data — hidden code added to that FAQ and your practice info so Google reads and understands it accurately.",
+      why: "Helps the right kind of clients find you on Google, and gives visitors quick, honest answers before they ever have to email you. Most of the work is one-time; the payoff compounds.",
       whoFor: "Practices that want long-term organic traffic instead of paying for ads forever.",
     },
     {
