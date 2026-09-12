@@ -215,15 +215,15 @@ export const process = {
       bodyHighlight: "Pay a 20% deposit of the build price",
       bodyAfter: " — then the build begins.",
       marker: "†",
-      note: "Your 20% deposit covers the consultation and scoping work that happens before your build starts, so it isn't refundable. If you decide not to move forward before launch, that's completely fine — you simply don't owe the remaining balance.",
+      note: "Your 20% deposit covers the consultation and scoping work that happens before your build starts, so it isn't refundable. If you decide not to move forward before your first draft is delivered, that's completely fine — you simply don't owe the remaining balance.",
     },
     {
       title: "We build, you review",
-      bodyLead: "Your site is customized to your brand in about a week or two. ",
+      bodyLead: "Your site is customized to your brand, with the content from your current site moved across for you, in about a week or two. ",
       bodyHighlight: "Two rounds of revisions are included",
       bodyAfter: " — handled over email, on your schedule.",
       marker: "*",
-      note: "Two rounds of revisions means up to 2 hours of back-and-forth included in your build. Anything beyond that scope gets noted as a separate request. We'll quote it, and nothing extra happens until you approve it. Full scope and expectations are agreed upfront, before any work begins.",
+      note: "Two rounds of revisions means up to 2 hours of back-and-forth included in your build. Send each round as one list, within two weeks — if we don't hear back, we'll take that as a thumbs up and schedule your launch. Anything beyond that scope gets noted as a separate request. We'll quote it, and nothing extra happens until you approve it.",
     },
     {
       title: "Go live — with support",
@@ -253,6 +253,7 @@ export const pricing = {
     features: [
       "Five pages: Home, About, Services, Blog, Contact",
       "Customized to your brand: palette, fonts, imagery, layout",
+      "Your existing content moved across for you (up to 6 pages)",
       "Two rounds of revisions included (up to 2 hours, async)",
       "Your own secure login — manage every word, photo, and post",
     ],
@@ -329,13 +330,6 @@ export const pricing = {
         "Anyone with a physical office who wants to show up in Google Map searches for their practice. Telehealth-only practices benefit less.",
     },
     {
-      label: "Content migration from your old site",
-      price: "from $50",
-      what: "We move your existing blog posts — text, images, dates — from your current site into your new editor. $50 up to 25 posts, $100 up to 100, custom beyond.",
-      why: "Keeps the writing and search ranking you've already built. No re-typing, no starting your blog at zero.",
-      whoFor: "Anyone moving from WordPress, Squarespace, or Webflow with posts worth keeping.",
-    },
-    {
       label: "Domain transfer & DNS setup",
       price: "from $60/hour",
       what: "We move your existing domain to a new registrar, or safely repoint its DNS in place, without breaking anything already running on it — most commonly your email. Billed for time spent, since a simple repoint and a full registrar transfer take very different amounts of work.",
@@ -370,11 +364,11 @@ export const pricing = {
     items: [
       {
         title: "Pay in two simple steps",
-        body: "A 20% deposit gets your build started, and the balance is due before your site goes live. One secure Stripe link each time, no installment juggling.",
+        body: "A 20% deposit gets your build started, and the balance is due when your first draft is delivered for review — your hosting starts then too. Launching on your domain happens on your schedule and never holds up the build. One secure Stripe link each time, no installment juggling.",
       },
       {
         title: "Fair cancellation",
-        body: "Change your mind before launch? You simply don't pay the remaining balance. The 20% deposit stays with us to cover the consultation and scoping already done. It's in the agreement, not fine print.",
+        body: "Change your mind before your first draft is delivered? You simply don't pay the remaining balance. The 20% deposit stays with us to cover the consultation and scoping already done. It's in the agreement, not fine print.",
       },
       {
         title: "No surprise overages",
@@ -424,7 +418,7 @@ export const faqs = {
   items: [
     {
       q: "How long does it take?",
-      a: "About a week or two from payment to launch, once your content and photos are in hand. If we're gathering content together it can stretch a little — but this is a productized build, not a three-month agency project.",
+      a: "About a week or two from payment to your first draft, once I have access to your current site and anything new you want added, like a logo or fresh photos. This is a productized build, not a three-month agency project.",
     },
     {
       q: "Can I see something you've built?",
@@ -436,7 +430,7 @@ export const faqs = {
     },
     {
       q: "Who writes the website copy?",
-      a: "You bring the words — your bio, your services, your voice. We shape and place them so they land well, but nobody knows your practice like you do. Want help getting it written? That's available as an add-on — just ask. (Blog posts you write later publish through your own editor in minutes.)",
+      a: "If you already have a website, I move your existing words across for you — your bio, your services, your voice, as you wrote them. Anything new is yours to bring, because nobody knows your practice like you do. Want help writing it? That's quoted separately — just ask. (Blog posts you write later publish through your own editor in minutes.)",
     },
     {
       q: "What does it cost to keep running?",
@@ -448,11 +442,11 @@ export const faqs = {
     },
     {
       q: "What if I change my mind?",
-      a: "No problem at all. You pay a 20% deposit to start and the balance only when your site is ready to go live — so if you decide not to move forward before launch, you simply don't owe the rest. The deposit covers the consultation and scoping already done. It's written into the agreement, not buried in fine print.",
+      a: "No problem at all. You pay a 20% deposit to start and the balance when your first draft is delivered — so if you decide not to move forward before then, you simply don't owe the rest. The deposit covers the consultation and scoping already done. It's written into the agreement, not buried in fine print.",
     },
     {
       q: "I already have a website — can you help?",
-      a: "Yes. We can migrate your blog and content and rebuild it properly. Migration starts at $50 as a simple add-on.",
+      a: "Yes — and moving your existing content across is included. I'll carry over up to six pages from your current site as a first pass, so you're reviewing a real draft instead of starting from a blank page. Bigger sites or long blog archives get a straight quote first.",
     },
     {
       q: "Do I need to buy anything else?",
