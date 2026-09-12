@@ -120,13 +120,13 @@ export const system = {
     ],
   },
   excluded: {
-    title: "Kept out of scope (it's how the price stays low)",
+    title: "Not in the base build (it's how the price stays low)",
     items: [
       "A brand-new concept designed from scratch around your specific brief",
       "Unlimited open-ended revisions",
     ],
   },
-  note: "Want something beyond the included scope? No problem. Extra work is simply quoted at $60/hour and agreed in writing before anything starts. No surprise invoices.",
+  note: "This is the starting point, not the ceiling. Get live fast and affordably here, and anything you want beyond it, I build on top. Custom work — from scratch, or on a site you already have — is $60/hour. For a site I didn't build, a paid discovery hour comes first, so the quote you get is a real one. Everything is agreed in writing before work starts.",
 };
 
 /**
@@ -381,7 +381,7 @@ export const pricing = {
     ],
   },
   addOnsCustomNote:
-    "Need something that isn't listed? Content writing, SEO, and most other digital work fall well within what I do — they're quoted per project rather than listed here, because scope varies too much to put a fixed number on. Bring it up on your intro call and you'll get a straight price in writing before anything starts.",
+    "Need something that isn't listed? Custom development — a site built from scratch, or changes to one you already have — is $60/hour, with a paid discovery hour first when it's a site I didn't build. Content writing, broader SEO, and most other digital work are quoted per project too. Bring it up on your intro call and you'll get a straight price in writing before anything starts.",
   addOnsNote:
     "Not planning to blog, but you'd like a contact form? Want a photo gallery on your services page? Just ask. We're glad to discuss swaps and small additions that keep the same overall scope and structure. The goal is a site you're genuinely happy with, not a rigid checklist.",
   footnote:
