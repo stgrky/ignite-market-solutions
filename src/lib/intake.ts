@@ -15,7 +15,7 @@
  * that work). While this is false the form asks only the productized questions,
  * and the route treats every submission as productized.
  */
-export const CUSTOM_DEV_BRANCH_ENABLED = false;
+export const CUSTOM_DEV_BRANCH_ENABLED = true;
 
 /** The routing key. Values are HubSpot internal values for `icc_track`. */
 export const TRACKS = {
