@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { styleDirections } from "@/lib/content";
+import { composeMessage, hubspotCustomFields, normalizeIntake } from "@/lib/intake";
+
 const HUBSPOT_PORTAL_ID = "246937212";
 const HUBSPOT_FORM_ID = "ea2ce8f5-2cbf-478f-b1e9-dc952a6b35bf";
 const HUBSPOT_SUBMIT_URL = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`;
@@ -57,42 +60,12 @@ async function sendConfirmationEmail(to: string, firstName: string) {
   }
 }
 
-export async function POST(request: NextRequest) {
-  const body = await request.json().catch(() => null);
-
-  if (!body || !body.email || !body.firstName || !body.message) {
-    return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
-  }
-
-  const { firstName, lastName, email, phone, website, message } = body as {
-    firstName: string;
-    lastName?: string;
-    email: string;
-    phone?: string;
-    website?: string;
-    message: string;
-  };
-
-  // The HubSpot form has no custom property for this yet, so the selection is
-  // prepended to the message — it still lands in the CRM and the notification
-  // email. Swap to a real field once a custom property exists in HubSpot.
-  const composedMessage = website
-    ? `Interested in: ${website}\n\n${message}`
-    : message;
-
-  const fields = [
-    { name: "firstname", value: firstName },
-    { name: "lastname", value: lastName ?? "" },
-    { name: "email", value: email },
-    { name: "phone", value: phone ?? "" },
-    { name: "message", value: composedMessage },
-  ];
-
-  // Links this submission to the visitor's tracked session, so the CRM contact
-  // shows which pages they viewed before reaching out.
-  const hutk = request.cookies.get("hubspotutk")?.value;
-
-  const hsResponse = await fetch(HUBSPOT_SUBMIT_URL, {
+/** One HubSpot Forms API submission. Resolves to the error body on failure. */
+async function submitToHubSpot(
+  fields: { name: string; value: string }[],
+  hutk: string | undefined,
+): Promise<{ ok: true } | { ok: false; status: number; detail: string }> {
+  const response = await fetch(HUBSPOT_SUBMIT_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -104,19 +77,66 @@ export async function POST(request: NextRequest) {
       },
     }),
   });
+  if (response.ok) return { ok: true };
+  return { ok: false, status: response.status, detail: await response.text() };
+}
 
-  if (!hsResponse.ok) {
-    const errorBody = await hsResponse.text();
-    console.error("HubSpot submission failed:", hsResponse.status, errorBody);
+export async function POST(request: NextRequest) {
+  const result = normalizeIntake(await request.json().catch(() => null), {
+    allowedTemplates: styleDirections.designs.map((design) => design.name),
+  });
+  if (!result.ok) {
+    return NextResponse.json({ error: result.error }, { status: 400 });
+  }
+  const { intake } = result;
+
+  // Every answer rides in the standard `message` field, labelled, with the
+  // track on the first line. That needs nothing configured in HubSpot.
+  const standardFields = [
+    { name: "firstname", value: intake.firstName },
+    { name: "lastname", value: intake.lastName },
+    { name: "email", value: intake.email },
+    { name: "phone", value: intake.phone },
+    { name: "message", value: composeMessage(intake) },
+  ];
+
+  // Links this submission to the visitor's tracked session, so the CRM contact
+  // shows which pages they viewed before reaching out.
+  const hutk = request.cookies.get("hubspotutk")?.value;
+
+  // Once the five icc_* contact properties exist AND are added to the HubSpot
+  // form, set HUBSPOT_ICC_PROPERTIES=on to also file the routing answers as
+  // filterable properties.
+  const withProperties = process.env.HUBSPOT_ICC_PROPERTIES === "on";
+  let submission = await submitToHubSpot(
+    withProperties ? [...standardFields, ...hubspotCustomFields(intake)] : standardFields,
+    hutk,
+  );
+
+  // If the switch is on before HubSpot is actually ready for those fields,
+  // HubSpot rejects the whole submission. A misconfigured property must never
+  // cost a lead, so retry with the standard fields alone — the message still
+  // carries every answer.
+  if (!submission.ok && withProperties) {
+    console.error(
+      "HubSpot rejected the icc_* properties; retrying without them:",
+      submission.status,
+      submission.detail,
+    );
+    submission = await submitToHubSpot(standardFields, hutk);
+  }
+
+  if (!submission.ok) {
+    console.error("HubSpot submission failed:", submission.status, submission.detail);
     return NextResponse.json(
-      { error: "Submission failed", detail: errorBody },
+      { error: "Submission failed", detail: submission.detail },
       { status: 502 },
     );
   }
 
   // Awaited rather than fire-and-forget: a serverless function can be frozen
   // the moment it returns, which would silently drop an unawaited request.
-  await sendConfirmationEmail(email, firstName);
+  await sendConfirmationEmail(intake.email, intake.firstName);
 
   return NextResponse.json({ ok: true });
 }
