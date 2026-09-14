@@ -60,6 +60,7 @@ export function ContactForm() {
           carryOver: text("carryOver"),
           change: text("change"),
           scope: text("scope"),
+          additions: text("additions"),
           goals: data.getAll("goals"),
           otherGoal: text("otherGoal"),
           notes: text("notes"),
@@ -121,20 +122,21 @@ export function ContactForm() {
 
       {CUSTOM_DEV_BRANCH_ENABLED ? (
         <ChoiceGroup
-          legend="What are you looking for?"
+          legend="Where would you like to start?"
           name="offering"
           value={offering}
           onChange={(value) => setOffering(value as Offering)}
           options={[
             {
               value: "productized",
-              label: "A finished website, tailored to my practice",
-              description: "Pick one of our websites and make it yours. Live in about a week or two.",
+              label: "With one of our websites",
+              description:
+                "Each one is complete and ready to go on its own. Anything you want beyond it, we build on top.",
             },
             {
               value: "custom",
-              label: "Custom development",
-              description: "A site built from scratch, or changes to one you already have. $60/hour.",
+              label: "Something fully custom",
+              description: "A site built from scratch, or changes to a site you already have. $60/hour.",
             },
           ]}
         />
@@ -185,6 +187,17 @@ export function ContactForm() {
               ))}
             </select>
           </div>
+
+          {CUSTOM_DEV_BRANCH_ENABLED ? (
+            <div className="mt-4">
+              <TextArea
+                label="Anything you’d want beyond the base site?"
+                name="additions"
+                rows={2}
+                hint="Additions are quoted as custom development, at $60/hour. Your build includes two hours of revisions, though, so what you have in mind may not cost anything extra."
+              />
+            </div>
+          ) : null}
         </>
       ) : null}
 
@@ -202,6 +215,23 @@ export function ContactForm() {
           />
           {customKind === "scratch" ? (
             <Reveal>
+              <div>
+                <label className={labelClass} htmlFor="template">
+                  Could one of our websites be your starting point?
+                </label>
+                <select id="template" name="template" defaultValue="" className={inputClass}>
+                  <option value="">No — build it from scratch</option>
+                  {styleDirections.designs.map((design) => (
+                    <option key={design.name} value={design.name}>
+                      {design.name} — {design.vibe}
+                    </option>
+                  ))}
+                </select>
+                <p className="mt-1.5 text-xs text-[var(--color-muted)]">
+                  Starting from one of ours is usually faster and more affordable — we build what
+                  you need on top.
+                </p>
+              </div>
               <TextArea label="What do you want built?" name="scope" rows={3} />
               <SelectField label="Roughly how many pages?" name="pageCount" options={PAGE_COUNTS} />
             </Reveal>

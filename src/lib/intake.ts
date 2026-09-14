@@ -49,13 +49,18 @@ export type Intake = {
   email: string;
   phone: string;
   track: Track;
-  /** Productized only; a template name or TEMPLATE_NOT_SURE. */
+  /**
+   * Productized: the website that stood out, or TEMPLATE_NOT_SURE.
+   * Custom from scratch: a website they'd consider starting from, or "".
+   */
   template: string;
   existingSiteUrl: string;
   pageCount: string;
   carryOver: string;
   change: string;
   scope: string;
+  /** Productized only: anything they'd want beyond the base site. */
+  additions: string;
   goals: string[];
   otherGoal: string;
   /** The shared closing question: what stood out, what they'd change, or any question. */
@@ -116,9 +121,13 @@ export function normalizeIntake(
     email,
     phone: clip(body.phone, 60),
     track,
+    // Someone asking for fully custom work can still name one of our websites
+    // as a possible starting point — often the cheaper, faster answer for them.
     template: isProductized
       ? oneOf(body.template, [...options.allowedTemplates, TEMPLATE_NOT_SURE]) || TEMPLATE_NOT_SURE
-      : "",
+      : track === "custom_scratch"
+        ? oneOf(body.template, options.allowedTemplates)
+        : "",
     existingSiteUrl: hasSite ? normalizeUrl(body.existingSiteUrl) : "",
     pageCount:
       track === "productized_existing" || track === "custom_scratch"
@@ -127,6 +136,7 @@ export function normalizeIntake(
     carryOver: track === "productized_existing" ? clip(body.carryOver, 2000) : "",
     change: hasSite ? clip(body.change, 2000) : "",
     scope: track === "custom_scratch" ? clip(body.scope, 3000) : "",
+    additions: isProductized ? clip(body.additions, 2000) : "",
     goals,
     otherGoal: clip(body.otherGoal, 300),
     notes: clip(body.notes, 5000),
@@ -147,7 +157,9 @@ export function composeMessage(intake: Intake) {
     if (value) lines.push(`${label}: ${value}`);
   };
 
-  if (intake.template) {
+  if (intake.template && intake.track === "custom_scratch") {
+    add("Possible starting point", intake.template);
+  } else if (intake.template) {
     add("Website that stood out", intake.template === TEMPLATE_NOT_SURE ? "Not sure yet" : intake.template);
   }
   add("Existing site", intake.existingSiteUrl);
@@ -155,8 +167,15 @@ export function composeMessage(intake: Intake) {
   add("Scope / what they want built", intake.scope);
   add("What they'd carry over", intake.carryOver);
   add("What they want changed", intake.change);
+  add("Wants beyond the base site", intake.additions);
   add("Goals", intake.goals.map((g) => labelFor(GOALS, g)).join("; "));
   add("Other goal", intake.otherGoal);
+  if (intake.additions) {
+    lines.push("→ Additions beyond the base site: use the 2 included revision hours first; quote anything past them as custom dev ($60/hr).");
+  }
+  if (intake.track === "custom_scratch" && intake.template) {
+    lines.push(`→ Asked for fully custom but named ${intake.template} as a possible start: worth offering ${intake.template} plus custom work.`);
+  }
   if (intake.track === "custom_existing") {
     lines.push("→ Existing site ICC didn't build: schedule the paid discovery hour before quoting.");
   }
