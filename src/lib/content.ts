@@ -202,7 +202,7 @@ export const styleDirections = {
 export const process = {
   heading: "How it works",
   intro:
-    "From first hello to live site in about a week or two, with the scope, the price, and the process in writing at every step.",
+    "From first hello to your first draft in about a week or two, and live about two weeks after that, with the scope, the price, and the process in writing at every step.",
   steps: [
     {
       title: "Tell me about your practice",
@@ -223,7 +223,7 @@ export const process = {
       bodyHighlight: "Two rounds of revisions are included",
       bodyAfter: " — handled over email, on your schedule.",
       marker: "*",
-      note: "Two rounds of revisions means up to 2 hours of back-and-forth included in your build. Send each round as one list, within two weeks — if we don't hear back, we'll take that as a thumbs up and schedule your launch. Anything beyond that scope gets noted as a separate request. We'll quote it, and nothing extra happens until you approve it.",
+      note: "Two rounds of revisions means up to 2 hours of back-and-forth included in your build. We aim to launch about two weeks after your first look, so your first round of feedback within a week keeps things on track. Send each round as one list — if we don't hear back within two weeks, we'll take that as a thumbs up and schedule your launch. Anything beyond that scope gets noted as a separate request. We'll quote it, and nothing extra happens until you approve it.",
     },
     {
       title: "Go live — with support",
@@ -418,7 +418,7 @@ export const faqs = {
   items: [
     {
       q: "How long does it take?",
-      a: "About a week or two from payment to your first draft, once I have access to your current site and anything new you want added, like a logo or fresh photos. This is a productized build, not a three-month agency project.",
+      a: "About a week or two from payment to your first draft, once I have access to your current site and anything new you want added, like a logo or fresh photos. Then about two weeks from your first look to launch. This is a productized build, not a three-month agency project.",
     },
     {
       q: "Can I see something you've built?",
