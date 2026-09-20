@@ -148,22 +148,10 @@ const availableWebsites = [
     href: "https://icc-bloom-demo.vercel.app",
   },
   {
-    name: "Haven",
-    vibe: "Soft & somatic",
-    swatch: "#8897bf",
-    href: "https://icc-haven-demo.vercel.app",
-  },
-  {
     name: "Anchor",
     vibe: "Grounded & modern",
     swatch: "#2f8f83",
     href: "https://icc-anchor-demo.vercel.app",
-  },
-  {
-    name: "Grove",
-    vibe: "Warm & relational",
-    swatch: "#6b8e7f",
-    href: "https://icc-grove-demo.vercel.app",
   },
   {
     name: "Willow",
