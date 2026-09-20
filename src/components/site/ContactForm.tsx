@@ -95,6 +95,21 @@ export function ContactForm() {
   const isProductized = offering === "productized";
   const isCustom = offering === "custom";
 
+  // Asked right after the website picker, while a visitor still has the designs
+  // in mind — that's when they have something to say about them. The custom
+  // branch has no picker, so it gets the same question at the end. Only one
+  // branch ever renders, so the two never collide on the `notes` name.
+  const notesField = (
+    <div className="mt-6">
+      <TextArea
+        label="What stood out to you, and what would you change?"
+        name="notes"
+        rows={4}
+        hint="Or just ask anything."
+      />
+    </div>
+  );
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -185,6 +200,8 @@ export function ContactForm() {
               ))}
             </select>
           </div>
+
+          {notesField}
         </>
       ) : null}
 
@@ -222,6 +239,8 @@ export function ContactForm() {
               />
             </Reveal>
           ) : null}
+
+          {notesField}
         </>
       ) : null}
 
@@ -261,15 +280,6 @@ export function ContactForm() {
               <Field label="Something else?" name="otherGoal" />
             </div>
           </fieldset>
-
-          <div className="mt-6">
-            <TextArea
-              label="What stood out to you, and what would you change?"
-              name="notes"
-              rows={4}
-              hint="Or just ask anything."
-            />
-          </div>
         </>
       ) : null}
 
