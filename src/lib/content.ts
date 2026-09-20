@@ -160,6 +160,12 @@ const availableWebsites = [
     href: "https://icc-willow-demo.vercel.app",
   },
   {
+    name: "Commons",
+    vibe: "Collective & grounded",
+    swatch: "#7a4f63",
+    href: "https://icc-commons-demo.vercel.app",
+  },
+  {
     name: "Cove",
     vibe: "Still & sheltered",
     swatch: "#6f9c98",
