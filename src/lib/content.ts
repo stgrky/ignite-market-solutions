@@ -206,10 +206,10 @@ export const process = {
       title: "Confirm scope and pay a deposit",
       bodyLead:
         "After the call you get a written summary: exactly what's included, any add-ons you chose, and a secure payment link. ",
-      bodyHighlight: "Pay a 20% deposit of the build price",
+      bodyHighlight: "Pay a 25% deposit of the build price",
       bodyAfter: " — then the build begins.",
       marker: "†",
-      note: "Your 20% deposit covers the consultation and scoping work that happens before your build starts, so it isn't refundable. If you decide not to move forward before your first draft is delivered, that's completely fine — you simply don't owe the remaining balance.",
+      note: "Your 25% deposit covers the consultation and scoping work that happens before your build starts, so it isn't refundable. If you decide not to move forward before your first draft is delivered, that's completely fine — you simply don't owe the remaining balance.",
     },
     {
       title: "We build, you review",
@@ -358,11 +358,11 @@ export const pricing = {
     items: [
       {
         title: "Pay in two simple steps",
-        body: "A 20% deposit gets your build started, and the balance is due when your first draft is delivered for review — your hosting starts then too. Launching on your domain happens on your schedule and never holds up the build. One secure Stripe link each time, no installment juggling.",
+        body: "A 25% deposit gets your build started, and the balance is due when your first draft is delivered for review — your hosting starts then too. Launching on your domain happens on your schedule and never holds up the build. One secure Stripe link each time, no installment juggling.",
       },
       {
         title: "Fair cancellation",
-        body: "Change your mind before your first draft is delivered? You simply don't pay the remaining balance. The 20% deposit stays with us to cover the consultation and scoping already done. It's in the agreement, not fine print.",
+        body: "Change your mind before your first draft is delivered? You simply don't pay the remaining balance. The 25% deposit stays with us to cover the consultation and scoping already done. It's in the agreement, not fine print.",
       },
       {
         title: "No surprise overages",
@@ -436,7 +436,7 @@ export const faqs = {
     },
     {
       q: "What if I change my mind?",
-      a: "No problem at all. You pay a 20% deposit to start and the balance when your first draft is delivered — so if you decide not to move forward before then, you simply don't owe the rest. The deposit covers the consultation and scoping already done. It's written into the agreement, not buried in fine print.",
+      a: "No problem at all. You pay a 25% deposit to start and the balance when your first draft is delivered — so if you decide not to move forward before then, you simply don't owe the rest. The deposit covers the consultation and scoping already done. It's written into the agreement, not buried in fine print.",
     },
     {
       q: "I already have a website — can you help?",
