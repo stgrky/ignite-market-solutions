@@ -10,9 +10,17 @@
 export const site = {
   name: "Ignite Creative Co",
   shortName: "Ignite",
-  tagline: "Web design & digital services for the wellness space",
+  // Written for what a therapist types into Google, not for how the business
+  // describes itself. "Digital-services studio" is agency language nobody
+  // searches; "websites for therapists" is the actual query. Austin is in the
+  // description because it's a low-competition local term and the referral
+  // network is here — the work itself is remote and nationwide.
+  tagline: "Websites for therapists and private practices",
+  /** The <title>. Kept separate from the tagline because it has to survive
+   *  Google's ~60-character cut with the keyword still visible. 57 chars. */
+  seoTitle: "Websites for therapists & counselors | Ignite Creative Co",
   description:
-    "Ignite Creative Co is a web design and digital-services studio with a focus on the mental health, wellness, and coaching space. Fast, beautiful websites you own and can update yourself — a low one-time build fee, then one simple plan.",
+    "Websites for therapists and counseling practices in Austin and beyond. Pick a finished design, we tailor it to your practice, and you edit it yourself.",
   url: "https://ignitecreativeco.world",
   email: "grant@ignitecreativeco.world",
   phone: "(737) 420-2743",
@@ -30,13 +38,13 @@ export const nav = [
 ];
 
 export const hero = {
-  eyebrow: "Web & digital services · mental health, wellness & coaching",
+  eyebrow: "Websites for therapists, counselors & private practices",
   headlineLead: "Websites that give",
   headlineAccent1: "personality",
   headlineMid: "to your",
   headlineAccent2: "practice.",
   subhead:
-    "We design and build fast, beautiful websites, and the digital services around them, with a focus on the wellness space. Sites you own, can update yourself, and never pay rising platform fees to keep. A low one-time build fee, then one simple plan, and you're live in about a week or two.",
+    "Websites built for therapists and private practices — yours to own, yours to edit, with no rising platform fees. Pick one of the finished sites below, we tailor it to your practice, and you're live in about a week or two.",
   primaryCta: { label: "Book a free intro call", href: "/#contact" },
   secondaryCta: { label: "See available websites", href: "/#shop" },
   trustLine:

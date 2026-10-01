@@ -28,7 +28,9 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.tagline}`,
+    // Keyword first, brand second: Google truncates the tail, and no one
+    // searches the brand name yet.
+    default: site.seoTitle,
     template: `%s · ${site.name}`,
   },
   description: site.description,
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: `${site.name} — ${site.tagline}`,
+    title: site.seoTitle,
     description: site.description,
     url: site.url,
     siteName: site.name,
@@ -45,7 +47,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.tagline}`,
+    title: site.seoTitle,
     description: site.description,
   },
   robots: {
