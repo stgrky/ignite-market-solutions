@@ -217,15 +217,15 @@ export const process = {
       bodyHighlight: "Pay a 25% deposit of the build price",
       bodyAfter: " — then the build begins.",
       marker: "†",
-      note: "Your 25% deposit covers the consultation and scoping work that happens before your build starts, so it isn't refundable. If you decide not to move forward before your first draft is delivered, that's completely fine — you simply don't owe the remaining balance.",
+      note: "Your 25% deposit covers the consultation and scoping work that happens before your build starts, so it isn't refundable. If you decide not to move forward before your first draft is handed back to you, that's completely fine — you simply don't owe the remaining balance.",
     },
     {
       title: "We build, you review",
       bodyLead: "Your site is customized to your brand, with the content from your current site moved across for you, in about a week or two. ",
-      bodyHighlight: "Two rounds of revisions are included",
+      bodyHighlight: "Up to 2 hours of revisions are included",
       bodyAfter: " — handled over email, on your schedule.",
       marker: "*",
-      note: "Two rounds of revisions means up to 2 hours of back-and-forth included in your build. We aim to launch about two weeks after your first look, so your first round of feedback within a week keeps things on track. Send each round as one list — if we don't hear back within two weeks, we'll take that as a thumbs up and schedule your launch. Anything beyond that scope gets noted as a separate request. We'll quote it, and nothing extra happens until you approve it.",
+      note: "Your build includes up to 2 hours of back-and-forth on revisions. The balance is due two weeks after your site is handed back to you for review. Anything beyond the included time gets noted as a separate request. We'll quote it, and nothing extra happens until you approve it.",
     },
     {
       title: "Go live — with support",
@@ -256,7 +256,7 @@ export const pricing = {
       "Five pages: Home, About, Services, Blog, Contact",
       "Customized to your brand: palette, fonts, imagery, layout",
       "Your existing content moved across for you (up to 6 pages)",
-      "Two rounds of revisions included (up to 2 hours, async)",
+      "Up to 2 hours of revisions included (async)",
       "Your own secure login — manage every word, photo, and post",
     ],
     overageNote:
@@ -366,11 +366,11 @@ export const pricing = {
     items: [
       {
         title: "Pay in two simple steps",
-        body: "A 25% deposit gets your build started, and the balance is due when your first draft is delivered for review — your hosting starts then too. Launching on your domain happens on your schedule and never holds up the build. One secure Stripe link each time, no installment juggling.",
+        body: "A 25% deposit gets your build started, and the balance is due two weeks after your site is handed back to you. Your hosting starts the day you go live. Launching on your domain happens on your schedule and never holds up the build. One secure Stripe link each time, no installment juggling.",
       },
       {
         title: "Fair cancellation",
-        body: "Change your mind before your first draft is delivered? You simply don't pay the remaining balance. The 25% deposit stays with us to cover the consultation and scoping already done. It's in the agreement, not fine print.",
+        body: "Change your mind before your first draft is handed back to you? You simply don't pay the remaining balance. The 25% deposit stays with us to cover the consultation and scoping already done. It's in the agreement, not fine print.",
       },
       {
         title: "No surprise overages",
@@ -440,11 +440,11 @@ export const faqs = {
     },
     {
       q: "What if I want changes after the included revisions?",
-      a: "Two revision rounds are included with the build. Beyond that, work is $60/hour — always quoted and agreed in writing before it happens. Once you're on hosting, quick questions and small changes are on the house; just email me."
+      a: "Up to 2 hours of revisions are included with the build. Beyond that, work is $60/hour — always quoted and agreed in writing before it happens. Once you're on hosting, quick questions and small changes are on the house; just email me."
     },
     {
       q: "What if I change my mind?",
-      a: "No problem at all. You pay a 25% deposit to start and the balance when your first draft is delivered — so if you decide not to move forward before then, you simply don't owe the rest. The deposit covers the consultation and scoping already done. It's written into the agreement, not buried in fine print.",
+      a: "No problem at all. You pay a 25% deposit to start and the balance two weeks after your first draft is handed back to you — so if you decide not to move forward before then, you simply don't owe the rest. The deposit covers the consultation and scoping already done. It's written into the agreement, not buried in fine print.",
     },
     {
       q: "I already have a website — can you help?",
