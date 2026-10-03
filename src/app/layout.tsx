@@ -4,7 +4,7 @@ import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 import { GrainOverlay } from "@/components/motion/GrainOverlay";
-import { ScrollProgress } from "@/components/motion/ScrollProgress";
+import { DeferredScrollProgress } from "@/components/motion/Deferred";
 import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
 import { site } from "@/lib/content";
@@ -97,13 +97,31 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
     >
+      <head>
+        {/* Hides scroll-reveal content before first paint, so it can fade in.
+         *
+         * This injects a stylesheet rather than setting a class on <html>:
+         * React owns <html>'s attributes and would report a hydration mismatch
+         * for a class added before it hydrates, whereas a <style> appended to
+         * <head> sits outside the tree it reconciles.
+         *
+         * Two deliberate consequences: if JavaScript never runs, the rule is
+         * never added and every section is simply visible; and if the visitor
+         * asks for reduced motion, we skip it so nothing moves or hides. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var s=document.createElement('style');s.textContent='.reveal:not(.reveal-visible){opacity:0;transform:translateY(var(--reveal-distance,24px))}';document.head.appendChild(s)}catch(e){}})()",
+          }}
+        />
+      </head>
       <body className="flex min-h-full flex-col">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
         <GrainOverlay />
-        <ScrollProgress />
+        <DeferredScrollProgress />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

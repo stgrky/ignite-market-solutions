@@ -1,14 +1,14 @@
 import Link from "next/link";
 
 import { Container } from "@/components/Container";
-import { GradientMesh } from "@/components/motion/GradientMesh";
+// Decoration, loaded after hydration — see components/motion/Deferred.tsx.
+import { DeferredGradientMesh, DeferredMarquee } from "@/components/motion/Deferred";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { Reveal } from "@/components/motion/Reveal";
 import { TiltCard } from "@/components/motion/TiltCard";
 import { WordReveal } from "@/components/motion/WordReveal";
 import { ContactForm } from "@/components/site/ContactForm";
 import { HeroShowcase } from "@/components/site/HeroShowcase";
-import { Marquee } from "@/components/site/Marquee";
 import { ProcessSection } from "@/components/site/ProcessSection";
 import {
   faqs,
@@ -94,7 +94,7 @@ export default function HomePage() {
         id="top"
         className="relative overflow-hidden bg-[var(--color-surface)]"
       >
-        <GradientMesh className="absolute inset-0" />
+        <DeferredGradientMesh className="absolute inset-0" />
         <Container className="relative py-24 md:py-32">
           <div className="grid items-center gap-12 md:grid-cols-[1.08fr_0.92fr] md:gap-10">
             <div>
@@ -159,7 +159,7 @@ export default function HomePage() {
       </section>
 
       {/* ─────────────────── NICHE MARQUEE ────────────────────── */}
-      <Marquee items={marquee} />
+      <DeferredMarquee items={marquee} />
 
       {/* ─────────────────────── PROBLEMS ─────────────────────── */}
       <section className="bg-[var(--color-background)] py-20 md:py-28">

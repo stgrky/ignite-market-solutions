@@ -136,3 +136,30 @@ body {
 .prose-icc li { margin-bottom: 0.5em; }
 .prose-icc strong { color: var(--color-foreground); font-weight: 600; }
 .prose-icc img { border-radius: 12px; margin: 1.8em 0; }
+
+/* Reveal — the scroll fade+lift, run by CSS rather than a JS animation
+ * runtime. See components/motion/Reveal.tsx for why.
+ *
+ * The hidden state is NOT defined here: a small script in the document head
+ * injects it, so that a visitor whose JavaScript fails sees the content rather
+ * than a blank page, and anyone asking for reduced motion never gets it at all.
+ * This file only describes how an element travels once it is revealed. */
+.reveal {
+  transition:
+    opacity var(--reveal-duration, 0.9s) cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s),
+    transform var(--reveal-duration, 0.9s) cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s);
+}
+
+.reveal.reveal-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.reveal-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
