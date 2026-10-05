@@ -217,11 +217,11 @@ export const process = {
   notes: [
     {
       marker: "†",
-      note: "Your 25% deposit covers the consultation and scoping work that happens before your build starts, so it isn't refundable. If you decide not to move forward before your site is handed back to you, that's completely fine — you simply don't owe the remaining balance.",
+      note: "Your 25% deposit covers the consultation and scoping work that happens before your build starts, so it isn't refundable. If you see your finished site and decide it isn't right for you, that's completely fine — you simply don't owe the remaining balance, and the site stays with me.",
     },
     {
       marker: "*",
-      note: "Your build includes up to 2 hours of back-and-forth on revisions. The balance is due two weeks after your site is handed back to you for review. Anything beyond the included time gets noted as a separate request. We'll quote it, and nothing extra happens until you approve it.",
+      note: "Your build includes up to 2 hours of back-and-forth on revisions. The balance is due at the end of the two weeks you spend with your site. Anything beyond the included time gets noted as a separate request. We'll quote it, and nothing extra happens until you approve it.",
     },
   ],
   steps: [
@@ -250,7 +250,7 @@ export const process = {
     {
       title: "Agreement & deposit",
       body:
-        "You get a written summary and a simple agreement. A 25% deposit starts your build, and along with it you'll share access to your current site and any photos or logo. Change your mind any time before your site is handed back and the deposit is all you owe.",
+        "You get a written summary and a simple agreement. A 25% deposit starts your build, and along with it you'll share access to your current site and any photos or logo. That deposit is the only thing you're committed to.",
       badge: "Everything in writing",
       visual: "document",
       marker: "†",
@@ -265,7 +265,7 @@ export const process = {
     {
       title: "You review and refine",
       body:
-        "Your site comes back to you, fully editable, on a private preview link. Up to 2 hours of revisions are included, handled over email. The balance is due two weeks after the site is handed back to you.",
+        "Your site comes back to you, fully editable, on a private preview link. Up to 2 hours of revisions are included, handled over email. You get two weeks with it to decide: pay the balance and it's yours, or tell me it isn't right and you owe nothing further.",
       badge: "2 hours of revisions included",
       visual: "comments",
       marker: "*",
@@ -421,11 +421,11 @@ export const pricing = {
     items: [
       {
         title: "Pay in two simple steps",
-        body: "A 25% deposit gets your build started, and the balance is due two weeks after your site is handed back to you. Your hosting starts the day you go live. Launching on your domain happens on your schedule and never holds up the build. One secure Stripe link each time, no installment juggling.",
+        body: "A 25% deposit gets your build started, and the balance is due two weeks after your site is handed back to you — so you see the finished thing before you pay for it. Your hosting starts the day you go live. Launching on your domain happens on your schedule and never holds up the build. One secure Stripe link each time, no installment juggling.",
       },
       {
         title: "Fair cancellation",
-        body: "Change your mind before your first draft is handed back to you? You simply don't pay the remaining balance. The 25% deposit stays with us to cover the consultation and scoping already done. It's in the agreement, not fine print.",
+        body: "See your site and decide it isn't for you? You simply don't pay the remaining balance. The 25% deposit stays with us to cover the consultation and scoping already done, and the site stays with us too. It's in the agreement, not fine print.",
       },
       {
         title: "No surprise overages",
@@ -499,7 +499,7 @@ export const faqs = {
     },
     {
       q: "What if I change my mind?",
-      a: "No problem at all. You pay a 25% deposit to start, and any time before your first draft is handed back you can tell me to stop — that deposit is all you owe, and the balance is never invoiced. The deposit covers the consultation and scoping already done. Once the draft is in your hands the balance is due two weeks later, whether or not you've sent feedback. It's written into the agreement, not buried in fine print.",
+      a: "No problem at all — the 25% deposit is the only thing you're committed to. You see your finished site on a private link first, and you get two weeks with it. If you decide it isn't right, tell me and the balance is never invoiced; the deposit covers the consultation and scoping already done, and the site stays with me. If you say nothing, the balance is due at the end of those two weeks. It's written into the agreement, not buried in fine print.",
     },
     {
       q: "I already have a website — can you help?",
