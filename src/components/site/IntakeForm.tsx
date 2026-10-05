@@ -31,18 +31,31 @@ const DRAFT_KEY = "icc-intake-draft";
 
 type Values = Record<string, string | string[] | number>;
 
-const readDraft = (): Values => {
+type Draft = { values: Values; step: number };
+
+/**
+ * Drafts used to be a bare map of answers, which meant someone who left from
+ * step 4 came back to step 1 with their answers filled in — while the banner
+ * told them they had picked up where they left off. The step is stored now.
+ * The old shape is still read, so a draft saved before this change survives.
+ */
+const readDraft = (): Draft => {
   try {
     const raw = window.localStorage.getItem(DRAFT_KEY);
-    return raw ? (JSON.parse(raw) as Values) : {};
+    if (!raw) return { values: {}, step: 0 };
+    const parsed = JSON.parse(raw) as Partial<Draft> & Values;
+    if (parsed && typeof parsed === "object" && "values" in parsed) {
+      return { values: parsed.values ?? {}, step: Number(parsed.step) || 0 };
+    }
+    return { values: parsed as Values, step: 0 };
   } catch {
-    return {};
+    return { values: {}, step: 0 };
   }
 };
 
-const writeDraft = (values: Values) => {
+const writeDraft = (values: Values, step: number) => {
   try {
-    window.localStorage.setItem(DRAFT_KEY, JSON.stringify(values));
+    window.localStorage.setItem(DRAFT_KEY, JSON.stringify({ values, step }));
   } catch {
     /* private mode, or storage full — the form still works, just without a draft */
   }
@@ -73,20 +86,33 @@ export function IntakeForm() {
   // case the rule exists to catch, and the one place it's the right thing.
   useEffect(() => {
     const draft = readDraft();
-    if (Object.keys(draft).length === 0) return;
+    if (Object.keys(draft.values).length === 0) return;
     /* eslint-disable react-hooks/set-state-in-effect */
-    setValues(draft);
+    setValues(draft.values);
+    // Clamped: a draft written before a step was removed must not land out of range.
+    setStepIndex(Math.min(Math.max(draft.step, 0), intakeSteps.length - 1));
     setRestored(true);
     /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
 
-  const set = useCallback((name: string, value: string | string[] | number) => {
-    setValues((prev) => {
-      const next = { ...prev, [name]: value };
-      writeDraft(next);
-      return next;
-    });
-  }, []);
+  const set = useCallback(
+    (name: string, value: string | string[] | number) => {
+      setValues((prev) => {
+        const next = { ...prev, [name]: value };
+        writeDraft(next, stepIndex);
+        return next;
+      });
+    },
+    [stepIndex],
+  );
+
+  // Moving between steps is itself worth saving: someone who fills step 3 and
+  // then clicks through to step 4 before leaving should return to step 4.
+  useEffect(() => {
+    if (Object.keys(values).length > 0) writeDraft(values, stepIndex);
+    // Only the step crossing matters here; value edits already write above.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stepIndex]);
 
   const step = intakeSteps[stepIndex];
   const isLast = stepIndex === intakeSteps.length - 1;
@@ -269,6 +295,28 @@ export function IntakeForm() {
   );
 }
 
+/**
+ * A way out of a question that can't be answered from this page — today just
+ * the one asking which website they liked. Says the draft is kept, because the
+ * reason people don't go and look is the fear of losing what they've typed.
+ */
+function FieldAction({ field }: { field: Field }) {
+  if (!field.action) return null;
+  const { label, href, newTab } = field.action;
+  return (
+    <p className="mt-2.5 text-sm text-[var(--color-muted)]">
+      <Link
+        href={href}
+        {...(newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        className="font-semibold text-[var(--color-accent-strong)] underline decoration-[var(--color-subtle)] underline-offset-4 transition hover:decoration-[var(--color-accent)]"
+      >
+        {label}
+      </Link>{" "}
+      Your answers are saved on this device, so you&rsquo;ll come back to exactly where you left off.
+    </p>
+  );
+}
+
 function FieldInput({
   field,
   value,
@@ -318,6 +366,7 @@ function FieldInput({
             </option>
           ))}
         </select>
+        <FieldAction field={field} />
       </div>
     );
   }

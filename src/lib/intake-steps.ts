@@ -34,6 +34,8 @@ export type Field = {
   placeholder?: string;
   hint?: string;
   options?: Option[];
+  /** A link rendered under the hint — for a question you can't answer from this page. */
+  action?: { label: string; href: string; newTab?: boolean };
   /** Show this field only when another field holds one of these values. */
   showWhen?: { field: string; equals: string[] };
   /** For sliders: the two ends of the scale. */
@@ -198,7 +200,20 @@ export const intakeSteps: Step[] = [
     intro:
       "Every site comes with five pages: Home, About, Services, Blog and Contact. If you haven't browsed the designs yet, that's fine — pick \"Not sure yet\".",
     fields: [
-      { name: "template", label: "Which one stood out?", type: "select", options: templateOptions },
+      {
+        name: "template",
+        label: "Which one stood out?",
+        type: "select",
+        options: templateOptions,
+        // The one question here that can't be answered from this page. Opens in
+        // a new tab so the form is never navigated away from; the saved draft
+        // covers the visitor who comes back in this one anyway.
+        action: {
+          label: "Haven't looked yet? Browse the websites →",
+          href: "/#shop",
+          newTab: true,
+        },
+      },
       {
         name: "drewYouIn",
         label: "What drew you to it?",
