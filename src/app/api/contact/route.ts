@@ -1,22 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { styleDirections } from "@/lib/content";
-import { composeMessage, hubspotCustomFields, normalizeIntake } from "@/lib/intake";
-
-const HUBSPOT_PORTAL_ID = "246937212";
-const HUBSPOT_FORM_ID = "ea2ce8f5-2cbf-478f-b1e9-dc952a6b35bf";
-const HUBSPOT_SUBMIT_URL = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`;
+import { deliverToHubSpot } from "@/lib/hubspot";
+import { composeIntakeSummary, parseIntake } from "@/lib/intake-submission";
 
 /**
- * Auto-confirmation to whoever submitted the form.
+ * The intake endpoint. Serves both the short homepage form and the full
+ * multi-step intake at /get-started.
  *
- * No-op until RESEND_API_KEY and CONTACT_FROM_EMAIL are set, so this ships
- * inert and switches on the moment the Resend account exists (see
- * ims-ops/RUNBOOK.md §7b).
+ * Nothing is stored here: the submission is validated, passed to HubSpot, and
+ * a courtesy email is sent. No database, no files, and deliberately no logging
+ * of request bodies — this form now collects practice details, and the one
+ * place a payload could previously leak was HubSpot's own error body, which
+ * used to be logged verbatim.
+ */
+
+/**
+ * Auto-confirmation to whoever submitted.
  *
- * Deliberately never throws: the lead is already safely in HubSpot by the time
- * this runs, and a courtesy email failing must not make the visitor think their
- * message didn't send.
+ * No-op until RESEND_API_KEY and CONTACT_FROM_EMAIL are set. Never throws: the
+ * lead is already in HubSpot by this point, and a courtesy email failing must
+ * not make the visitor think their message didn't send.
  */
 async function sendConfirmationEmail(to: string, firstName: string) {
   const apiKey = process.env.RESEND_API_KEY;
@@ -34,10 +37,7 @@ async function sendConfirmationEmail(to: string, firstName: string) {
   try {
     await fetch("https://api.resend.com/emails", {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
+      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
       body: JSON.stringify({
         from,
         to,
@@ -55,88 +55,63 @@ async function sendConfirmationEmail(to: string, firstName: string) {
         `,
       }),
     });
-  } catch (error) {
-    console.error("Confirmation email failed (lead was still captured):", error);
+  } catch {
+    // Intentionally silent about the cause: the error object can carry the
+    // recipient address, and the lead is safe regardless.
+    console.error("[intake] confirmation email failed; lead was still captured");
   }
 }
 
-/** One HubSpot Forms API submission. Resolves to the error body on failure. */
-async function submitToHubSpot(
-  fields: { name: string; value: string }[],
-  hutk: string | undefined,
-): Promise<{ ok: true } | { ok: false; status: number; detail: string }> {
-  const response = await fetch(HUBSPOT_SUBMIT_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      fields,
-      context: {
-        ...(hutk ? { hutk } : {}),
-        pageUri: "https://ignitecreativeco.world/#contact",
-        pageName: "Ignite Creative Co",
-      },
-    }),
-  });
-  if (response.ok) return { ok: true };
-  return { ok: false, status: response.status, detail: await response.text() };
+/** Grant's own copy of the intake, so a lead doesn't depend on opening HubSpot. */
+async function notifyGrant(summary: string, email: string) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.CONTACT_FROM_EMAIL;
+  const to = process.env.CONTACT_NOTIFY_EMAIL ?? "grant@ignitecreativeco.world";
+  if (!apiKey || !from) return;
+
+  try {
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from,
+        to,
+        reply_to: email,
+        subject: `New intake — ${email}`,
+        text: summary,
+      }),
+    });
+  } catch {
+    console.error("[intake] notification email failed; lead is still in HubSpot");
+  }
 }
 
 export async function POST(request: NextRequest) {
-  const result = normalizeIntake(await request.json().catch(() => null), {
-    allowedTemplates: styleDirections.designs.map((design) => design.name),
-  });
-  if (!result.ok) {
-    return NextResponse.json({ error: result.error }, { status: 400 });
+  const parsed = parseIntake(await request.json().catch(() => null));
+  if (!parsed.ok) {
+    return NextResponse.json({ error: parsed.error }, { status: 400 });
   }
-  const { intake } = result;
+  const { intake } = parsed;
 
-  // Every answer rides in the standard `message` field, labelled, with the
-  // track on the first line. That needs nothing configured in HubSpot.
-  const standardFields = [
-    { name: "firstname", value: intake.firstName },
-    { name: "lastname", value: intake.lastName },
-    { name: "email", value: intake.email },
-    { name: "phone", value: intake.phone },
-    { name: "message", value: composeMessage(intake) },
-  ];
-
-  // Links this submission to the visitor's tracked session, so the CRM contact
-  // shows which pages they viewed before reaching out.
+  // Links the submission to the visitor's tracked session, so the CRM record
+  // shows which pages they read before reaching out.
   const hutk = request.cookies.get("hubspotutk")?.value;
 
-  // Once the five icc_* contact properties exist AND are added to the HubSpot
-  // form, set HUBSPOT_ICC_PROPERTIES=on to also file the routing answers as
-  // filterable properties.
-  const withProperties = process.env.HUBSPOT_ICC_PROPERTIES === "on";
-  let submission = await submitToHubSpot(
-    withProperties ? [...standardFields, ...hubspotCustomFields(intake)] : standardFields,
-    hutk,
-  );
-
-  // If the switch is on before HubSpot is actually ready for those fields,
-  // HubSpot rejects the whole submission. A misconfigured property must never
-  // cost a lead, so retry with the standard fields alone — the message still
-  // carries every answer.
-  if (!submission.ok && withProperties) {
-    console.error(
-      "HubSpot rejected the icc_* properties; retrying without them:",
-      submission.status,
-      submission.detail,
-    );
-    submission = await submitToHubSpot(standardFields, hutk);
-  }
-
-  if (!submission.ok) {
-    console.error("HubSpot submission failed:", submission.status, submission.detail);
+  const delivery = await deliverToHubSpot(intake, hutk);
+  if (!delivery.ok) {
+    console.error(`[intake] delivery failed via ${delivery.via}: ${delivery.status} ${delivery.reason}`);
     return NextResponse.json(
-      { error: "Submission failed", detail: submission.detail },
+      { error: "Something went wrong sending your answers. Please email grant@ignitecreativeco.world." },
       { status: 502 },
     );
   }
 
   // Awaited rather than fire-and-forget: a serverless function can be frozen
   // the moment it returns, which would silently drop an unawaited request.
-  await sendConfirmationEmail(intake.email, intake.firstName);
+  await Promise.all([
+    sendConfirmationEmail(String(intake.email), String(intake.firstName ?? "")),
+    notifyGrant(composeIntakeSummary(intake), String(intake.email)),
+  ]);
 
   return NextResponse.json({ ok: true });
 }
