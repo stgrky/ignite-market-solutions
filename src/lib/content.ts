@@ -250,7 +250,7 @@ export const process = {
     {
       title: "Agreement & deposit",
       body:
-        "You get a written summary and a simple agreement. A 25% deposit starts your build, and along with it you'll share access to your current site and any photos or logo.",
+        "You get a written summary and a simple agreement. A 25% deposit starts your build, and along with it you'll share access to your current site and any photos or logo. Change your mind any time before your site is handed back and the deposit is all you owe.",
       badge: "Everything in writing",
       visual: "document",
       marker: "†",
@@ -265,7 +265,7 @@ export const process = {
     {
       title: "You review and refine",
       body:
-        "Your site comes back to you, fully editable, on a private preview link. Up to 2 hours of revisions are included, handled over email. The balance is due two weeks after you first see it.",
+        "Your site comes back to you, fully editable, on a private preview link. Up to 2 hours of revisions are included, handled over email. The balance is due two weeks after the site is handed back to you.",
       badge: "2 hours of revisions included",
       visual: "comments",
       marker: "*",
@@ -499,7 +499,7 @@ export const faqs = {
     },
     {
       q: "What if I change my mind?",
-      a: "No problem at all. You pay a 25% deposit to start and the balance two weeks after your first draft is handed back to you — so if you decide not to move forward before then, you simply don't owe the rest. The deposit covers the consultation and scoping already done. It's written into the agreement, not buried in fine print.",
+      a: "No problem at all. You pay a 25% deposit to start, and any time before your first draft is handed back you can tell me to stop — that deposit is all you owe, and the balance is never invoiced. The deposit covers the consultation and scoping already done. Once the draft is in your hands the balance is due two weeks later, whether or not you've sent feedback. It's written into the agreement, not buried in fine print.",
     },
     {
       q: "I already have a website — can you help?",
