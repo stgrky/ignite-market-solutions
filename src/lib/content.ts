@@ -527,6 +527,7 @@ export const referral = {
 export const finalCta = {
   heading: "Ready to ignite your online presence?",
   body: "Fill out the intake and we'll take fifteen minutes to confirm the details. No pressure, no jargon, no obligation. It reaches me directly, btw.",
+  primaryCta: { label: "Start your intake", href: "/get-started" },
   cta: { label: "Text me" },
   secondaryCta: { label: "Email me" },
 };

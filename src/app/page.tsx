@@ -785,11 +785,27 @@ export default function HomePage() {
                   there to be read and copied instead. select-all grabs the
                   whole address in one click, and it doubles as the fallback
                   on desktop, where sms: links are inert. */}
-              <div className="flex flex-wrap items-start justify-center gap-x-3 gap-y-6">
+              {/* The body above says to fill out the intake, so that has to be
+                  the button under it. Text and email stay, one tier down. */}
+              <MagneticButton
+                href={finalCta.primaryCta.href}
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-9 py-4 text-sm font-semibold text-white transition hover:bg-white hover:text-[var(--color-foreground)]"
+              >
+                {finalCta.primaryCta.label}
+                <span aria-hidden>→</span>
+              </MagneticButton>
+
+              <div className="mt-8 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-white/40">
+                <span className="h-px w-10 bg-white/20" aria-hidden />
+                Or reach me directly
+                <span className="h-px w-10 bg-white/20" aria-hidden />
+              </div>
+
+              <div className="mt-6 flex flex-wrap items-start justify-center gap-x-3 gap-y-6">
                 <div className="flex flex-col items-center gap-2.5">
                   <MagneticButton
                     href={site.smsHref}
-                    className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-[var(--color-foreground)] transition hover:bg-[var(--color-accent)] hover:text-white"
+                    className="inline-flex items-center gap-2 rounded-full border-2 border-white/25 px-8 py-4 text-sm font-semibold text-white transition hover:border-white"
                   >
                     {finalCta.cta.label}
                     <span aria-hidden>→</span>
