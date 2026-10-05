@@ -232,57 +232,8 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* ──────────────────────── VALUE ───────────────────────── */}
-      <section id="value" className="bg-[var(--color-surface)] py-20 md:py-28">
-        <Container>
-          <div className="max-w-2xl">
-            <Reveal>
-              <h2 className="font-serif text-3xl font-bold leading-[1.15] text-[var(--color-foreground)] md:text-[2.4rem]">
-                {value.heading}
-              </h2>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <p className="mt-5 text-lg leading-relaxed text-[var(--color-muted)]">
-                {value.intro}
-              </p>
-            </Reveal>
-          </div>
-          <div
-            className="mt-12 grid gap-6 md:grid-cols-3"
-            style={{ perspective: 1000 }}
-          >
-            {value.cards.map((card, i) => (
-              <Reveal
-                key={card.title}
-                delay={0.08 * (i % 3)}
-                className={`h-full ${[2, 1, 1, 2, 2, 1][i] === 2 ? "md:col-span-2" : "md:col-span-1"}`}
-              >
-                <TiltCard className="h-full">
-                  <div className="flex h-full flex-col rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-background)] p-7 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-card)]">
-                    <div className="flex items-start gap-3">
-                      <span
-                        aria-hidden
-                        className="mt-1 text-lg text-[var(--color-accent)]"
-                      >
-                        ✓
-                      </span>
-                      <h3 className="font-serif text-xl font-bold leading-tight text-[var(--color-foreground)]">
-                        {card.title}
-                      </h3>
-                    </div>
-                    <p className="mt-3 flex-grow text-[15px] leading-relaxed text-[var(--color-muted)]">
-                      {card.body}
-                    </p>
-                  </div>
-                </TiltCard>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </section>
-
       {/* ─────────────────── THE TEMPLATE SYSTEM ──────────────── */}
-      <section className="bg-[var(--color-background)] py-20 md:py-28">
+      <section className="bg-[var(--color-surface)] py-20 md:py-28">
         <Container>
           <div className="grid items-start gap-12 md:grid-cols-[1.05fr_0.95fr] md:gap-16">
             <div>
@@ -304,7 +255,7 @@ export default function HomePage() {
             </div>
             <div className="space-y-5">
               <Reveal delay={0.1}>
-                <div className="rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-7">
+                <div className="rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-background)] p-7">
                   <h3 className="font-serif text-lg font-bold text-[var(--color-foreground)]">
                     {system.included.title}
                   </h3>
@@ -353,8 +304,8 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* ─────────────── FIVE READY-BUILT DESIGNS ─────────────── */}
-      <section id="shop" className="bg-[var(--color-surface)] py-20 md:py-28">
+      {/* ─────────────── THE AVAILABLE WEBSITES ─────────────── */}
+      <section id="shop" className="bg-[var(--color-background)] py-20 md:py-28">
         <Container>
           <div className="max-w-2xl">
             <Reveal>
@@ -392,7 +343,7 @@ export default function HomePage() {
           >
             {styleDirections.designs.map((design, i) => {
               const card = (
-                <div className="flex h-full flex-col rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-background)] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)]/50 hover:shadow-[var(--shadow-card)]">
+                <div className="flex h-full flex-col rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)]/50 hover:shadow-[var(--shadow-card)]">
                   <span
                     aria-hidden
                     className="block h-10 w-10 rounded-full"
@@ -442,6 +393,55 @@ export default function HomePage() {
               {styleDirections.note}
             </p>
           </Reveal>
+        </Container>
+      </section>
+
+      {/* ──────────────────────── VALUE ───────────────────────── */}
+      <section id="value" className="bg-[var(--color-surface)] py-20 md:py-28">
+        <Container>
+          <div className="max-w-2xl">
+            <Reveal>
+              <h2 className="font-serif text-3xl font-bold leading-[1.15] text-[var(--color-foreground)] md:text-[2.4rem]">
+                {value.heading}
+              </h2>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <p className="mt-5 text-lg leading-relaxed text-[var(--color-muted)]">
+                {value.intro}
+              </p>
+            </Reveal>
+          </div>
+          <div
+            className="mt-12 grid gap-6 md:grid-cols-3"
+            style={{ perspective: 1000 }}
+          >
+            {value.cards.map((card, i) => (
+              <Reveal
+                key={card.title}
+                delay={0.08 * (i % 3)}
+                className={`h-full ${[2, 1, 1, 2, 2, 1][i] === 2 ? "md:col-span-2" : "md:col-span-1"}`}
+              >
+                <TiltCard className="h-full">
+                  <div className="flex h-full flex-col rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-background)] p-7 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)] hover:shadow-[var(--shadow-card)]">
+                    <div className="flex items-start gap-3">
+                      <span
+                        aria-hidden
+                        className="mt-1 text-lg text-[var(--color-accent)]"
+                      >
+                        ✓
+                      </span>
+                      <h3 className="font-serif text-xl font-bold leading-tight text-[var(--color-foreground)]">
+                        {card.title}
+                      </h3>
+                    </div>
+                    <p className="mt-3 flex-grow text-[15px] leading-relaxed text-[var(--color-muted)]">
+                      {card.body}
+                    </p>
+                  </div>
+                </TiltCard>
+              </Reveal>
+            ))}
+          </div>
         </Container>
       </section>
 

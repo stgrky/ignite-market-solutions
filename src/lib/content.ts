@@ -29,9 +29,12 @@ export const site = {
   location: "Austin, TX",
 };
 
+// Order matches the order the sections appear on the page — a jump link that
+// goes backwards is disorienting, so this list has to be re-sorted whenever the
+// home page is.
 export const nav = [
-  { label: "What you get", href: "/#value" },
   { label: "Shop", href: "/#shop" },
+  { label: "What you get", href: "/#value" },
   { label: "Process", href: "/#process" },
   { label: "Pricing", href: "/#pricing" },
   { label: "About", href: "/about" },
