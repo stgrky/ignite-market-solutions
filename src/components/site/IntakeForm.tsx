@@ -67,12 +67,17 @@ export function IntakeForm() {
   const [error, setError] = useState<string | null>(null);
   const [restored, setRestored] = useState(false);
 
+  // Reading the visitor's own storage can only happen after mount: it doesn't
+  // exist on the server, and seeding it into the first client render would make
+  // the hydrated inputs disagree with the server-rendered ones. This is the
+  // case the rule exists to catch, and the one place it's the right thing.
   useEffect(() => {
     const draft = readDraft();
-    if (Object.keys(draft).length > 0) {
-      setValues(draft);
-      setRestored(true);
-    }
+    if (Object.keys(draft).length === 0) return;
+    /* eslint-disable react-hooks/set-state-in-effect */
+    setValues(draft);
+    setRestored(true);
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
 
   const set = useCallback((name: string, value: string | string[] | number) => {
@@ -454,7 +459,7 @@ function ThankYou({ firstName, email }: { firstName: string; email: string }) {
   return (
     <div className="mx-auto w-full max-w-xl text-center">
       <h2 className="font-serif text-3xl text-[var(--color-foreground)]">
-        Thanks{firstName ? `, ${firstName}` : ""} — that's everything I need.
+        Thanks{firstName ? `, ${firstName}` : ""} — that&rsquo;s everything I need.
       </h2>
       <p className="mt-5 text-lg leading-relaxed text-[var(--color-muted)]">
         I&rsquo;ll read this before we talk, so our call can be short and about next steps

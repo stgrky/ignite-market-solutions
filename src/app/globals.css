@@ -163,3 +163,30 @@ body {
     transition: none;
   }
 }
+
+/* Journey panels — the fade-and-lift as each step reaches the middle of the
+ * viewport, and the dimming of the ones that have passed.
+ *
+ * Keyed off `.journey-ready`, which the section only carries once it has
+ * mounted: with JavaScript off every panel is simply visible and the whole
+ * journey reads as a plain list. Reduced motion gets the same thing. */
+.journey-ready .journey-panel {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.journey-ready .journey-panel.journey-shown {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-ready .journey-panel,
+  .journey-ready .journey-panel.journey-shown {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

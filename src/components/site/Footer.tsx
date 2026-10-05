@@ -67,10 +67,10 @@ export function Footer() {
                 {site.phone}
               </a>
               <Link
-                href="/#contact"
+                href="/get-started"
                 className="text-sm text-[var(--color-foreground)] transition-colors hover:text-[var(--color-accent-strong)]"
               >
-                Book a free intro call
+                Start your intake
               </Link>
             </div>
           </div>

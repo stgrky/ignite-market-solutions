@@ -137,7 +137,7 @@ export default async function AboutPageRoute() {
                   See available websites
                 </Link>
                 <Link
-                  href="/#contact"
+                  href="/get-started"
                   className="rounded-full border border-[var(--color-subtle)] px-6 py-3 text-sm font-semibold text-[var(--color-foreground)] transition hover:border-[var(--color-accent)]"
                 >
                   Get in touch

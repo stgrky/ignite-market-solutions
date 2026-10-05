@@ -45,7 +45,7 @@ export const hero = {
   headlineAccent2: "practice.",
   subhead:
     "Websites built for therapists and private practices — yours to own, yours to edit, with no rising platform fees. Pick one of the finished sites below, we tailor it to your practice, and you're live in about a week or two.",
-  primaryCta: { label: "Book a free intro call", href: "/#contact" },
+  primaryCta: { label: "Start your intake", href: "/get-started" },
   secondaryCta: { label: "See available websites", href: "/#shop" },
   trustLine:
     "No cookie-cutter templates. No monthly platform ransom. No code degree required to update it. No surprise billing or shady sales tactics.",
@@ -201,37 +201,92 @@ export const styleDirections = {
   note: "Every website above is real, live, and available right now. Feel free to click through and explore.",
 };
 
+/**
+ * The client journey, start to finish.
+ *
+ * Eight steps rather than four: the old version compressed everything after
+ * "pay a deposit" into one box, which is exactly where a prospective client's
+ * questions live. The two footnotes it carried (deposit, revisions) are kept
+ * and still appear beneath the section.
+ */
 export const process = {
   heading: "How it works",
   intro:
-    "From first hello to your first draft in about a week or two, and live about two weeks after that, with the scope, the price, and the process in writing at every step.",
-  steps: [
+    "From first hello to a site you own, with the scope, the price, and the process in writing at every step.",
+  /** Shown under the section, keyed by marker, exactly as before. */
+  notes: [
     {
-      title: "Tell me about your practice",
-      body: "Fill out a short intake form — your practice, your style, your colors and fonts. Then we hop on a free 45-minute consult to pick your website and scope your customizations. No pressure, no pitch.",
-    },
-    {
-      title: "Confirm scope and pay a deposit",
-      bodyLead:
-        "After the call you get a written summary: exactly what's included, any add-ons you chose, and a secure payment link. ",
-      bodyHighlight: "Pay a 25% deposit of the build price",
-      bodyAfter: " — then the build begins.",
       marker: "†",
-      note: "Your 25% deposit covers the consultation and scoping work that happens before your build starts, so it isn't refundable. If you decide not to move forward before your first draft is handed back to you, that's completely fine — you simply don't owe the remaining balance.",
+      note: "Your 25% deposit covers the consultation and scoping work that happens before your build starts, so it isn't refundable. If you decide not to move forward before your site is handed back to you, that's completely fine — you simply don't owe the remaining balance.",
     },
     {
-      title: "We build, you review",
-      bodyLead: "Your site is customized to your brand, with the content from your current site moved across for you, in about a week or two. ",
-      bodyHighlight: "Up to 2 hours of revisions are included",
-      bodyAfter: " — handled over email, on your schedule.",
       marker: "*",
       note: "Your build includes up to 2 hours of back-and-forth on revisions. The balance is due two weeks after your site is handed back to you for review. Anything beyond the included time gets noted as a separate request. We'll quote it, and nothing extra happens until you approve it.",
     },
+  ],
+  steps: [
     {
-      title: "Go live — with support",
-      body: "We launch on your domain, walk you through editing everything yourself, and your hosting plan quietly takes over: hosting, monitoring, maintenance, and whatever else you need for your success.",
+      title: "Browse the collection",
+      body:
+        "Click through the live websites and find the one that already feels like your practice. Every one is a real, finished site, and once it's claimed it's retired for good.",
+      badge: "Take your time",
+      visual: "browsers",
+    },
+    {
+      title: "Fill out the intake",
+      body:
+        "Tell me which site you picked, what you'd keep, what you'd change, and how your brand should look and sound: colors, fonts, the works. Skip anything you're unsure about.",
+      badge: "About 10 minutes",
+      visual: "form",
+      cta: { label: "Start your intake →", href: "/get-started" },
+    },
+    {
+      title: "A quick 15-minute call",
+      body:
+        "I'll have already read your intake, so we skip the small talk and confirm your scope, any add-ons, and timing.",
+      badge: "15 minutes",
+      visual: "calendar",
+    },
+    {
+      title: "Agreement & deposit",
+      body:
+        "You get a written summary and a simple agreement. A 25% deposit starts your build, and along with it you'll share access to your current site and any photos or logo.",
+      badge: "Everything in writing",
+      visual: "document",
+      marker: "†",
+    },
+    {
+      title: "I build your site",
+      body:
+        "Your chosen site is tailored to your brand, and the content from your current site is moved across for you.",
+      badge: "About 1–2 weeks",
+      visual: "palette",
+    },
+    {
+      title: "You review and refine",
+      body:
+        "Your site comes back to you, fully editable, on a private preview link. Up to 2 hours of revisions are included, handled over email. The balance is due two weeks after you first see it.",
+      badge: "2 hours of revisions included",
+      visual: "comments",
+      marker: "*",
+    },
+    {
+      title: "Go live on your schedule",
+      body:
+        "We launch on your domain whenever you're ready, and I walk you through editing everything yourself. Your hosting starts that day.",
+      badge: "Your timing",
+      visual: "live",
+    },
+    {
+      title: "Ongoing care",
+      body:
+        "Hosting, backups, monitoring, and fixes are handled. Quick questions and small changes are on the house; just email me.",
+      badge: "$120/year, cancel anytime",
+      visual: "shield",
     },
   ],
+  primaryCta: { label: "Start your intake →", href: "/get-started" },
+  secondaryCta: { label: "Browse the websites ↑", href: "/#shop" },
 };
 
 export const pricing = {
@@ -383,11 +438,11 @@ export const pricing = {
     ],
   },
   addOnsCustomNote:
-    "Need something that isn't listed? Content writing, SEO, and most other digital work fall well within what I do — they're quoted per project rather than listed here, because scope varies too much to put a fixed number on. Bring it up on your intro call and you'll get a straight price in writing before anything starts.",
+    "Need something that isn't listed? Content writing, SEO, and most other digital work fall well within what I do — they're quoted per project rather than listed here, because scope varies too much to put a fixed number on. Mention it in your intake and you'll get a straight price in writing before anything starts.",
   addOnsNote:
     "Not planning to blog, but you'd like a contact form? Want a photo gallery on your services page? Just ask. We're glad to discuss swaps and small additions that keep the same overall scope and structure. The goal is a site you're genuinely happy with, not a rigid checklist.",
   footnote:
-    "Not sure what you need? That's exactly what the free intro call is for. You'll have the full scope and final price in writing before you pay anything.",
+    "Not sure what you need? Say so in the intake — that's what our 15-minute call is for. You'll have the full scope and final price in writing before you pay anything.",
 };
 
 /**
@@ -420,7 +475,7 @@ export const faqs = {
   items: [
     {
       q: "How long does it take?",
-      a: "About a week or two from payment to your first draft, once I have access to your current site and anything new you want added, like a logo or fresh photos. Then about two weeks from your first look to launch. This is a productized build, not a three-month agency project.",
+      a: "About a week or two from your deposit to the site coming back to you, once I have access to your current site and anything new you want added, like a logo or fresh photos. From there you review, we refine, and we launch on your schedule. This is a productized build, not a three-month agency project.",
     },
     {
       q: "Can I see something you've built?",
@@ -468,7 +523,7 @@ export const referral = {
 
 export const finalCta = {
   heading: "Ready to ignite your online presence?",
-  body: "Text or email me and we'll find twenty minutes to talk through your business needs. No pressure, no jargon, no obligation. It reaches me directly, btw.",
+  body: "Fill out the intake and we'll take fifteen minutes to confirm the details. No pressure, no jargon, no obligation. It reaches me directly, btw.",
   cta: { label: "Text me" },
   secondaryCta: { label: "Email me" },
 };
