@@ -2,7 +2,7 @@
 
 import { sendGAEvent } from "@next/third-parties/google";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 /**
  * The short form on the home page: name, email, message.
@@ -24,15 +24,20 @@ const labelClass =
   "block text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-muted)]";
 
 export function ContactForm() {
+  const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function handleSubmit() {
+    const form = formRef.current;
+    // Native validation normally runs on submit; nothing here submits, so ask
+    // for it explicitly — see the note on the form element below.
+    if (!form || !form.reportValidity()) return;
+
     setStatus("sending");
     setError(null);
 
-    const data = new FormData(event.currentTarget);
+    const data = new FormData(form);
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -70,8 +75,21 @@ export function ContactForm() {
   }
 
   return (
+    /*
+      Deliberately not submitted natively: HubSpot's collectedforms.js scrapes
+      every submit event on the page into its own contact, alongside the one
+      the API composes. See the longer note in IntakeForm.
+    */
     <form
-      onSubmit={handleSubmit}
+      ref={formRef}
+      data-hs-do-not-collect="true"
+      onSubmit={(event) => event.preventDefault()}
+      onKeyDown={(event) => {
+        if (event.key !== "Enter") return;
+        if ((event.target as HTMLElement).tagName === "TEXTAREA") return;
+        event.preventDefault();
+        if (status !== "sending") void handleSubmit();
+      }}
       className="mx-auto mt-10 w-full max-w-lg rounded-2xl bg-[var(--color-surface)] p-6 text-left shadow-[var(--shadow-card)] sm:p-8"
     >
       <p className="font-serif text-xl font-bold text-[var(--color-foreground)]">Ask me anything</p>
@@ -122,7 +140,8 @@ export function ContactForm() {
       ) : null}
 
       <button
-        type="submit"
+        type="button"
+        onClick={() => void handleSubmit()}
         disabled={status === "sending"}
         className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-accent-strong)] disabled:opacity-60"
       >

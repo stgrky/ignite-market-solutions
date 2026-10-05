@@ -180,9 +180,27 @@ export function IntakeForm() {
         </p>
       ) : null}
 
+      {/*
+        Nothing in here is a submit button, and Enter is swallowed below, so a
+        native submit event never fires. That is deliberate and load-bearing.
+
+        HubSpot's tracking code includes collectedforms.js, which listens for
+        submit events on every form on the page and scrapes the fields into a
+        contact by itself. preventDefault() does not stop it — it runs off the
+        same event. Because this wizard is one long form, a Next button that
+        submitted made HubSpot create a contact the moment someone left step 1,
+        with raw field names and none of the summary the API composes. The only
+        submission that should reach HubSpot is the one submit() sends.
+      */}
       <form
-        onSubmit={(event) => {
+        data-hs-do-not-collect="true"
+        onSubmit={(event) => event.preventDefault()}
+        onKeyDown={(event) => {
+          if (event.key !== "Enter") return;
+          if ((event.target as HTMLElement).tagName === "TEXTAREA") return;
+          // Would otherwise be an implicit submission.
           event.preventDefault();
+          if (missingRequired || status === "sending") return;
           if (isLast) void submit(intakeSteps.length);
           else setStepIndex((i) => i + 1);
         }}
@@ -210,7 +228,11 @@ export function IntakeForm() {
           ) : null}
 
           <button
-            type="submit"
+            type="button"
+            onClick={() => {
+              if (isLast) void submit(intakeSteps.length);
+              else setStepIndex((i) => i + 1);
+            }}
             disabled={missingRequired || status === "sending"}
             className="rounded-full bg-[var(--color-accent)] px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--color-accent-strong)] disabled:opacity-60"
           >
