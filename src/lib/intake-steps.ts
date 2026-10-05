@@ -76,6 +76,10 @@ export const intakeSteps: Step[] = [
     id: "you",
     title: "You",
     intro: "Just your name and email are required. Everything else is optional.",
+    // Said once, here, rather than on each step that has a free-text box: by
+    // the time someone is typing about their practice it is already too late,
+    // and repeating it every screen makes a soft form read like a waiver.
+    caution: NO_CLIENT_INFO,
     fields: [
       { name: "firstName", label: "First name", type: "text", required: true, maxLength: 100 },
       { name: "lastName", label: "Last name", type: "text", maxLength: 100 },
@@ -239,7 +243,6 @@ export const intakeSteps: Step[] = [
     id: "brand",
     title: "Brand & voice",
     intro: "However much of this you know. \"Help me choose\" is a perfectly good answer.",
-    caution: NO_CLIENT_INFO,
     fields: [
       {
         name: "paletteChoice",
@@ -381,7 +384,6 @@ export const intakeSteps: Step[] = [
   {
     id: "timing",
     title: "Timing & next step",
-    caution: NO_CLIENT_INFO,
     fields: [
       {
         name: "timeline",
