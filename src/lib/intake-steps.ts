@@ -191,7 +191,8 @@ export const intakeSteps: Step[] = [
   {
     id: "website",
     title: "The website you picked",
-    intro: "If you haven't browsed them yet, that's fine — pick \"Not sure yet\".",
+    intro:
+      "Every site comes with five pages: Home, About, Services, Blog and Contact. If you haven't browsed the designs yet, that's fine — pick \"Not sure yet\".",
     fields: [
       { name: "template", label: "Which one stood out?", type: "select", options: templateOptions },
       {
@@ -210,8 +211,16 @@ export const intakeSteps: Step[] = [
       { name: "keepAsIs", label: "Anything you'd keep exactly as it is?", type: "textarea", maxLength: 2000 },
       { name: "changeOrSwap", label: "Anything you'd change or swap out?", type: "textarea", maxLength: 2000 },
       {
+        name: "pageSwaps",
+        label: "Do those five pages work, or would you swap one?",
+        type: "textarea",
+        hint:
+          "If one of them isn't useful to you, trade it for a page that is — it's five pages either way. The blog is the one most often swapped, usually for Fees & Insurance, Groups & Workshops, or a page of resources. \"They're fine\" is a perfectly good answer.",
+        maxLength: 2000,
+      },
+      {
         name: "addSections",
-        label: "Sections you'd want added",
+        label: "Sections you'd want added to those pages",
         type: "checkboxes",
         options: [
           { value: "faq", label: "FAQ" },
