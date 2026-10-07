@@ -37,8 +37,10 @@ const ways = [
   },
   {
     id: "book",
+    // No duration here on purpose. On the other two it reads as "this is
+    // cheap"; on a call it reads as "this will take fifteen minutes of your
+    // day", which is the opposite of the nudge we want.
     label: "Book a call",
-    time: "15 minutes",
     body: "Rather talk it through? Pick a time that suits you. No pressure and no pitch.",
     href: "/book",
   },
@@ -95,13 +97,21 @@ export function WaysToStart({
 
           const inner = (
             <>
-              <span
-                className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${
-                  dark ? "text-white/50" : "text-[var(--color-accent-strong)]"
-                }`}
-              >
-                {way.time}
-              </span>
+              {way.time ? (
+                <span
+                  className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${
+                    dark ? "text-white/50" : "text-[var(--color-accent-strong)]"
+                  }`}
+                >
+                  {way.time}
+                </span>
+              ) : (
+                // Holds the line the other cards' eyebrows sit on, so the
+                // titles still line up across the row.
+                <span aria-hidden className="text-[11px] tracking-[0.18em]">
+                  &nbsp;
+                </span>
+              )}
               <span
                 className={`mt-2 font-serif text-xl ${
                   dark ? "text-white" : "text-[var(--color-foreground)]"

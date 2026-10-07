@@ -4,6 +4,8 @@ import { sendGAEvent } from "@next/third-parties/google";
 import Link from "next/link";
 import { useRef, useState } from "react";
 
+import { templateOptions } from "@/lib/intake-steps";
+
 /**
  * The short form on the home page: name, email, message.
  *
@@ -45,6 +47,9 @@ export function ContactForm() {
         body: JSON.stringify({
           firstName: data.get("firstName"),
           email: data.get("email"),
+          // Empty string would fail the select's enum check; undefined is how
+          // every other optional answer is absent.
+          template: data.get("template") || undefined,
           anythingElse: data.get("message"),
           completedStep: 1,
         }),
@@ -124,6 +129,22 @@ export function ContactForm() {
             maxLength={200}
             className={inputClass}
           />
+        </div>
+        <div>
+          <label className={labelClass} htmlFor="contact-template">
+            Seen one you like?
+          </label>
+          {/* Same list the intake asks from, so a site that gets claimed and
+              retired disappears from both at once. Optional: plenty of people
+              write in before they have looked. */}
+          <select id="contact-template" name="template" className={inputClass} defaultValue="">
+            <option value="">Choose one…</option>
+            {templateOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <label className={labelClass} htmlFor="contact-message">

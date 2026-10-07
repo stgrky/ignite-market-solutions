@@ -61,8 +61,12 @@ const addOnOptions: Option[] = pricing.addOns.map((addOn) => ({
   label: `${addOn.label} — ${addOn.price}`,
 }));
 
-/** The websites on offer come from the same array as the gallery. */
-const templateOptions: Option[] = [
+/**
+ * The websites on offer come from the same array as the gallery, so a site
+ * that gets claimed and retired drops out of every form at once. Exported
+ * because the short contact form asks the same question.
+ */
+export const templateOptions: Option[] = [
   ...styleDirections.designs.map((design) => ({
     value: design.name.toLowerCase(),
     label: `${design.name} — ${design.vibe}`,
