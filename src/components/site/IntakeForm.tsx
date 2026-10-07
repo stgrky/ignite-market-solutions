@@ -313,7 +313,7 @@ export function IntakeForm() {
               onClick={() => void submit(stepIndex + 1)}
               className="rounded-full border border-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-[var(--color-accent-strong)] transition hover:bg-[var(--color-accent-soft)] disabled:opacity-60"
             >
-              Send what I have
+              Submit this form now
             </button>
           ) : null}
 
