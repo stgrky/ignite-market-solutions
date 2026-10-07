@@ -298,6 +298,25 @@ export function IntakeForm() {
                   : "Next"}
           </button>
 
+          {/*
+            Submitting from wherever they have got to, on every step.
+
+            This is still the intake submitting an intake, not a contact form
+            wearing its clothes: completedStep records how far they reached, so
+            a partial arrives readable as a partial. The last step already is
+            this button, so it does not appear twice there.
+          */}
+          {!isLast ? (
+            <button
+              type="button"
+              disabled={missingRequired || status === "sending"}
+              onClick={() => void submit(stepIndex + 1)}
+              className="rounded-full border border-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-[var(--color-accent-strong)] transition hover:bg-[var(--color-accent-soft)] disabled:opacity-60"
+            >
+              Send what I have
+            </button>
+          ) : null}
+
           {!isLast && stepIndex > 0 ? (
             <button
               type="button"
