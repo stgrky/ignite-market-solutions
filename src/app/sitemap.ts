@@ -25,6 +25,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
+      // The two pages someone can land on straight from a search like "book a
+      // therapist website consultation" and act without reading anything else.
+      url: `${site.url}/book`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${site.url}/get-started`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${site.url}/privacy`,
       lastModified: new Date(),
       changeFrequency: "yearly",

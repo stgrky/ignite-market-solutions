@@ -30,6 +30,12 @@ export const site = {
   /** Google Calendar appointment page. Public, so it lives here rather than in
    *  an environment variable: nothing to leak, and nothing to forget to set. */
   bookingUrl: "https://calendar.app.google/PViD291KT9WftXJv5",
+  /** The same calendar in its embeddable form. The short link above redirects
+   *  here; "?gv=true" is what renders it as a bookable grid rather than a full
+   *  Google Calendar page. Kept separate so the plain link survives as the
+   *  fallback when a browser blocks third-party frames. */
+  bookingEmbedUrl:
+    "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3Rerir1l5TbeRfobVMZe6SM1P4JqZd0giMb5r6nqo7MlazyW_E5jQx0qmSUSMzkyGdHvbXqesT?gv=true",
 };
 
 // Order matches the order the sections appear on the page — a jump link that
@@ -569,11 +575,12 @@ export const privacy = {
     {
       title: "Cookies and tracking",
       body: [
-        "This site uses two analytics services, both of which set cookies in your browser:",
+        "This site uses two analytics services and one embedded booking calendar, all of which set cookies in your browser:",
       ],
       bullets: [
         "Google Analytics — measures overall site traffic and which pages people find useful.",
         "HubSpot — our customer relationship system. Its cookie lets us connect a contact form submission to the pages that visitor viewed beforehand, so we understand what someone was looking for before they reached out.",
+        "Google Calendar — the booking page at /book embeds Google's own appointment calendar so you can pick a time without leaving this site. That embed is served by Google and sets Google's cookies. Anything you enter to book a call goes to Google Calendar, under Google's privacy policy, not ours. You can open the calendar on Google's own site instead; the link is on that page.",
       ],
     },
     {

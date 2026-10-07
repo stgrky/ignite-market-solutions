@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-import { site } from "@/lib/content";
-
 /**
  * The three ways into a conversation, offered side by side.
  *
@@ -34,8 +32,10 @@ const ways = [
     label: "Book a call",
     time: "15 minutes",
     body: "Pick a time that suits you. No pressure and no pitch, just a conversation about what you need.",
-    href: site.bookingUrl,
-    external: true,
+    // /book rather than the calendar itself: an outbound link at the moment
+    // someone is ready to act hands them to another domain, and whatever
+    // happens next is invisible to us. The page embeds the same calendar.
+    href: "/book",
   },
   {
     id: "intake",
@@ -43,7 +43,6 @@ const ways = [
     time: "10 minutes",
     body: "Answer a few questions first and our call is only confirming details. Some people skip the call entirely.",
     href: "/get-started",
-    external: false,
   },
   {
     id: "ask",
@@ -53,7 +52,6 @@ const ways = [
     // #ask, not #contact: this card sits inside the contact section on the home
     // page, so pointing at the section itself would scroll nowhere.
     href: "/#ask",
-    external: false,
   },
 ];
 
@@ -127,22 +125,16 @@ export function WaysToStart({
                   dark ? "text-white" : "text-[var(--color-accent-strong)]"
                 }`}
               >
-                {way.external ? "Open my calendar →" : "Go →"}
+                {way.id === "book" ? "See available times →" : "Go →"}
               </span>
             </>
           );
 
           return (
             <li key={way.id}>
-              {way.external ? (
-                <a href={way.href} target="_blank" rel="noopener noreferrer" className={card}>
-                  {inner}
-                </a>
-              ) : (
-                <Link href={way.href} className={card}>
-                  {inner}
-                </Link>
-              )}
+              <Link href={way.href} className={card}>
+                {inner}
+              </Link>
             </li>
           );
         })}
