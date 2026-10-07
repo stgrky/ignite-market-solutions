@@ -8,6 +8,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { TiltCard } from "@/components/motion/TiltCard";
 import { WordReveal } from "@/components/motion/WordReveal";
 import { ContactForm } from "@/components/site/ContactForm";
+import { WaysToStart } from "@/components/site/WaysToStart";
 import { HeroShowcase } from "@/components/site/HeroShowcase";
 import { ProcessSection } from "@/components/site/ProcessSection";
 import {
@@ -787,52 +788,37 @@ export default function HomePage() {
                   on desktop, where sms: links are inert. */}
               {/* The body above says to fill out the intake, so that has to be
                   the button under it. Text and email stay, one tier down. */}
-              <MagneticButton
-                href={finalCta.primaryCta.href}
-                className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-9 py-4 text-sm font-semibold text-white transition hover:bg-white hover:text-[var(--color-foreground)]"
-              >
-                {finalCta.primaryCta.label}
-                <span aria-hidden>→</span>
-              </MagneticButton>
-
-              <div className="mt-8 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-white/40">
-                <span className="h-px w-10 bg-white/20" aria-hidden />
-                Or reach me directly
-                <span className="h-px w-10 bg-white/20" aria-hidden />
+              {/* Three ways in, ranked by what they cost in time. The calendar
+                  is live now, so "book a call" finally means a calendar rather
+                  than a text message. The short form sits underneath as the
+                  one-minute option's destination. */}
+              <div className="mt-10 w-full">
+                <WaysToStart
+                  tone="dark"
+                  heading="Three ways to start"
+                  intro="Whichever suits you. They all reach me directly."
+                />
               </div>
 
-              <div className="mt-6 flex flex-wrap items-start justify-center gap-x-3 gap-y-6">
-                <div className="flex flex-col items-center gap-2.5">
-                  <MagneticButton
-                    href={site.smsHref}
-                    className="inline-flex items-center gap-2 rounded-full border-2 border-white/25 px-8 py-4 text-sm font-semibold text-white transition hover:border-white"
-                  >
-                    {finalCta.cta.label}
-                    <span aria-hidden>→</span>
-                  </MagneticButton>
-                  <span className="select-all text-sm text-white/60">
-                    {site.phone}
-                  </span>
-                </div>
-                <div className="flex flex-col items-center gap-2.5">
-                  <MagneticButton
-                    href={`mailto:${site.email}`}
-                    className="inline-flex items-center gap-2 rounded-full border-2 border-white/25 px-8 py-4 text-sm font-semibold text-white transition hover:border-white"
-                  >
-                    {finalCta.secondaryCta.label}
-                  </MagneticButton>
-                  <span className="select-all text-sm text-white/60">
-                    {site.email}
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-4 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-white/40">
+              <div className="mt-14 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-white/40">
                 <span className="h-px w-10 bg-white/20" aria-hidden />
                 Or send a message
                 <span className="h-px w-10 bg-white/20" aria-hidden />
               </div>
-              <ContactForm />
+              <div id="ask" className="w-full scroll-mt-24">
+                <ContactForm />
+              </div>
+
+              <p className="mt-8 text-sm text-white/50">
+                Prefer to text or email?{" "}
+                <a href={site.smsHref} className="select-all text-white/80 underline decoration-white/25 underline-offset-4">
+                  {site.phone}
+                </a>{" "}
+                &middot;{" "}
+                <a href={`mailto:${site.email}`} className="select-all text-white/80 underline decoration-white/25 underline-offset-4">
+                  {site.email}
+                </a>
+              </p>
             </div>
           </Reveal>
         </Container>

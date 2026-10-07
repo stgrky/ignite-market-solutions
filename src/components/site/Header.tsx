@@ -27,7 +27,10 @@ export function Header() {
       }`}
     >
       <Container className="flex h-16 items-center justify-between">
-        <a href="#top" className="flex items-center gap-2.5">
+        {/* "/" rather than "#top": a bare hash only resolves on the home page,
+            so from /get-started or /about this did nothing but add #top to the
+            address bar. */}
+        <Link href="/" className="flex items-center gap-2.5">
           <Image
             src="/brand/flame.png"
             alt=""
@@ -45,7 +48,7 @@ export function Header() {
               Creative Co.
             </span>
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
           {nav.map((item) => (

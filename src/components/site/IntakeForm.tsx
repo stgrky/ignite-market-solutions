@@ -4,6 +4,7 @@ import { sendGAEvent } from "@next/third-parties/google";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import { site } from "@/lib/content";
 import { Field, intakeSteps } from "@/lib/intake-steps";
 
 /**
@@ -186,7 +187,7 @@ export function IntakeForm() {
   }
 
   if (status === "sent") {
-    return <ThankYou firstName={String(values.firstName ?? "")} email={String(values.email ?? "")} />;
+    return <ThankYou firstName={String(values.firstName ?? "")} />;
   }
 
   return (
@@ -268,6 +269,42 @@ export function IntakeForm() {
           </p>
         ) : null}
 
+        {/*
+          Above the buttons, deliberately. Once someone has given a name and an
+          email the lead is already worth having, and a lead banked on step 1
+          beats one lost on step 4. Offering it after the Next button meant it
+          was read only by people who had already decided to continue.
+        */}
+        {stepIndex === 0 ? (
+          <div className="rounded-xl border border-[var(--color-subtle)] bg-[var(--color-background)] p-5">
+            <p className="text-sm font-semibold text-[var(--color-foreground)]">
+              Short on time?
+            </p>
+            <p className="mt-1.5 text-sm leading-relaxed text-[var(--color-muted)]">
+              Send just your name and email and I&rsquo;ll reply personally, usually the same
+              day. We can cover everything else when we speak.
+            </p>
+            <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2.5">
+              <button
+                type="button"
+                disabled={missingRequired || status === "sending"}
+                onClick={() => void submit(1)}
+                className="rounded-full border border-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-[var(--color-accent-strong)] transition hover:bg-[var(--color-accent-soft)] disabled:opacity-60"
+              >
+                {status === "sending" ? "Sending…" : "Send this now"}
+              </button>
+              <a
+                href={site.bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-semibold text-[var(--color-foreground)] underline decoration-[var(--color-subtle)] underline-offset-4 transition hover:decoration-[var(--color-accent)]"
+              >
+                Or book a call now →
+              </a>
+            </div>
+          </div>
+        ) : null}
+
         <div className="flex flex-wrap items-center gap-3 pt-2">
           {stepIndex > 0 ? (
             <button
@@ -288,7 +325,13 @@ export function IntakeForm() {
             disabled={missingRequired || status === "sending"}
             className="rounded-full bg-[var(--color-accent)] px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--color-accent-strong)] disabled:opacity-60"
           >
-            {status === "sending" ? "Sending…" : isLast ? "Send my intake" : "Next"}
+            {status === "sending"
+              ? "Sending…"
+              : isLast
+                ? "Send my intake"
+                : stepIndex === 0
+                  ? "Continue your intake →"
+                  : "Next"}
           </button>
 
           {!isLast && stepIndex > 0 ? (
@@ -309,17 +352,9 @@ export function IntakeForm() {
         </div>
 
         {stepIndex === 0 ? (
-          <p className="pt-2 text-sm text-[var(--color-muted)]">
-            Just have a quick question?{" "}
-            <button
-              type="button"
-              disabled={missingRequired || status === "sending"}
-              onClick={() => void submit(1)}
-              className="font-semibold text-[var(--color-accent-strong)] underline decoration-[var(--color-subtle)] underline-offset-4 transition hover:decoration-[var(--color-accent)] disabled:opacity-60"
-            >
-              Send it now
-            </button>{" "}
-            and skip the rest.
+          <p className="pt-1 text-sm leading-relaxed text-[var(--color-muted)]">
+            Ten more minutes here keeps our call to fifteen, and your build can start the
+            day we finish talking.
           </p>
         ) : null}
       </form>
@@ -550,14 +585,10 @@ function FieldInput({
   );
 }
 
-function ThankYou({ firstName, email }: { firstName: string; email: string }) {
-  const booking = process.env.NEXT_PUBLIC_BOOKING_URL;
-  // Calendly reads these straight off the query string, so the person doesn't
-  // retype what they just told us.
-  const bookingUrl =
-    booking && booking.includes("calendly.com")
-      ? `${booking}${booking.includes("?") ? "&" : "?"}name=${encodeURIComponent(firstName)}&email=${encodeURIComponent(email)}`
-      : booking;
+function ThankYou({ firstName }: { firstName: string }) {
+  // Google Calendar appointment pages do not read name or email off the query
+  // string, so there is nothing to prefill. The link goes as-is.
+  const bookingUrl = site.bookingUrl;
 
   return (
     <div className="mx-auto w-full max-w-xl text-center">

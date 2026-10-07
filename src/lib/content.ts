@@ -27,6 +27,9 @@ export const site = {
   phoneHref: "tel:+17374202743",
   smsHref: "sms:+17374202743",
   location: "Austin, TX",
+  /** Google Calendar appointment page. Public, so it lives here rather than in
+   *  an environment variable: nothing to leak, and nothing to forget to set. */
+  bookingUrl: "https://calendar.app.google/PViD291KT9WftXJv5",
 };
 
 // Order matches the order the sections appear on the page — a jump link that
