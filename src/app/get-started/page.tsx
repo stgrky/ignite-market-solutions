@@ -40,21 +40,22 @@ export default function GetStartedPage() {
           </p>
         </div>
 
-        {/* The other two routes in, kept outside the form rather than inside
-            it. The intake is one thing, the contact form is another, and the
-            calendar is a third; blurring them made the intake look like it
-            secretly wanted to be a contact form. Anyone who opens this page
-            and decides ten minutes is too much can leave cleanly. */}
         <div className="mt-12">
-          <WaysToStart
-            omit="intake"
-            heading="Not ready for all this?"
-            intro="The intake is the thorough route. These two are quicker, and they reach me just the same."
-          />
+          <IntakeForm />
         </div>
 
-        <div className="mt-14 border-t border-[var(--color-subtle)] pt-14">
-          <IntakeForm />
+        {/* Below the form, not above it. These are the ways out, and offering
+            them first invited people to leave before they had looked at what
+            they were leaving. Kept outside the form component either way: the
+            intake is one thing, the contact form is another, and the calendar
+            is a third. */}
+        <div className="mt-16 border-t border-[var(--color-subtle)] pt-12">
+          <WaysToStart
+            omit="intake"
+            compact
+            heading="Rather not fill in a form?"
+            intro="Both of these reach me just the same."
+          />
         </div>
 
         <p className="mx-auto mt-12 max-w-2xl text-center text-xs leading-relaxed text-[var(--color-muted)]">

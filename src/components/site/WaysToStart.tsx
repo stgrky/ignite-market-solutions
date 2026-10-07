@@ -25,6 +25,8 @@ type Props = {
   tone?: "light" | "dark";
   /** Hide a card on the page that already is that thing. */
   omit?: "intake";
+  /** Quieter type, for where this is the alternative rather than the ask. */
+  compact?: boolean;
 };
 
 const ways = [
@@ -58,6 +60,7 @@ export function WaysToStart({
   intro = "Whichever suits you. They all reach me.",
   tone = "light",
   omit,
+  compact = false,
 }: Props) {
   const dark = tone === "dark";
   const items = ways.filter((w) => w.id !== omit);
@@ -66,13 +69,17 @@ export function WaysToStart({
     <div className="w-full">
       <div className="text-center">
         <h2
-          className={`font-serif text-2xl md:text-3xl ${
+          className={`font-serif ${compact ? "text-xl md:text-2xl" : "text-2xl md:text-3xl"} ${
             dark ? "text-white" : "text-[var(--color-foreground)]"
           }`}
         >
           {heading}
         </h2>
-        <p className={`mt-3 text-[15px] ${dark ? "text-white/60" : "text-[var(--color-muted)]"}`}>
+        <p
+          className={`mt-2.5 ${compact ? "text-sm" : "text-[15px]"} ${
+            dark ? "text-white/60" : "text-[var(--color-muted)]"
+          }`}
+        >
           {intro}
         </p>
       </div>
