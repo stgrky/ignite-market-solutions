@@ -61,10 +61,10 @@ export function Header() {
             </a>
           ))}
           <Link
-            href="/get-started"
+            href="/#ask"
             className="inline-flex items-center rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--color-accent-strong)]"
           >
-            Start your intake
+            Get in touch
           </Link>
         </nav>
 
@@ -93,11 +93,11 @@ export function Header() {
               </a>
             ))}
             <Link
-              href="/get-started"
+              href="/#ask"
               onClick={() => setOpen(false)}
               className="mt-2 inline-flex items-center justify-center rounded-full bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-white"
             >
-              Start your intake
+              Get in touch
             </Link>
           </Container>
         </div>

@@ -8,10 +8,11 @@ import Link from "next/link";
  * words for our things. Everybody can weigh fifteen minutes against ten
  * against one, and picks without stalling.
  *
- * Three equal-weight buttons usually convert worse than one, so the middle
- * option carries the emphasis: it's the path that makes the call short and the
- * build start sooner. The other two stay one tap away for people who aren't
- * ready to answer questions or aren't ready to talk.
+ * Three equal-weight buttons usually convert worse than one, so the shortest
+ * ask carries the emphasis. A ten-minute form is a qualifying tool, not a
+ * first-touch one: a stranger does not owe us ten minutes, but most will trade
+ * a name and a sentence. The intake earns its place further down, for the
+ * people who have already decided and want to move faster.
  *
  * `tone` exists because this sits on both the cream page body and the dark
  * closing band, and the dark one needs its own colours rather than a tinted
@@ -22,36 +23,31 @@ type Props = {
   heading?: string;
   intro?: string;
   tone?: "light" | "dark";
-  /** Hide the intake card on /get-started, where they're already doing it. */
+  /** Hide a card on the page that already is that thing. */
   omit?: "intake";
 };
 
 const ways = [
   {
+    id: "ask",
+    label: "Send me a message",
+    time: "1 minute",
+    body: "Your name, your email, and a sentence about what you need. I read every one myself and reply the same day.",
+    href: "/#ask",
+  },
+  {
     id: "book",
     label: "Book a call",
     time: "15 minutes",
-    body: "Pick a time that suits you. No pressure and no pitch, just a conversation about what you need.",
-    // /book rather than the calendar itself: an outbound link at the moment
-    // someone is ready to act hands them to another domain, and whatever
-    // happens next is invisible to us. The page embeds the same calendar.
+    body: "Rather talk it through? Pick a time that suits you. No pressure and no pitch.",
     href: "/book",
   },
   {
     id: "intake",
     label: "Fill out the intake",
     time: "10 minutes",
-    body: "Answer a few questions first and our call is only confirming details. Some people skip the call entirely.",
+    body: "Already know you want this? Answer everything up front and we can skip the back and forth entirely.",
     href: "/get-started",
-  },
-  {
-    id: "ask",
-    label: "Just ask a question",
-    time: "1 minute",
-    body: "Your name, your email, and whatever's on your mind. It reaches me directly.",
-    // #ask, not #contact: this card sits inside the contact section on the home
-    // page, so pointing at the section itself would scroll nowhere.
-    href: "/#ask",
   },
 ];
 
@@ -85,7 +81,7 @@ export function WaysToStart({
         }`}
       >
         {items.map((way) => {
-          const featured = way.id === "intake";
+          const featured = way.id === "ask";
           const card = [
             "flex h-full flex-col rounded-2xl border p-6 text-left transition",
             dark
@@ -125,7 +121,11 @@ export function WaysToStart({
                   dark ? "text-white" : "text-[var(--color-accent-strong)]"
                 }`}
               >
-                {way.id === "book" ? "See available times →" : "Go →"}
+                {way.id === "book"
+                  ? "See available times →"
+                  : way.id === "ask"
+                    ? "Write to me →"
+                    : "Start the intake →"}
               </span>
             </>
           );

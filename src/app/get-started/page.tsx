@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Container } from "@/components/Container";
 import { IntakeForm } from "@/components/site/IntakeForm";
+import { WaysToStart } from "@/components/site/WaysToStart";
 import { site } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -24,10 +25,10 @@ export default function GetStartedPage() {
             Tell me about your practice.
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-[var(--color-muted)]">
-            About ten minutes, and you can skip anything you&rsquo;re unsure about. I read it
-            before we speak, which is what keeps the call to fifteen minutes.
+            This is the long way round, and it is worth it if you already know you want a
+            website. Answer what you can and I will have read it before we speak.
           </p>
-          <p className="mt-3 text-sm text-[var(--color-muted)]">
+          <p className="mt-5 text-sm text-[var(--color-muted)]">
             Haven&rsquo;t seen the websites yet?{" "}
             <Link
               href="/#shop"
@@ -39,7 +40,20 @@ export default function GetStartedPage() {
           </p>
         </div>
 
+        {/* The other two routes in, kept outside the form rather than inside
+            it. The intake is one thing, the contact form is another, and the
+            calendar is a third; blurring them made the intake look like it
+            secretly wanted to be a contact form. Anyone who opens this page
+            and decides ten minutes is too much can leave cleanly. */}
         <div className="mt-12">
+          <WaysToStart
+            omit="intake"
+            heading="Not ready for all this?"
+            intro="The intake is the thorough route. These two are quicker, and they reach me just the same."
+          />
+        </div>
+
+        <div className="mt-14 border-t border-[var(--color-subtle)] pt-14">
           <IntakeForm />
         </div>
 
