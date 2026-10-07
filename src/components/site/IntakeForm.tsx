@@ -2,7 +2,7 @@
 
 import { sendGAEvent } from "@next/third-parties/google";
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { Field, intakeSteps } from "@/lib/intake-steps";
 
@@ -80,6 +80,17 @@ export function IntakeForm() {
   const [error, setError] = useState<string | null>(null);
   const [restored, setRestored] = useState(false);
 
+  /**
+   * Funnel instrumentation. Distinct event names per step rather than one event
+   * with a step parameter: GA4 only populates a custom dimension from the day
+   * it is registered and never backfills, so a parameter nobody remembered to
+   * register is a silent hole in the data. Event names need no setup.
+   *
+   * Nothing anyone typed is sent — only which step was reached.
+   */
+  const started = useRef(false);
+  const furthestStep = useRef(0);
+
   // Reading the visitor's own storage can only happen after mount: it doesn't
   // exist on the server, and seeding it into the first client render would make
   // the hydrated inputs disagree with the server-rendered ones. This is the
@@ -97,6 +108,12 @@ export function IntakeForm() {
 
   const set = useCallback(
     (name: string, value: string | string[] | number) => {
+      if (!started.current) {
+        started.current = true;
+        // Separates "opened the page" from "actually began", which is the
+        // denominator that makes an abandonment rate mean anything.
+        sendGAEvent("event", "intake_start");
+      }
       setValues((prev) => {
         const next = { ...prev, [name]: value };
         writeDraft(next, stepIndex);
@@ -110,6 +127,15 @@ export function IntakeForm() {
   // then clicks through to step 4 before leaving should return to step 4.
   useEffect(() => {
     if (Object.keys(values).length > 0) writeDraft(values, stepIndex);
+
+    // Hooked here rather than on the buttons because three different things
+    // advance the step — Next, the Enter key, and Skip — and this catches all
+    // of them. Only a new furthest step counts, so going Back and forward
+    // again cannot inflate the funnel.
+    if (stepIndex > furthestStep.current) {
+      furthestStep.current = stepIndex;
+      sendGAEvent("event", `intake_step_${stepIndex + 1}`);
+    }
     // Only the step crossing matters here; value edits already write above.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stepIndex]);
@@ -268,7 +294,13 @@ export function IntakeForm() {
           {!isLast && stepIndex > 0 ? (
             <button
               type="button"
-              onClick={() => setStepIndex((i) => i + 1)}
+              onClick={() => {
+                // Skipping and abandoning look identical in a funnel but need
+                // opposite fixes: a skipped step asks too much, an abandoned
+                // one comes too late.
+                sendGAEvent("event", `intake_skip_${stepIndex + 1}`);
+                setStepIndex((i) => i + 1);
+              }}
               className="text-sm text-[var(--color-muted)] underline decoration-[var(--color-subtle)] underline-offset-4 transition hover:text-[var(--color-foreground)]"
             >
               Skip this step
