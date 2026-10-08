@@ -323,6 +323,7 @@ export const pricing = {
       "Five pages: Home, About, Services, Blog, Contact",
       "Customized to your brand: palette, fonts, imagery, layout",
       "Your existing content moved across for you (up to 6 pages)",
+      "Your domain pointed at the new site, with your email left running",
       "Up to 2 hours of revisions included (async)",
       "Your own secure login — manage every word, photo, and post",
     ],
@@ -399,12 +400,12 @@ export const pricing = {
         "Anyone with a physical office who wants to show up in Google Map searches for their practice. Telehealth-only practices benefit less.",
     },
     {
-      label: "Domain transfer & DNS setup",
-      price: "from $60/hour",
-      what: "We move your existing domain to a new registrar, or safely repoint its DNS in place, without breaking anything already running on it — most commonly your email. Billed for time spent, since a simple repoint and a full registrar transfer take very different amounts of work.",
-      why: "A domain rarely lives alone. Get one DNS record wrong and you can silently break inbound email for days before anyone notices. We handle the transfer and the records so nothing goes down.",
+      label: "Complicated domain moves",
+      price: "$60/hour",
+      what: "Pointing your domain at your new site is included with every build, so most people never need this. This is for the cases that are not a simple switch: moving the domain to a different company, getting back into an account nobody can log into any more, untangling settings that are spread across two providers, or rebuilding your email records rather than leaving them alone.",
+      why: "A domain usually has more than a website attached to it. Your email almost certainly runs on the same name, and one wrong setting can stop mail arriving for days before anyone notices. When a move is genuinely complicated it is worth doing slowly and carefully, and that time is what this covers.",
       whoFor:
-        "Anyone bringing a domain they already own, especially if email or anything else is already running on it. (Buying a domain fresh for a new site is already covered — see the cost FAQ below.)",
+        "Anyone whose domain is tangled up: a previous web designer still controls it, the company it was bought from has disappeared, or the settings live somewhere other than where you bought it. I will tell you which situation you are in before any of it is billable.",
     },
     {
       label: "SEO setup",
@@ -536,7 +537,7 @@ export const faqs = {
     },
     {
       q: "Do I need to buy anything else?",
-      a: "Just your domain (about $15/year) — you purchase it so you own it, and we guide you through pointing it at your new site.",
+      a: "Just your domain (about $15/year). You buy it so that you own it, and pointing it at your new site is something I do for you, not something you have to work out.",
     },
   ],
 };
