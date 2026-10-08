@@ -324,6 +324,7 @@ export const pricing = {
       "Customized to your brand: palette, fonts, imagery, layout",
       "Your existing content moved across for you (up to 6 pages)",
       "Your domain pointed at the new site, with your email left running",
+      "The first hour of that work included, whatever it turns out to involve",
       "Up to 2 hours of revisions included (async)",
       "Your own secure login — manage every word, photo, and post",
     ],
@@ -402,10 +403,10 @@ export const pricing = {
     {
       label: "Complicated domain moves",
       price: "$60/hour",
-      what: "Pointing your domain at your new site is included with every build, so most people never need this. This is for the cases that are not a simple switch: moving the domain to a different company, getting back into an account nobody can log into any more, untangling settings that are spread across two providers, or rebuilding your email records rather than leaving them alone.",
-      why: "A domain usually has more than a website attached to it. Your email almost certainly runs on the same name, and one wrong setting can stop mail arriving for days before anyone notices. When a move is genuinely complicated it is worth doing slowly and carefully, and that time is what this covers.",
+      what: "Pointing your domain at your new site is included, and so is the first hour of doing it. Most moves take well under that: sign in where your domain lives, read the settings, change two of them. If yours turns out to need longer, I stop and tell you what is left and what it would cost, and nothing continues until you say so.",
+      why: "A domain usually has more than a website attached to it. Your email almost certainly runs on the same name, and one wrong setting can stop mail arriving for days before anyone notices. The awkward ones are awkward because of how they were set up years ago, which is nobody's fault and not something you can tell in advance.",
       whoFor:
-        "Anyone whose domain is tangled up: a previous web designer still controls it, the company it was bought from has disappeared, or the settings live somewhere other than where you bought it. I will tell you which situation you are in before any of it is billable.",
+        "Usually nobody. It comes up when a previous web designer still controls the domain, the company it was bought from has disappeared, or the settings live somewhere other than where you bought it. You will never get a bill for this without agreeing to it first.",
     },
     {
       label: "SEO setup",
