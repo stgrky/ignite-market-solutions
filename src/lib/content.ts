@@ -428,6 +428,23 @@ export const pricing = {
       whoFor: "New practices, rebrands, or anyone still using a Canva template.",
     },
   ],
+  /**
+   * Sits directly after the add-on prices, which is where cost doubt actually
+   * lands rather than at the build price on its own.
+   *
+   * "Sliding scale" is deliberate. It is the phrase these therapists use with
+   * their own clients every week, so it needs no explaining and it signals that
+   * the same principle is being offered back to them. The heading speaks to the
+   * situation rather than the discount, so it reads as understanding a stage of
+   * a career rather than as a sale.
+   */
+  slidingScale: {
+    eyebrow: "Sliding scale",
+    heading: "Early in your practice?",
+    body: "If you're pre-licensure, working under a supervisor, or just getting a practice off the ground, I know full price may not be realistic right now. That shouldn't be the reason you go without a decent website. Tell me where you are and I can usually bring the cost down considerably.",
+    cta: { label: "Book fifteen minutes", href: "/book" },
+    note: "No form to fill in and nothing to prove. We talk about what works and I quote you accordingly.",
+  },
   terms: {
     heading: "Straight terms, in writing",
     items: [

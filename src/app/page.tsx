@@ -667,6 +667,37 @@ export default function HomePage() {
             </p>
           </Reveal>
 
+          {/* Sliding scale. Placed after the add-on prices rather than after the
+              build price: this is the point where someone has seen every number
+              and is deciding whether any of it is for them. */}
+          <Reveal delay={0.1}>
+            <div className="mx-auto mt-16 max-w-3xl overflow-hidden rounded-[1.75rem] border border-[var(--color-accent)]/40 bg-[var(--color-accent-soft)]/60">
+              <div className="p-8 md:p-10">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--color-accent-strong)]">
+                  {pricing.slidingScale.eyebrow}
+                </p>
+                <h3 className="mt-3 font-serif text-2xl leading-tight text-[var(--color-foreground)] md:text-[1.75rem]">
+                  {pricing.slidingScale.heading}
+                </h3>
+                <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-[var(--color-foreground)]/85">
+                  {pricing.slidingScale.body}
+                </p>
+                <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
+                  <Link
+                    href={pricing.slidingScale.cta.href}
+                    className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-accent-strong)]"
+                  >
+                    {pricing.slidingScale.cta.label}
+                    <span aria-hidden>&rarr;</span>
+                  </Link>
+                  <p className="max-w-sm text-sm leading-relaxed text-[var(--color-muted)]">
+                    {pricing.slidingScale.note}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
           {/* Terms */}
           <div className="mx-auto mt-20 max-w-2xl text-center">
             <Reveal>
