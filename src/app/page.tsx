@@ -11,6 +11,7 @@ import { ContactForm } from "@/components/site/ContactForm";
 import { WaysToStart } from "@/components/site/WaysToStart";
 import { HeroShowcase } from "@/components/site/HeroShowcase";
 import { ProcessSection } from "@/components/site/ProcessSection";
+import { StickyJourney } from "@/components/site/StickyJourney";
 import {
   faqs,
   finalCta,
@@ -452,220 +453,237 @@ export default function HomePage() {
       {/* ─────────────────────── PRICING ──────────────────────── */}
       <section id="pricing" className="bg-[var(--color-background)] py-20 md:py-28">
         <Container>
-          <div className="mx-auto max-w-2xl text-center">
-            <Reveal>
-              <h2 className="font-serif text-3xl font-bold leading-[1.15] text-[var(--color-foreground)] md:text-[2.4rem]">
-                {pricing.heading}
-              </h2>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <p className="mt-5 text-lg leading-relaxed text-[var(--color-muted)]">
-                {pricing.intro}
-              </p>
-            </Reveal>
-          </div>
-
-          {/* Step 1 — Initial build */}
-          <div className="mt-16">
-            <StepHeading
-              step={pricing.buildStep}
-              title={pricing.buildHeading}
-              intro={pricing.buildStepIntro}
-              backLink={pricing.buildStepBackLink}
-            />
-          </div>
-          <Reveal delay={0.1}>
-            <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-8 shadow-[var(--shadow-card)] md:p-10">
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--color-muted)]">
-                    {pricing.build.label}
-                  </p>
-                  <h3 className="mt-2 font-serif text-2xl font-bold text-[var(--color-foreground)]">
-                    {pricing.build.name}
-                  </h3>
-                </div>
-                <span className="font-serif text-5xl font-bold text-[var(--color-foreground)]">
-                  {pricing.build.price}
-                </span>
-              </div>
-              <p className="mt-5 text-[15px] leading-relaxed text-[var(--color-muted)]">
-                {pricing.build.blurb}
-              </p>
-              <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
-                {pricing.build.features.map((f) => (
-                  <li
-                    key={f}
-                    className="flex items-start gap-2.5 text-[15px] text-[var(--color-foreground)]"
-                  >
-                    <span aria-hidden className="mt-0.5 font-bold text-[var(--color-accent)]">
-                      ✓
-                    </span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-6 border-t border-[var(--color-subtle)] pt-5 text-sm italic leading-relaxed text-[var(--color-muted)]">
-                {pricing.build.overageNote}
-              </p>
-            </div>
-          </Reveal>
-
-          {/* Step 2 — Hosting */}
-          <div className="mt-20">
-            <StepHeading
-              step={pricing.tiersStep}
-              title={pricing.tiersHeading}
-              intro={pricing.tiersIntro}
-            />
-          </div>
-          <div className="mx-auto mt-10 grid max-w-xl items-start gap-6">
-            {pricing.tiers.map((tier, i) => (
-              <Reveal key={tier.name} delay={0.08 * i} className="h-full">
-                <div
-                  className={`relative flex h-full flex-col rounded-2xl border p-8 ${
-                    tier.featured
-                      ? "border-[var(--color-accent)] bg-[var(--color-surface)] shadow-[0_24px_60px_-30px_var(--color-accent)]"
-                      : "border-[var(--color-subtle)] bg-[var(--color-surface)]"
-                  }`}
-                >
-                  {/* "Recommended" only means something next to an alternative.
-                      With a single plan the badge is noise, so it appears only
-                      if a second tier is ever reintroduced. */}
-                  {tier.featured && pricing.tiers.length > 1 ? (
-                    <span
-                      className="absolute -top-3 left-8 inline-flex items-center rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white"
-                      style={{ background: "var(--ignite-gradient)" }}
-                    >
-                      Recommended
-                    </span>
-                  ) : null}
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
-                    {tier.tierLabel}
-                  </p>
-                  <h4 className="mt-2 font-serif text-xl font-bold text-[var(--color-foreground)]">
-                    {tier.name}
-                  </h4>
-                  <p className="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                    <span className="font-serif text-4xl font-bold text-[var(--color-foreground)]">
-                      {tier.price}
-                    </span>
-                    <span className="text-sm text-[var(--color-muted)]">
-                      {tier.cadence}
-                    </span>
-                    {"altPrice" in tier && tier.altPrice ? (
-                      <span className="text-[13px] text-[var(--color-muted)]/80">
-                        {tier.altPrice}
-                      </span>
-                    ) : null}
-                  </p>
-                  <p className="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
-                    {tier.blurb}
-                  </p>
-                  <ul className="mt-6 flex-grow space-y-2.5">
-                    {tier.features.map((f) => (
-                      <li
-                        key={f}
-                        className="flex items-start gap-2.5 text-[15px] text-[var(--color-foreground)]"
-                      >
-                        <span aria-hidden className="mt-0.5 font-bold text-[var(--color-accent)]">
-                          ✓
+          {/* The three prices are a sequence: the build, then what keeps it
+              running, then anything on top. Being genuinely ordered is the one
+              thing the sticky rail needs to be true, so this section earns the
+              same treatment as How it works rather than borrowing its look.
+              The centred heading that used to sit here is gone: StickyJourney
+              puts it in the rail, where it stays in view for the whole scroll. */}
+          <StickyJourney
+            heading={pricing.heading}
+            intro={pricing.intro}
+            ratio="even"
+            steps={[
+              {
+                label: pricing.buildHeading,
+                content: (
+                  <div>
+                  <div className="mt-16">
+                    <StepHeading
+                      step={pricing.buildStep}
+                      title={pricing.buildHeading}
+                      intro={pricing.buildStepIntro}
+                      backLink={pricing.buildStepBackLink}
+                    />
+                  </div>
+                  <Reveal delay={0.1}>
+                    <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-8 shadow-[var(--shadow-card)] md:p-10">
+                      <div className="flex flex-wrap items-center justify-between gap-4">
+                        <div>
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--color-muted)]">
+                            {pricing.build.label}
+                          </p>
+                          <h3 className="mt-2 font-serif text-2xl font-bold text-[var(--color-foreground)]">
+                            {pricing.build.name}
+                          </h3>
+                        </div>
+                        <span className="font-serif text-5xl font-bold text-[var(--color-foreground)]">
+                          {pricing.build.price}
                         </span>
-                        <span>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="mt-6 border-t border-[var(--color-subtle)] pt-5 text-sm italic leading-relaxed text-[var(--color-muted)]">
-                    {tier.bestFor}
-                  </p>
-                  <Link
-                    href="/get-started"
-                    className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition ${
-                      tier.featured
-                        ? "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-strong)]"
-                        : "border-2 border-[var(--color-foreground)]/15 text-[var(--color-foreground)] hover:border-[var(--color-accent)]"
-                    }`}
-                  >
-                    Get started
-                  </Link>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          {/* Step 3 — Add-ons */}
-          <div className="mt-20">
-            <StepHeading
-              step={pricing.addOnsStep}
-              note={pricing.addOnsStepNote}
-              title={pricing.addOnsHeading}
-              intro={pricing.addOnsIntro}
-            />
-          </div>
-          <Reveal delay={0.12}>
-            <div className="mx-auto mt-8 grid max-w-3xl items-start gap-x-10 sm:grid-cols-2">
-              {pricing.addOns.map((item) => (
-                <details
-                  key={item.label}
-                  className="group border-b border-[var(--color-subtle)] [&_summary::-webkit-details-marker]:hidden"
-                >
-                  <summary className="flex cursor-pointer select-none items-baseline justify-between gap-4 py-3">
-                    <span className="flex items-center gap-2 text-[15px] text-[var(--color-foreground)]">
-                      {item.label}
-                      <svg
-                        aria-hidden
-                        viewBox="0 0 20 20"
-                        width="11"
-                        height="11"
-                        className="flex-shrink-0 text-[var(--color-muted)] transition-transform duration-300 group-open:rotate-180"
-                      >
-                        <path
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M5 8l5 5 5-5"
-                        />
-                      </svg>
-                    </span>
-                    <span className="whitespace-nowrap font-serif font-semibold text-[var(--color-foreground)]">
-                      {item.price}
-                    </span>
-                  </summary>
-                  <div className="space-y-3 pb-5 pt-1">
-                    {(
-                      [
-                        { kicker: "What", body: item.what },
-                        { kicker: "Why", body: item.why },
-                        { kicker: "Who it's for", body: item.whoFor },
-                      ] as const
-                    ).map((row) => (
-                      <div key={row.kicker}>
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-muted)]">
-                          {row.kicker}
-                        </p>
-                        <p className="mt-1 text-sm leading-relaxed text-[var(--color-muted)]">
-                          {row.body}
-                        </p>
                       </div>
+                      <p className="mt-5 text-[15px] leading-relaxed text-[var(--color-muted)]">
+                        {pricing.build.blurb}
+                      </p>
+                      <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
+                        {pricing.build.features.map((f) => (
+                          <li
+                            key={f}
+                            className="flex items-start gap-2.5 text-[15px] text-[var(--color-foreground)]"
+                          >
+                            <span aria-hidden className="mt-0.5 font-bold text-[var(--color-accent)]">
+                              ✓
+                            </span>
+                            {f}
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="mt-6 border-t border-[var(--color-subtle)] pt-5 text-sm italic leading-relaxed text-[var(--color-muted)]">
+                        {pricing.build.overageNote}
+                      </p>
+                    </div>
+                  </Reveal>
+                  </div>
+                ),
+              },
+              {
+                label: pricing.tiersHeading,
+                content: (
+                  <div>
+                  <div className="mt-20">
+                    <StepHeading
+                      step={pricing.tiersStep}
+                      title={pricing.tiersHeading}
+                      intro={pricing.tiersIntro}
+                    />
+                  </div>
+                  <div className="mx-auto mt-10 grid max-w-xl items-start gap-6">
+                    {pricing.tiers.map((tier, i) => (
+                      <Reveal key={tier.name} delay={0.08 * i} className="h-full">
+                        <div
+                          className={`relative flex h-full flex-col rounded-2xl border p-8 ${
+                            tier.featured
+                              ? "border-[var(--color-accent)] bg-[var(--color-surface)] shadow-[0_24px_60px_-30px_var(--color-accent)]"
+                              : "border-[var(--color-subtle)] bg-[var(--color-surface)]"
+                          }`}
+                        >
+                          {/* "Recommended" only means something next to an alternative.
+                              With a single plan the badge is noise, so it appears only
+                              if a second tier is ever reintroduced. */}
+                          {tier.featured && pricing.tiers.length > 1 ? (
+                            <span
+                              className="absolute -top-3 left-8 inline-flex items-center rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white"
+                              style={{ background: "var(--ignite-gradient)" }}
+                            >
+                              Recommended
+                            </span>
+                          ) : null}
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
+                            {tier.tierLabel}
+                          </p>
+                          <h4 className="mt-2 font-serif text-xl font-bold text-[var(--color-foreground)]">
+                            {tier.name}
+                          </h4>
+                          <p className="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                            <span className="font-serif text-4xl font-bold text-[var(--color-foreground)]">
+                              {tier.price}
+                            </span>
+                            <span className="text-sm text-[var(--color-muted)]">
+                              {tier.cadence}
+                            </span>
+                            {"altPrice" in tier && tier.altPrice ? (
+                              <span className="text-[13px] text-[var(--color-muted)]/80">
+                                {tier.altPrice}
+                              </span>
+                            ) : null}
+                          </p>
+                          <p className="mt-4 text-[15px] leading-relaxed text-[var(--color-muted)]">
+                            {tier.blurb}
+                          </p>
+                          <ul className="mt-6 flex-grow space-y-2.5">
+                            {tier.features.map((f) => (
+                              <li
+                                key={f}
+                                className="flex items-start gap-2.5 text-[15px] text-[var(--color-foreground)]"
+                              >
+                                <span aria-hidden className="mt-0.5 font-bold text-[var(--color-accent)]">
+                                  ✓
+                                </span>
+                                <span>{f}</span>
+                              </li>
+                            ))}
+                          </ul>
+                          <p className="mt-6 border-t border-[var(--color-subtle)] pt-5 text-sm italic leading-relaxed text-[var(--color-muted)]">
+                            {tier.bestFor}
+                          </p>
+                          <Link
+                            href="/get-started"
+                            className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition ${
+                              tier.featured
+                                ? "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-strong)]"
+                                : "border-2 border-[var(--color-foreground)]/15 text-[var(--color-foreground)] hover:border-[var(--color-accent)]"
+                            }`}
+                          >
+                            Get started
+                          </Link>
+                        </div>
+                      </Reveal>
                     ))}
                   </div>
-                </details>
-              ))}
-            </div>
-          </Reveal>
+                  </div>
+                ),
+              },
+              {
+                label: pricing.addOnsHeading,
+                content: (
+                  <div>
+                  <div className="mt-20">
+                    <StepHeading
+                      step={pricing.addOnsStep}
+                      note={pricing.addOnsStepNote}
+                      title={pricing.addOnsHeading}
+                      intro={pricing.addOnsIntro}
+                    />
+                  </div>
+                  <Reveal delay={0.12}>
+                    <div className="mx-auto mt-8 grid max-w-3xl items-start gap-x-10 sm:grid-cols-2">
+                      {pricing.addOns.map((item) => (
+                        <details
+                          key={item.label}
+                          className="group border-b border-[var(--color-subtle)] [&_summary::-webkit-details-marker]:hidden"
+                        >
+                          <summary className="flex cursor-pointer select-none items-baseline justify-between gap-4 py-3">
+                            <span className="flex items-center gap-2 text-[15px] text-[var(--color-foreground)]">
+                              {item.label}
+                              <svg
+                                aria-hidden
+                                viewBox="0 0 20 20"
+                                width="11"
+                                height="11"
+                                className="flex-shrink-0 text-[var(--color-muted)] transition-transform duration-300 group-open:rotate-180"
+                              >
+                                <path
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="1.5"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M5 8l5 5 5-5"
+                                />
+                              </svg>
+                            </span>
+                            <span className="whitespace-nowrap font-serif font-semibold text-[var(--color-foreground)]">
+                              {item.price}
+                            </span>
+                          </summary>
+                          <div className="space-y-3 pb-5 pt-1">
+                            {(
+                              [
+                                { kicker: "What", body: item.what },
+                                { kicker: "Why", body: item.why },
+                                { kicker: "Who it's for", body: item.whoFor },
+                              ] as const
+                            ).map((row) => (
+                              <div key={row.kicker}>
+                                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-muted)]">
+                                  {row.kicker}
+                                </p>
+                                <p className="mt-1 text-sm leading-relaxed text-[var(--color-muted)]">
+                                  {row.body}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </details>
+                      ))}
+                    </div>
+                  </Reveal>
 
-          <Reveal delay={0.18}>
-            <p className="mx-auto mt-8 max-w-3xl rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-6 text-[15px] leading-relaxed text-[var(--color-muted)]">
-              {pricing.addOnsNote}
-            </p>
-          </Reveal>
-          <Reveal delay={0.22}>
-            <p className="mx-auto mt-4 max-w-3xl rounded-2xl border border-[var(--color-accent)]/30 bg-[var(--color-accent-soft)]/50 p-6 text-[15px] leading-relaxed text-[var(--color-foreground)]">
-              {pricing.addOnsCustomNote}
-            </p>
-          </Reveal>
+                  <Reveal delay={0.18}>
+                    <p className="mx-auto mt-8 max-w-3xl rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-6 text-[15px] leading-relaxed text-[var(--color-muted)]">
+                      {pricing.addOnsNote}
+                    </p>
+                  </Reveal>
+                  <Reveal delay={0.22}>
+                    <p className="mx-auto mt-4 max-w-3xl rounded-2xl border border-[var(--color-accent)]/30 bg-[var(--color-accent-soft)]/50 p-6 text-[15px] leading-relaxed text-[var(--color-foreground)]">
+                      {pricing.addOnsCustomNote}
+                    </p>
+                  </Reveal>
+                  </div>
+                ),
+              },
+            ]}
+          />
+
 
           {/* Sliding scale. Placed after the add-on prices rather than after the
               build price: this is the point where someone has seen every number
