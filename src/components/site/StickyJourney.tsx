@@ -55,6 +55,11 @@ export function StickyJourney({ heading, intro, steps, ratio = "rail" }: Props) 
     const panels = panelRefs.current.filter(Boolean) as HTMLLIElement[];
     if (panels.length === 0) return;
 
+    // Which panels are currently in the band. Kept as a set rather than a
+    // single index because during a transition two panels touch it at once,
+    // and entries arrive in no particular order.
+    const inBand = new Set<number>();
+
     // One observer for every panel. The middle band of the viewport is what
     // counts as "current", which is why the margins are asymmetric.
     const observer = new IntersectionObserver(
@@ -63,10 +68,18 @@ export function StickyJourney({ heading, intro, steps, ratio = "rail" }: Props) 
           const index = panels.indexOf(entry.target as HTMLLIElement);
           if (index === -1) continue;
           if (entry.isIntersecting) {
+            // The reveal is one-way on purpose. Only the current marker
+            // follows the scroll back up; panels do not un-reveal.
             entry.target.classList.add("journey-shown");
-            setActive((current) => (index > current ? index : current));
+            inBand.add(index);
+          } else {
+            inBand.delete(index);
           }
         }
+        // Topmost panel in the band, so scrolling back up moves the marker
+        // back up with it. This used to keep whichever step was furthest
+        // reached, which left the last one marked current forever.
+        if (inBand.size > 0) setActive(Math.min(...inBand));
       },
       { rootMargin: "-25% 0px -45% 0px", threshold: 0.01 },
     );
