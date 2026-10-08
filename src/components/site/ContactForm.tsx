@@ -170,14 +170,14 @@ export function ContactForm() {
       </button>
 
       <p className="mt-5 border-t border-[var(--color-subtle)] pt-5 text-sm leading-relaxed text-[var(--color-muted)]">
-        Ready to get going?{" "}
+        Rather talk it through?{" "}
         <Link
-          href="/get-started"
+          href="/book"
           className="font-semibold text-[var(--color-accent-strong)] underline decoration-[var(--color-subtle)] underline-offset-4 transition hover:decoration-[var(--color-accent)]"
         >
-          Start the full intake →
+          Book a call →
         </Link>{" "}
-        It takes about ten minutes and means our call can be fifteen.
+        Fifteen minutes, whenever suits you.
       </p>
     </form>
   );

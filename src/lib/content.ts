@@ -252,7 +252,7 @@ export const process = {
         "Tell me which site you picked, what you'd keep, what you'd change, and how your brand should look and sound: colors, fonts, the works. Skip anything you're unsure about.",
       badge: "About 10 minutes",
       visual: "form",
-      cta: { label: "Start your intake →", href: "/get-started" },
+      cta: { label: "Get in touch →", href: "/#ask" },
     },
     {
       title: "A quick 15-minute call",
@@ -299,7 +299,7 @@ export const process = {
       visual: "shield",
     },
   ],
-  primaryCta: { label: "Start your intake →", href: "/get-started" },
+  primaryCta: { label: "Book a call →", href: "/book" },
   secondaryCta: { label: "Browse the websites ↑", href: "/#shop" },
 };
 
@@ -557,7 +557,7 @@ export const referral = {
 export const finalCta = {
   heading: "Ready to ignite your online presence?",
   body: "Fill out the intake and we'll take fifteen minutes to confirm the details. No pressure, no jargon, no obligation. It reaches me directly, btw.",
-  primaryCta: { label: "Start your intake", href: "/get-started" },
+  primaryCta: { label: "Get in touch", href: "/#ask" },
   cta: { label: "Text me" },
   secondaryCta: { label: "Email me" },
 };

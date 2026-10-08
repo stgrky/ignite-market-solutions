@@ -163,7 +163,7 @@ export default async function PostPage({
               See available websites
             </Link>
             <Link
-              href="/get-started"
+              href="/#ask"
               className="rounded-full border border-[var(--color-subtle)] px-6 py-3 text-sm font-semibold text-[var(--color-foreground)] transition hover:border-[var(--color-accent)]"
             >
               Get in touch

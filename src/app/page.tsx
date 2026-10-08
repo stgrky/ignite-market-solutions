@@ -586,14 +586,14 @@ export default function HomePage() {
                             {tier.bestFor}
                           </p>
                           <Link
-                            href="/get-started"
+                            href="/#ask"
                             className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition ${
                               tier.featured
                                 ? "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-strong)]"
                                 : "border-2 border-[var(--color-foreground)]/15 text-[var(--color-foreground)] hover:border-[var(--color-accent)]"
                             }`}
                           >
-                            Get started
+                            Get in touch
                           </Link>
                         </div>
                       </Reveal>
