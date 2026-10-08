@@ -868,6 +868,7 @@ export default function HomePage() {
                   {site.email}
                 </a>
               </p>
+
             </div>
           </Reveal>
         </Container>

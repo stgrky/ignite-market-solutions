@@ -8,11 +8,15 @@ import Link from "next/link";
  * words for our things. Everybody can weigh fifteen minutes against ten
  * against one, and picks without stalling.
  *
- * Three equal-weight buttons usually convert worse than one, so the shortest
- * ask carries the emphasis. A ten-minute form is a qualifying tool, not a
- * first-touch one: a stranger does not owe us ten minutes, but most will trade
- * a name and a sentence. The intake earns its place further down, for the
- * people who have already decided and want to move faster.
+ * Two cards, not three. Write or talk is a clean either/or; adding the intake
+ * made it a three-way choice in which one option was visibly the most work,
+ * and a card is an invitation to click. Clicking into a six-step form before
+ * you have decided anything is how people leave.
+ *
+ * The intake still exists and is still linked, as a line of text under the
+ * contact form and from the booking page. That is the right weight for it: a
+ * ten-minute form is a qualifying tool, not a first-touch one, and the people
+ * who want it are already looking for it.
  *
  * `tone` exists because this sits on both the cream page body and the dark
  * closing band, and the dark one needs its own colours rather than a tinted
@@ -24,7 +28,7 @@ type Props = {
   intro?: string;
   tone?: "light" | "dark";
   /** Hide a card on the page that already is that thing. */
-  omit?: "intake";
+  omit?: "ask" | "book";
   /** Quieter type, for where this is the alternative rather than the ask. */
   compact?: boolean;
 };
@@ -46,17 +50,10 @@ const ways = [
     body: "Rather talk it through? Pick a time that suits you. No pressure and no pitch.",
     href: "/book",
   },
-  {
-    id: "intake",
-    label: "Fill out the intake",
-    time: "10 minutes",
-    body: "Already know you want this? Answer everything up front and we can skip the back and forth entirely.",
-    href: "/get-started",
-  },
 ];
 
 export function WaysToStart({
-  heading = "Three ways to start",
+  heading = "Two ways to start",
   intro = "Whichever suits you. They all reach me.",
   tone = "light",
   omit,
@@ -142,7 +139,7 @@ export function WaysToStart({
                   ? "See available times →"
                   : way.id === "ask"
                     ? "Write to me →"
-                    : "Start the intake →"}
+                    : "Go →"}
               </span>
             </>
           );

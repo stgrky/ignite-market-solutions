@@ -57,7 +57,9 @@ export const hero = {
   headlineAccent2: "practice.",
   subhead:
     "Websites built for therapists and private practices — yours to own, yours to edit, with no rising platform fees. Pick one of the finished sites below, we tailor it to your practice, and you're live in about a week or two.",
-  primaryCta: { label: "Start your intake", href: "/get-started" },
+  // The cheap ask leads. Sending the first thing a visitor sees to a six-step
+  // form asks for ten minutes from someone who has read one headline.
+  primaryCta: { label: "Get in touch", href: "/#ask" },
   secondaryCta: { label: "See available websites", href: "/#shop" },
   trustLine:
     "No cookie-cutter templates. No monthly platform ransom. No code degree required to update it. No surprise billing or shady sales tactics.",

@@ -51,7 +51,6 @@ export default function GetStartedPage() {
             is a third. */}
         <div className="mt-16 border-t border-[var(--color-subtle)] pt-12">
           <WaysToStart
-            omit="intake"
             compact
             heading="Rather not fill in a form?"
             intro="Both of these reach me just the same."
