@@ -524,7 +524,28 @@ export const supervisees = {
     buildYours: "$165",
     firstYearFull: "$450",
     firstYearYours: "$285",
-    note: "Build plus your first year of hosting. The hosting half of that does not change, and the next section says why.",
+    note: "Build plus your first year of hosting, paid the usual way. The hosting half of that does not change, and the next section says why.",
+  },
+
+  /**
+   * Monthly option, added 2026-10-09 at Steven's request: "$165/12 + $12/month
+   * hosting".
+   *
+   * The arithmetic is stated in full rather than rounded to a headline,
+   * because the two routes do not cost the same. Hosting is $120 paid yearly
+   * but $12/month paid monthly, so twelve monthly payments come to $309
+   * against $285. Hiding that would be the one dishonest number on a page
+   * whose whole argument is that the prices are explained rather than
+   * buried, and a therapist who works it out later has been misled by us.
+   */
+  monthly: {
+    heading: "Or spread it over the year",
+    amount: "$25.75",
+    unit: "a month",
+    breakdown:
+      "$13.75 toward the build, plus $12 hosting. After twelve payments the build is paid off and you drop to the $12 hosting on its own.",
+    honestly:
+      "Worth knowing: hosting is $12 monthly but $120 if you pay the year up front, so going monthly puts your first year at $309 instead of $285. That's $24 for the easier cash flow. Plenty of people take that trade and I'd rather you choose it knowing the number.",
   },
 
   whoHeading: "Who this is for",

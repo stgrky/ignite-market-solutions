@@ -80,6 +80,33 @@ export default function SuperviseesPage() {
             </p>
           </Reveal>
 
+          {/* The monthly route. Presented as an equal option rather than a
+              footnote, because for this reader cash flow is usually the
+              binding constraint, not the total. The $24 difference is stated
+              outright: it is the one place on this page where two prices
+              disagree, and finding that out later is how trust goes. */}
+          <Reveal delay={0.21}>
+            <div className="mx-auto mt-6 max-w-xl rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-background)] px-6 py-6 text-left">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <h2 className="font-serif text-xl text-[var(--color-foreground)]">
+                  {s.monthly.heading}
+                </h2>
+                <p className="font-serif text-3xl text-[var(--color-foreground)]">
+                  {s.monthly.amount}
+                  <span className="ml-1.5 text-base font-normal text-[var(--color-muted)]">
+                    {s.monthly.unit}
+                  </span>
+                </p>
+              </div>
+              <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-muted)]">
+                {s.monthly.breakdown}
+              </p>
+              <p className="mt-3 border-t border-[var(--color-subtle)] pt-3 text-sm leading-relaxed text-[var(--color-muted)]">
+                {s.monthly.honestly}
+              </p>
+            </div>
+          </Reveal>
+
           <Reveal delay={0.24}>
             <div className="mt-9 flex flex-wrap justify-center gap-3">
               <Link
