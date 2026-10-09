@@ -576,7 +576,11 @@ export const supervisees = {
     },
     {
       title: "Something else entirely",
-      body: "Leaving an agency, coming back after a break, rebuilding after something went wrong. If the money genuinely doesn't work right now, tell me what's going on and we'll figure it out.",
+      // Steven's own words, 2026-10-09, tidied rather than rewritten. The
+      // list of examples this replaced ("leaving an agency, coming back
+      // after a break") named situations instead of naming the feeling, and
+      // anyone whose situation wasn't on the list read it as a closed set.
+      body: "Want a site but you have other financial obligations that make this decision tough? I get it. I promise I'll work with you to the best of my ability to get you a site that doesn't break your bank or mine.",
     },
   ],
 
@@ -633,7 +637,7 @@ export const supervisees = {
    */
   otherHeading: "Not a supervisee, but your situation is unique?",
   otherBody:
-    "Leaving an agency, coming back from a break, carrying something the rest of this page doesn't describe. If full price isn't realistic right now and you'd still like a decent site, book some time and tell me what's going on. We can usually work something out. I'd much rather hear it than have you quietly decide this isn't for you.",
+    "The same promise applies. If full price isn't realistic right now and you'd still like a decent site, book some time and tell me what's going on. We can usually work something out, and I'd much rather hear it than have you quietly decide this isn't for you.",
   otherCta: { label: "Book fifteen minutes", href: "/book" },
 
   ctaHeading: "Want to talk it through first?",
