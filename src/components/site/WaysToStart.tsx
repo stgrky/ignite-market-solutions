@@ -19,7 +19,7 @@ import Link from "next/link";
  * who want it are already looking for it.
  *
  * `tone` exists because this sits on both the cream page body and the dark
- * closing band, and the dark one needs its own colours rather than a tinted
+ * closing band, and the dark one needs its own colors rather than a tinted
  * version of the light ones.
  */
 

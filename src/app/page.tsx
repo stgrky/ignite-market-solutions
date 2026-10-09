@@ -457,7 +457,7 @@ export default function HomePage() {
               running, then anything on top. Being genuinely ordered is the one
               thing the sticky rail needs to be true, so this section earns the
               same treatment as How it works rather than borrowing its look.
-              The centred heading that used to sit here is gone: StickyJourney
+              The centered heading that used to sit here is gone: StickyJourney
               puts it in the rail, where it stays in view for the whole scroll. */}
           <StickyJourney
             heading={pricing.heading}
