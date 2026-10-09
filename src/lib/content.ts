@@ -528,24 +528,31 @@ export const supervisees = {
   },
 
   /**
-   * Monthly option, added 2026-10-09 at Steven's request: "$165/12 + $12/month
-   * hosting".
+   * Monthly option, added 2026-10-09 at Steven's request and settled the same
+   * day: 25% deposit, then the balance over twelve months.
+   *
+   * That keeps the existing terms intact rather than carving out a second
+   * payment regime for one group. The deposit still does what it does for
+   * everyone else, which is cover the consultation and scoping before any
+   * build work starts.
    *
    * The arithmetic is stated in full rather than rounded to a headline,
    * because the two routes do not cost the same. Hosting is $120 paid yearly
-   * but $12/month paid monthly, so twelve monthly payments come to $309
-   * against $285. Hiding that would be the one dishonest number on a page
-   * whose whole argument is that the prices are explained rather than
-   * buried, and a therapist who works it out later has been misled by us.
+   * but $12/month paid monthly, so the monthly route lands near $309 against
+   * $285. Hiding that would be the one dishonest number on a page whose whole
+   * argument is that prices are explained rather than buried, and a therapist
+   * who works it out later has been misled by us.
    */
   monthly: {
     heading: "Or spread it over the year",
-    amount: "$25.75",
+    deposit: "$41.25",
+    amount: "$22.31",
     unit: "a month",
+    depositLabel: "to start",
     breakdown:
-      "$13.75 toward the build, plus $12 hosting. After twelve payments the build is paid off and you drop to the $12 hosting on its own.",
+      "The deposit is the same 25% everyone pays, which covers the consultation and scoping before I start building. The rest of the build is $10.31 a month, and the $12 hosting sits alongside it. After the twelfth payment the build is clear and you drop to the $12 on its own.",
     honestly:
-      "Worth knowing: hosting is $12 monthly but $120 if you pay the year up front, so going monthly puts your first year at $309 instead of $285. That's $24 for the easier cash flow. Plenty of people take that trade and I'd rather you choose it knowing the number.",
+      "Worth knowing: hosting is $12 monthly but $120 if you pay the year up front, so this route lands around $309 for the first year instead of $285. That's about $24 for the easier cash flow. Plenty of people take that trade and I'd rather you choose it knowing the number.",
   },
 
   whoHeading: "Who this is for",

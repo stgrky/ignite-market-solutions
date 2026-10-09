@@ -87,10 +87,22 @@ export default function SuperviseesPage() {
               disagree, and finding that out later is how trust goes. */}
           <Reveal delay={0.21}>
             <div className="mx-auto mt-6 max-w-xl rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-background)] px-6 py-6 text-left">
-              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                <h2 className="font-serif text-xl text-[var(--color-foreground)]">
-                  {s.monthly.heading}
-                </h2>
+              <h2 className="font-serif text-xl text-[var(--color-foreground)]">
+                {s.monthly.heading}
+              </h2>
+              {/* Deposit first, then the recurring figure. Someone deciding
+                  whether they can afford this needs the up-front number
+                  before the monthly one, not after. */}
+              <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <p className="font-serif text-3xl text-[var(--color-foreground)]">
+                  {s.monthly.deposit}
+                  <span className="ml-1.5 text-base font-normal text-[var(--color-muted)]">
+                    {s.monthly.depositLabel}
+                  </span>
+                </p>
+                <span aria-hidden className="text-[var(--color-muted)]">
+                  then
+                </span>
                 <p className="font-serif text-3xl text-[var(--color-foreground)]">
                   {s.monthly.amount}
                   <span className="ml-1.5 text-base font-normal text-[var(--color-muted)]">
