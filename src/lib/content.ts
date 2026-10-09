@@ -519,40 +519,43 @@ export const supervisees = {
   heading: "Half price while you're under supervision",
   intro:
     "The same website a fully licensed therapist gets. Built by hand, yours to edit, no student tier and nothing stripped out. Half the build price and half off every add-on, for as long as you're working toward licensure.",
-  headline: {
-    buildFull: "$330",
-    buildYours: "$165",
-    firstYearFull: "$450",
-    firstYearYours: "$285",
-    note: "Build plus your first year of hosting, paid the usual way. The hosting half of that does not change, and the next section says why.",
-  },
-
   /**
-   * Monthly option, added 2026-10-09 at Steven's request and settled the same
-   * day: 25% deposit, then the balance over twelve months.
+   * Two payment routes behind a toggle, yearly first.
    *
-   * That keeps the existing terms intact rather than carving out a second
-   * payment regime for one group. The deposit still does what it does for
-   * everyone else, which is cover the consultation and scoping before any
-   * build work starts.
+   * These were stacked blocks until 2026-10-09. Steven on seeing it: "this is
+   * very wordy". He was right. The monthly route needed four sentences of
+   * explanation sitting under the headline price, which buried the number
+   * this page exists to show. A toggle gives each route the same two cards
+   * and one line, and nobody reads the half they are not choosing.
    *
-   * The arithmetic is stated in full rather than rounded to a headline,
-   * because the two routes do not cost the same. Hosting is $120 paid yearly
-   * but $12/month paid monthly, so the monthly route lands near $309 against
-   * $285. Hiding that would be the one dishonest number on a page whose whole
-   * argument is that prices are explained rather than buried, and a therapist
-   * who works it out later has been misled by us.
+   * Yearly is the default because it is the cheaper route, and defaulting to
+   * the dearer one to make the monthly figure look small is the kind of thing
+   * this page is otherwise arguing against.
+   *
+   * The $309-vs-$285 gap stays on the monthly side, cut from a paragraph to a
+   * clause. Hosting is $12 monthly but $120 yearly, so the two routes really
+   * do cost different amounts, and a therapist who finds that out later has
+   * been misled by us.
    */
-  monthly: {
-    heading: "Or spread it over the year",
-    deposit: "$41.25",
-    amount: "$22.31",
-    unit: "a month",
-    depositLabel: "to start",
-    breakdown:
-      "The deposit is the same 25% everyone pays, which covers the consultation and scoping before I start building. The rest of the build is $10.31 a month, and the $12 hosting sits alongside it. After the twelfth payment the build is clear and you drop to the $12 on its own.",
-    honestly:
-      "Worth knowing: hosting is $12 monthly but $120 if you pay the year up front, so this route lands around $309 for the first year instead of $285. That's about $24 for the easier cash flow. Plenty of people take that trade and I'd rather you choose it knowing the number.",
+  plans: {
+    yearly: {
+      id: "yearly",
+      label: "Pay yearly",
+      cards: [
+        { label: "The build", amount: "$165", was: "$330" },
+        { label: "Your first year, all in", amount: "$285", was: "$450", featured: true },
+      ],
+      note: "Build plus your first year of hosting. The hosting half doesn't change, and the next section says why.",
+    },
+    monthly: {
+      id: "monthly",
+      label: "Pay monthly",
+      cards: [
+        { label: "To start", amount: "$41.25", sub: "The same 25% deposit everyone pays" },
+        { label: "Then", amount: "$22.31", unit: "/mo", sub: "$10.31 build, $12 hosting", featured: true },
+      ],
+      note: "The build clears after twelve payments and you drop to $12 a month. Monthly comes to around $309 for the year, against $285 paid up front.",
+    },
   },
 
   whoHeading: "Who this is for",

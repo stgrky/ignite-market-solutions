@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Container } from "@/components/Container";
 import { Reveal } from "@/components/motion/Reveal";
+import { PriceToggle } from "@/components/site/PriceToggle";
 import { WaysToStart } from "@/components/site/WaysToStart";
 import { pricing, supervisees } from "@/lib/content";
 import { halfPrice } from "@/lib/half-price";
@@ -51,71 +52,8 @@ export default function SuperviseesPage() {
           </Reveal>
 
           <Reveal delay={0.18}>
-            <div className="mx-auto mt-10 grid max-w-xl gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-background)] px-6 py-7">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-muted)]">
-                  The build
-                </p>
-                <p className="mt-3 font-serif text-4xl text-[var(--color-foreground)]">
-                  {s.headline.buildYours}
-                </p>
-                <p className="mt-1 text-sm text-[var(--color-muted)]">
-                  <span className="line-through">{s.headline.buildFull}</span> for everyone else
-                </p>
-              </div>
-              <div className="rounded-2xl border border-[var(--color-accent)] bg-[var(--color-background)] px-6 py-7 shadow-[var(--shadow-card)]">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--color-accent-strong)]">
-                  Your first year, all in
-                </p>
-                <p className="mt-3 font-serif text-4xl text-[var(--color-foreground)]">
-                  {s.headline.firstYearYours}
-                </p>
-                <p className="mt-1 text-sm text-[var(--color-muted)]">
-                  <span className="line-through">{s.headline.firstYearFull}</span> for everyone else
-                </p>
-              </div>
-            </div>
-            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-[var(--color-muted)]">
-              {s.headline.note}
-            </p>
-          </Reveal>
-
-          {/* The monthly route. Presented as an equal option rather than a
-              footnote, because for this reader cash flow is usually the
-              binding constraint, not the total. The $24 difference is stated
-              outright: it is the one place on this page where two prices
-              disagree, and finding that out later is how trust goes. */}
-          <Reveal delay={0.21}>
-            <div className="mx-auto mt-6 max-w-xl rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-background)] px-6 py-6 text-left">
-              <h2 className="font-serif text-xl text-[var(--color-foreground)]">
-                {s.monthly.heading}
-              </h2>
-              {/* Deposit first, then the recurring figure. Someone deciding
-                  whether they can afford this needs the up-front number
-                  before the monthly one, not after. */}
-              <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <p className="font-serif text-3xl text-[var(--color-foreground)]">
-                  {s.monthly.deposit}
-                  <span className="ml-1.5 text-base font-normal text-[var(--color-muted)]">
-                    {s.monthly.depositLabel}
-                  </span>
-                </p>
-                <span aria-hidden className="text-[var(--color-muted)]">
-                  then
-                </span>
-                <p className="font-serif text-3xl text-[var(--color-foreground)]">
-                  {s.monthly.amount}
-                  <span className="ml-1.5 text-base font-normal text-[var(--color-muted)]">
-                    {s.monthly.unit}
-                  </span>
-                </p>
-              </div>
-              <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-muted)]">
-                {s.monthly.breakdown}
-              </p>
-              <p className="mt-3 border-t border-[var(--color-subtle)] pt-3 text-sm leading-relaxed text-[var(--color-muted)]">
-                {s.monthly.honestly}
-              </p>
+            <div className="mt-10">
+              <PriceToggle />
             </div>
           </Reveal>
 
