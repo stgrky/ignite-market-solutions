@@ -196,7 +196,17 @@ export default function SuperviseesPage() {
             </div>
           </Reveal>
           <Reveal delay={0.12}>
-            <p className="mt-6 rounded-xl border border-[var(--color-subtle)] bg-[var(--color-surface)] px-6 py-5 text-[15px] leading-relaxed text-[var(--color-muted)]">
+            <div className="mt-6 rounded-xl border border-[var(--color-subtle)] bg-[var(--color-surface)] px-6 py-5">
+              <h3 className="font-serif text-lg text-[var(--color-foreground)]">
+                {s.hourlyHeading}
+              </h3>
+              <p className="mt-2 text-[15px] leading-relaxed text-[var(--color-muted)]">
+                {s.hourlyBody}
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={0.16}>
+            <p className="mt-4 rounded-xl border border-[var(--color-subtle)] bg-[var(--color-surface)] px-6 py-5 text-[15px] leading-relaxed text-[var(--color-muted)]">
               {s.addOnsNote}
             </p>
           </Reveal>

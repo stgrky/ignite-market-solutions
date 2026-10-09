@@ -567,6 +567,17 @@ export const supervisees = {
   addOnsNote:
     "The half-price build is locked in whenever you buy it, and it's a one-time thing, so licensure doesn't claw it back. Add-ons stay half price for as long as you're under supervision. After you're licensed they return to list price, and your hosting never moves either way.",
 
+  /**
+   * Stated outright because the page was silent on it, and silence is what
+   * turns into an argument at invoice time. Steven's call 2026-10-09, when
+   * asked whether to cap the hourly discount: "it should stay half rate.
+   * There is virtually no supervisee that will have some wildly elaborate
+   * site." The exposure is theoretical, the goodwill is not.
+   */
+  hourlyHeading: "Hourly work is half too",
+  hourlyBody:
+    "Anything outside your included scope is normally $60 an hour. For supervisees it's $30, and that covers complicated domain moves, content work, and anything custom you ask for later. Same rule as everything else here: it's still scoped and agreed in writing before any of it happens, so you never get a bill you didn't see coming.",
+
   hostingHeading: "Hosting stays $120 a year, and here's the honest reason",
   hostingBody:
     "The build price is my time, so I can halve it. Hosting isn't. It pays for the servers your site runs on, the editor you log into, security updates, and someone (me) noticing when something breaks at 2am. Those are real invoices from other companies, and I can't discount someone else's bill. $120 a year, or $12 a month if that's easier. It's the same price everyone pays.",
