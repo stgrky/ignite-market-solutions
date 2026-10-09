@@ -257,6 +257,29 @@ export default function SuperviseesPage() {
               {s.claimNote}
             </p>
           </Reveal>
+
+          {/* The other door. Deliberately not a fourth numbered step: it is a
+              different person on a different path, and numbering it would
+              imply supervisees have one more hoop. Accent border so someone
+              scanning the page and finding nothing that describes them still
+              catches it. */}
+          <Reveal delay={0.26}>
+            <div className="mt-10 rounded-2xl border border-[var(--color-accent)] bg-[var(--color-surface)] px-7 py-7 shadow-[var(--shadow-card)]">
+              <h3 className="font-serif text-xl leading-tight text-[var(--color-foreground)]">
+                {s.otherHeading}
+              </h3>
+              <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-muted)]">
+                {s.otherBody}
+              </p>
+              <Link
+                href={s.otherCta.href}
+                className="mt-5 inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-accent-strong)]"
+              >
+                {s.otherCta.label}
+                <span aria-hidden>&rarr;</span>
+              </Link>
+            </div>
+          </Reveal>
         </Container>
       </section>
 

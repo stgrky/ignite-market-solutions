@@ -592,6 +592,19 @@ export const supervisees = {
   claimNote:
     "I'm not going to ask for your supervision agreement or a pay stub. If you say you're an associate, you're an associate.",
 
+  /**
+   * The other door, added 2026-10-09 at Steven's request. The three steps
+   * above describe one specific person, and anyone who doesn't match them
+   * reads a page full of discounts that visibly aren't theirs. This is where
+   * the old sliding scale actually lands: no published number, because the
+   * situations vary, but an explicit invitation so nobody has to work out
+   * whether asking is allowed.
+   */
+  otherHeading: "Not a supervisee, but your situation is unique?",
+  otherBody:
+    "Leaving an agency, coming back from a break, carrying something the rest of this page doesn't describe. If full price isn't realistic right now and you'd still like a decent site, book some time and tell me what's going on. We can usually work something out. I'd much rather hear it than have you quietly decide this isn't for you.",
+  otherCta: { label: "Book fifteen minutes", href: "/book" },
+
   ctaHeading: "Want to talk it through first?",
   ctaBody:
     "Fifteen minutes, no pitch. Bring your questions about money, timing, or whether you even need a site yet. I'll tell you if the answer is no.",
