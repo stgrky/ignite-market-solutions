@@ -49,6 +49,17 @@ export const nav = [
   { label: "About", href: "/about" },
 ];
 
+/**
+ * Footer-only links.
+ *
+ * Deliberately not in `nav`: the header is read by every visitor, and putting
+ * "Supervisee pricing" there tells someone about to pay $330 that a cheaper
+ * door exists. The footer gives the page a site-wide internal link that
+ * search engines follow and that an associate can find on purpose, without
+ * advertising the discount to people who aren't eligible for it.
+ */
+export const footerNav = [{ label: "Supervisee pricing", href: "/supervisees" }];
+
 export const hero = {
   eyebrow: "Websites for therapists, counselors & private practices",
   headlineLead: "Websites that give",
@@ -542,8 +553,17 @@ export const supervisees = {
       id: "yearly",
       label: "Pay yearly",
       cards: [
-        { label: "The build", amount: "$165", was: "$330" },
-        { label: "Your first year, all in", amount: "$285", was: "$450", featured: true },
+        // `extra` is the hosting line, set in the same serif as the price so
+        // the two read as one figure rather than a price and a footnote.
+        // `under` sits outside the card: the comparison is context, and
+        // inside the box it competed with the number it was comparing.
+        {
+          label: "The build",
+          amount: "$165",
+          extra: "+ $120/yr hosting",
+          under: "$330 for everyone else",
+        },
+        { label: "Your first year, all in", amount: "$285", featured: true },
       ],
       note: "Build plus your first year of hosting. The hosting half doesn't change, and the next section says why.",
     },
@@ -595,6 +615,15 @@ export const supervisees = {
     "The same agreement, the same deposit, and the same cancellation terms.",
     "The same support once you're live.",
   ],
+  /**
+   * Steven's words, 2026-10-09, lightly copy-edited at his invitation. Closes
+   * the section by naming what the discount actually costs him, which is the
+   * only answer to the suspicion the whole section exists to address: if it's
+   * identical, what's the catch? Saying "less profit margin for me" is the
+   * catch, stated plainly, and it reads as generous rather than defensive.
+   */
+  sameClose:
+    "Literally the same website, hosting, and customer service as if you were paying full price. Just less profit margin for me, because I'd rather see your business have a website you love.",
 
   addOnsHeading: "Add-ons, also half",
   addOnsIntro:

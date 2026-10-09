@@ -5,7 +5,13 @@ import { useState } from "react";
 import { supervisees } from "@/lib/content";
 
 type Plan = (typeof supervisees.plans)["yearly" | "monthly"];
-type Card = Plan["cards"][number] & { sub?: string; was?: string; unit?: string };
+type Card = Plan["cards"][number] & {
+  sub?: string;
+  was?: string;
+  unit?: string;
+  extra?: string;
+  under?: string;
+};
 
 /**
  * Yearly / monthly switch for the supervisee prices.
@@ -53,38 +59,53 @@ export function PriceToggle() {
 
       <div className="mx-auto mt-6 grid max-w-xl gap-4 sm:grid-cols-2">
         {(plan.cards as Card[]).map((card) => (
-          <div
-            key={card.label}
-            className={`rounded-2xl bg-[var(--color-background)] px-6 py-7 ${
-              card.featured
-                ? "border border-[var(--color-accent)] shadow-[var(--shadow-card)]"
-                : "border border-[var(--color-subtle)]"
-            }`}
-          >
-            <p
-              className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${
+          // Each card owns the line beneath it, so the comparison stays with
+          // the price it compares against instead of floating under the row.
+          <div key={card.label} className="flex flex-col">
+            <div
+              className={`flex-1 rounded-2xl bg-[var(--color-background)] px-6 py-7 ${
                 card.featured
-                  ? "text-[var(--color-accent-strong)]"
-                  : "text-[var(--color-muted)]"
+                  ? "border border-[var(--color-accent)] shadow-[var(--shadow-card)]"
+                  : "border border-[var(--color-subtle)]"
               }`}
             >
-              {card.label}
-            </p>
-            <p className="mt-3 font-serif text-4xl text-[var(--color-foreground)]">
-              {card.amount}
-              {card.unit ? (
-                <span className="ml-1 text-xl font-normal text-[var(--color-muted)]">
-                  {card.unit}
-                </span>
+              <p
+                className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${
+                  card.featured
+                    ? "text-[var(--color-accent-strong)]"
+                    : "text-[var(--color-muted)]"
+                }`}
+              >
+                {card.label}
+              </p>
+              <p className="mt-3 font-serif text-4xl text-[var(--color-foreground)]">
+                {card.amount}
+                {card.unit ? (
+                  <span className="ml-1 text-xl font-normal text-[var(--color-muted)]">
+                    {card.unit}
+                  </span>
+                ) : null}
+              </p>
+              {card.extra ? (
+                <p className="mt-1.5 font-serif text-lg font-semibold text-[var(--color-foreground)]">
+                  {card.extra}
+                </p>
               ) : null}
-            </p>
-            <p className="mt-1 text-sm text-[var(--color-muted)]">
-              {card.was ? (
+              {card.sub ? (
+                <p className="mt-1 text-sm text-[var(--color-muted)]">{card.sub}</p>
+              ) : null}
+            </div>
+            {/* Rendered on every card, blank where there is nothing to say.
+                Without the placeholder the column carrying this line gives up
+                the height to it and that card ends shorter than its neighbor. */}
+            <p className="mt-2.5 text-sm text-[var(--color-muted)]" aria-hidden={!card.under}>
+              {card.under ? (
                 <>
-                  <span className="line-through">{card.was}</span> for everyone else
+                  <span className="line-through">{card.under.split(" ")[0]}</span>{" "}
+                  {card.under.split(" ").slice(1).join(" ")}
                 </>
               ) : (
-                card.sub
+                <>&nbsp;</>
               )}
             </p>
           </div>

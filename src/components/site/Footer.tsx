@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Container } from "@/components/Container";
-import { nav, site } from "@/lib/content";
+import { footerNav, nav, site } from "@/lib/content";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -48,6 +48,15 @@ export function Footer() {
                 >
                   {item.label}
                 </a>
+              ))}
+                          {footerNav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm text-[var(--color-foreground)] transition-colors hover:text-[var(--color-accent-strong)]"
+                >
+                  {item.label}
+                </Link>
               ))}
             </nav>
             <div className="flex flex-col gap-2.5">

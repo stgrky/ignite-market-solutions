@@ -126,6 +126,11 @@ export default function SuperviseesPage() {
               </Reveal>
             ))}
           </ul>
+          <Reveal delay={0.3}>
+            <p className="mt-8 text-[17px] leading-relaxed text-[var(--color-foreground)]">
+              {s.sameClose}
+            </p>
+          </Reveal>
         </Container>
       </section>
 
