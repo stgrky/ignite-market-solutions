@@ -442,12 +442,21 @@ export const pricing = {
    * situation rather than the discount, so it reads as understanding a stage of
    * a career rather than as a sale.
    */
+  /**
+   * Was "Sliding scale", a vague offer to "bring the cost down considerably".
+   * Replaced 2026-10-09 with a published number, because a named discount is
+   * something a supervisee can act on and a vague one is something they have
+   * to ask for. Asking is the step people skip when money is the problem.
+   *
+   * Still covers the old sliding-scale ground through "unique situations", so
+   * nobody outside the supervisee case reads this and assumes the door is shut.
+   */
   slidingScale: {
-    eyebrow: "Sliding scale",
-    heading: "Early in your practice?",
-    body: "If you're pre-licensure, working under a supervisor, or just getting a practice off the ground, I know full price may not be realistic right now. That shouldn't be the reason you go without a decent website. Tell me where you are and I can usually bring the cost down considerably.",
-    cta: { label: "Book fifteen minutes", href: "/book" },
-    note: "No form to fill in and nothing to prove. We talk about what works and I quote you accordingly.",
+    eyebrow: "Supervisees & unique situations",
+    heading: "Under supervision? It's half price.",
+    body: "Associates and pre-licensure clinicians pay half for the build and half for every add-on. Not a cut-down version of the site, the same one, for half. And if you're outside that but the money genuinely doesn't work right now, say so anyway. That conversation stays open.",
+    cta: { label: "See the supervisee pricing", href: "/supervisees" },
+    note: "Nothing to prove and no form to fill in. Tell me you're under supervision and that's the price.",
   },
   terms: {
     heading: "Straight terms, in writing",
@@ -489,6 +498,94 @@ export const pricing = {
  * Restore the section on the homepage once there are enough projects that the
  * heading is telling the truth (Steven's bar: ~10 clients).
  */
+/**
+ * The supervisee offer, 2026-10-09.
+ *
+ * Steven's reasoning: an associate cannot afford $330 today but will be
+ * licensed in two years and needs a site the whole time. Half price now buys a
+ * client who stays, and the hosting (which is where the recurring revenue
+ * lives) is never discounted, so the economics hold.
+ *
+ * Deliberately a published number rather than "ask me". The people this is for
+ * are the least likely to negotiate, so a discount they have to request is a
+ * discount most of them never get.
+ *
+ * Add-on figures are NOT written here. The page halves `pricing.addOns` at
+ * render time via `halfPrice()`, so this cannot fall out of step with the real
+ * menu. See src/lib/half-price.ts.
+ */
+export const supervisees = {
+  eyebrow: "For associates and supervisees",
+  heading: "Half price while you're under supervision",
+  intro:
+    "The same website a fully licensed therapist gets. Built by hand, yours to edit, no student tier and nothing stripped out. Half the build price and half off every add-on, for as long as you're working toward licensure.",
+  headline: {
+    buildFull: "$330",
+    buildYours: "$165",
+    firstYearFull: "$450",
+    firstYearYours: "$285",
+    note: "Build plus your first year of hosting. The hosting half of that does not change, and the next section says why.",
+  },
+
+  whoHeading: "Who this is for",
+  whoIntro:
+    "If you recognize yourself in any of these, you qualify. There's no category you have to argue your way into.",
+  who: [
+    {
+      title: "Working toward licensure",
+      body: "LPC Associate, LMSW, AMFT, APCC, pre-licensure under any other initials. If a supervisor signs off on your hours, this is you.",
+    },
+    {
+      title: "Paying for your own supervision",
+      body: "Supervision is expensive and it comes out of the same money a website would. I'd rather not be the thing you choose against.",
+    },
+    {
+      title: "Just opened and it's quiet",
+      body: "A practice with no caseload yet is a practice with no income yet. The site is supposed to fix that, so pricing it out of reach is backwards.",
+    },
+    {
+      title: "Something else entirely",
+      body: "Leaving an agency, coming back after a break, rebuilding after something went wrong. If the money genuinely doesn't work right now, tell me what's going on and we'll figure it out.",
+    },
+  ],
+
+  sameHeading: "What you don't give up",
+  sameIntro:
+    "Half price is a discount on my time, not on your website. Everything below is identical to what a fully licensed client gets.",
+  same: [
+    "The same templates. You pick from the same collection, not a smaller one.",
+    "The same five pages, written and built the same way.",
+    "The same editor, so you change your hours, rates, and photos yourself without calling me.",
+    "The same hand-built site. Nothing is generated and then handed over.",
+    "The same agreement, the same deposit, and the same cancellation terms.",
+    "The same support once you're live.",
+  ],
+
+  addOnsHeading: "Add-ons, also half",
+  addOnsIntro:
+    "Everything on the add-on menu is half price too. These are optional, and most people start with none of them.",
+  addOnsNote:
+    "The half-price build is locked in whenever you buy it, and it's a one-time thing, so licensure doesn't claw it back. Add-ons stay half price for as long as you're under supervision. After you're licensed they return to list price, and your hosting never moves either way.",
+
+  hostingHeading: "Hosting stays $120 a year, and here's the honest reason",
+  hostingBody:
+    "The build price is my time, so I can halve it. Hosting isn't. It pays for the servers your site runs on, the editor you log into, security updates, and someone (me) noticing when something breaks at 2am. Those are real invoices from other companies, and I can't discount someone else's bill. $120 a year, or $12 a month if that's easier. It's the same price everyone pays.",
+
+  claimHeading: "How to claim it",
+  claimIntro: "There is no application and no means test.",
+  claimSteps: [
+    "Tell me you're under supervision, in a message or on the call. A sentence is plenty.",
+    "I quote you at the supervisee rate in writing before anything starts.",
+    "You approve the quote, pay the 25% deposit, and we build.",
+  ],
+  claimNote:
+    "I'm not going to ask for your supervision agreement or a pay stub. If you say you're an associate, you're an associate.",
+
+  ctaHeading: "Want to talk it through first?",
+  ctaBody:
+    "Fifteen minutes, no pitch. Bring your questions about money, timing, or whether you even need a site yet. I'll tell you if the answer is no.",
+};
+
 export const work = {
   heading: "Recent work",
   intro: "Real sites, built to be owned and run by the people who use them.",
