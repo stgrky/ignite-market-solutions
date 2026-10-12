@@ -58,7 +58,14 @@ export const nav = [
  * search engines follow and that an associate can find on purpose, without
  * advertising the discount to people who aren't eligible for it.
  */
-export const footerNav = [{ label: "Supervisee pricing", href: "/supervisees" }];
+export const footerNav = [
+  { label: "Supervisee pricing", href: "/supervisees" },
+  // The intake had exactly one visible link on the whole site, on /book —
+  // which only someone already committed to booking ever sees. Demoting it
+  // from a card on the homepage was deliberate; making it findable only
+  // after the decision it is supposed to inform was not.
+  { label: "Start the intake form", href: "/get-started" },
+];
 
 export const hero = {
   eyebrow: "Websites for therapists, counselors & private practices",

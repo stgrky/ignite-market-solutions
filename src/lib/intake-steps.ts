@@ -121,6 +121,27 @@ export const intakeSteps: Step[] = [
         ],
       },
       {
+        /**
+         * Asked here rather than left to the call, because the add-on prices
+         * further down this form are list prices: an associate ticking three
+         * boxes otherwise reads a total twice what she would actually pay,
+         * and decides she cannot afford it before anyone speaks to her.
+         *
+         * The hint states the discount outright. The people this is for are
+         * the least likely to ask, so a benefit they have to raise themselves
+         * is one most of them never get.
+         */
+        name: "licensureStatus",
+        label: "Where are you with licensure?",
+        type: "radio",
+        hint: "If you're working toward licensure, the build and every add-on are half price. There's nothing to prove — saying so here is enough.",
+        options: [
+          { value: "licensed", label: "Fully licensed" },
+          { value: "associate", label: "Working toward licensure, under supervision" },
+          { value: "not_applicable", label: "Doesn't apply to me" },
+        ],
+      },
+      {
         name: "practiceSize",
         label: "Solo or a group?",
         type: "radio",
