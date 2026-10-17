@@ -211,6 +211,17 @@ const availableWebsites = [
     swatch: "#6f9c98",
     href: "https://icc-cove-demo.vercel.app",
   },
+  {
+    // The only dark layout on the shelf, and the only one not built around a
+    // therapy practice — it opens on an evening yoga teacher and its
+    // centrepiece is a weekly class schedule. Listed because the swatch row is
+    // six variations on soft daylight and this is the one that looks like a
+    // different decision rather than a different hue.
+    name: "Vesper",
+    vibe: "Dark & candlelit",
+    swatch: "#e0a35c",
+    href: "https://icc-vesper-demo.vercel.app",
+  },
 ];
 
 // Spelled-out numbers read better in a headline than digits do.
