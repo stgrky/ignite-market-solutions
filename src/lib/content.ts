@@ -177,36 +177,42 @@ export const system = {
 const availableWebsites = [
   {
     name: "Meridian",
+    shot: "/shop/meridian.jpg",
     vibe: "Clean & clinical",
     swatch: "#1e4d6b",
     href: "https://icc-meridian-demo.vercel.app",
   },
   {
     name: "Bloom",
+    shot: "/shop/bloom.jpg",
     vibe: "Warm & editorial",
     swatch: "#c4623f",
     href: "https://icc-bloom-demo.vercel.app",
   },
   {
     name: "Anchor",
+    shot: "/shop/anchor.jpg",
     vibe: "Grounded & modern",
     swatch: "#2f8f83",
     href: "https://icc-anchor-demo.vercel.app",
   },
   {
     name: "Willow",
+    shot: "/shop/willow.jpg",
     vibe: "Gentle & resilient",
     swatch: "#b97c68",
     href: "https://icc-willow-demo.vercel.app",
   },
   {
     name: "Commons",
+    shot: "/shop/commons.jpg",
     vibe: "Collective & grounded",
     swatch: "#7a4f63",
     href: "https://icc-commons-demo.vercel.app",
   },
   {
     name: "Cove",
+    shot: "/shop/cove.jpg",
     vibe: "Still & sheltered",
     swatch: "#6f9c98",
     href: "https://icc-cove-demo.vercel.app",
@@ -218,6 +224,7 @@ const availableWebsites = [
     // six variations on soft daylight and this is the one that looks like a
     // different decision rather than a different hue.
     name: "Vesper",
+    shot: "/shop/vesper.jpg",
     vibe: "Dark & candlelit",
     swatch: "#e0a35c",
     href: "https://icc-vesper-demo.vercel.app",

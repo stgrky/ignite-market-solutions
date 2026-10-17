@@ -345,28 +345,47 @@ export default function HomePage() {
           >
             {styleDirections.designs.map((design, i) => {
               const card = (
-                <div className="flex h-full flex-col rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)]/50 hover:shadow-[var(--shadow-card)]">
-                  <span
-                    aria-hidden
-                    className="block h-10 w-10 rounded-full"
-                    style={{ background: design.swatch }}
-                  />
-                  <h3 className="mt-5 font-serif text-lg font-bold text-[var(--color-foreground)]">
-                    {design.name}
-                  </h3>
-                  <p className="mt-1 text-sm text-[var(--color-muted)]">
-                    {design.vibe}
-                  </p>
-                  {design.href ? (
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent-strong)]">
-                      View live demo
-                      <span aria-hidden>→</span>
-                    </span>
+                <div className="group/card flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-surface)] transition-all duration-500 hover:-translate-y-1 hover:border-[var(--color-accent)]/50 hover:shadow-[var(--shadow-card)]">
+                  {/* The website itself, not a swatch.
+                      This shelf was seven coloured dots — the one section
+                      whose entire job is to prove the work is real, showing
+                      none of it. Anyone wanting to judge the designs had to
+                      open seven tabs first. */}
+                  {design.shot ? (
+                    <div className="relative aspect-[10/7] overflow-hidden border-b border-[var(--color-subtle)] bg-[var(--color-background)]">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={design.shot}
+                        alt={`The ${design.name} website, shown on a desktop screen`}
+                        loading="lazy"
+                        className="h-full w-full object-cover object-top transition-transform duration-700 group-hover/card:scale-[1.03]"
+                      />
+                    </div>
                   ) : (
-                    <span className="mt-4 inline-flex items-center text-xs font-medium uppercase tracking-[0.14em] text-[var(--color-muted)]">
-                      In progress
-                    </span>
+                    <span
+                      aria-hidden
+                      className="mx-6 mt-6 block h-10 w-10 rounded-full"
+                      style={{ background: design.swatch }}
+                    />
                   )}
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="font-serif text-lg font-bold text-[var(--color-foreground)]">
+                      {design.name}
+                    </h3>
+                    <p className="mt-1 text-sm text-[var(--color-muted)]">
+                      {design.vibe}
+                    </p>
+                    {design.href ? (
+                      <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent-strong)]">
+                        View live demo
+                        <span aria-hidden>&rarr;</span>
+                      </span>
+                    ) : (
+                      <span className="mt-4 inline-flex items-center text-xs font-medium uppercase tracking-[0.14em] text-[var(--color-muted)]">
+                        In progress
+                      </span>
+                    )}
+                  </div>
                 </div>
               );
               return (
