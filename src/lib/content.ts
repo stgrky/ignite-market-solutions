@@ -138,29 +138,15 @@ export const claimPath = {
 };
 
 /**
- * The floating ask button, bottom-right on every page.
+ * The floating ask widget.
  *
- * Deliberately not a live-chat widget. A chat bubble promises an answer now,
- * and these builds happen alongside a full-time job — an unanswered bubble
- * loses the lead and tells a trust-buying audience that nobody is home. (The
- * Facebook Messenger plugin people picture here no longer exists either;
- * Meta shut it down on 2024-05-09.) This has the same affordance — always
- * there, one tap — and opens a channel that actually gets read.
- *
- * Two options, not four. Text and email cover phone and desk; adding "book a
- * call" would put a third, heavier choice in a panel meant for quick
- * questions, and booking is already the second step of the claim path and a
- * button in the header.
- *
- * Both are pre-filled. An empty compose window hands a stranger the job of
- * working out how to open, which is the friction this is here to remove.
- * Wording is neutral rather than offer-specific: the panel follows the
- * visitor onto every page, including ones where they are not claiming
- * anything.
- *
- * "Ask Grant" rather than "Chat" or "Get in touch": a named person is the
- * thing this business sells against the platforms — see `problems`, where
- * "there's no real person to call" is the complaint it answers.
+ * It leads with a form rather than with links. `mailto:` and `sms:` are
+ * handoffs to software the visitor may not have: on a desktop with no mail
+ * client registered, clicking an email link does nothing visible at all, and
+ * the only conclusion available to the visitor is that the site is broken.
+ * The form posts to the same endpoint as the homepage contact form, so it
+ * works regardless of what is installed, and the number and address below it
+ * are copyable text as well as links.
  */
 export const askWidget = {
   label: "Ask Grant",
@@ -168,22 +154,29 @@ export const askWidget = {
   // His own promise, already published in `WaysToStart`. Keep the two in step.
   note: "I read every message myself and reply the same day.",
   closeLabel: "Close",
-  options: [
+  form: {
+    submitLabel: "Send",
+    sendingLabel: "Sending\u2026",
+    sentHeading: "Message sent.",
+    sentNote: "I'll get back to you within a day \u2014 usually sooner.",
+    error: "That didn't send. Text or email me instead \u2014 both are below.",
+  },
+  directLead: "Or reach me directly",
+  /** Shown as plain text with a copy button, not only as a link. */
+  direct: [
     {
-      label: "Text me",
-      hint: "Fastest",
+      key: "phone",
+      value: site.phone,
+      hint: "Tap to text",
       href: `${site.smsHref}?&body=${encodeURIComponent(
-        "Hi Grant — I have a question about a website."
+        "Hi Grant \u2014 I have a question about a website."
       )}`,
       event: "ask_widget_text",
     },
     {
-      label: "Email me",
-      // Not the address itself: at this width it truncated to
-      // "grant@ignitecreativeco...." and pushed the label onto two lines.
-      // Saying when to pick each one is more use than repeating a link
-      // that the footer and contact section both already carry.
-      hint: "For longer notes",
+      key: "email",
+      value: site.email,
+      hint: "Opens your mail app",
       href: `mailto:${site.email}?subject=${encodeURIComponent(
         "Question about a website"
       )}`,
