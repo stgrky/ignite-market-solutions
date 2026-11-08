@@ -137,6 +137,61 @@ export const claimPath = {
   },
 };
 
+/**
+ * The floating ask button, bottom-right on every page.
+ *
+ * Deliberately not a live-chat widget. A chat bubble promises an answer now,
+ * and these builds happen alongside a full-time job — an unanswered bubble
+ * loses the lead and tells a trust-buying audience that nobody is home. (The
+ * Facebook Messenger plugin people picture here no longer exists either;
+ * Meta shut it down on 2024-05-09.) This has the same affordance — always
+ * there, one tap — and opens a channel that actually gets read.
+ *
+ * Two options, not four. Text and email cover phone and desk; adding "book a
+ * call" would put a third, heavier choice in a panel meant for quick
+ * questions, and booking is already the second step of the claim path and a
+ * button in the header.
+ *
+ * Both are pre-filled. An empty compose window hands a stranger the job of
+ * working out how to open, which is the friction this is here to remove.
+ * Wording is neutral rather than offer-specific: the panel follows the
+ * visitor onto every page, including ones where they are not claiming
+ * anything.
+ *
+ * "Ask Grant" rather than "Chat" or "Get in touch": a named person is the
+ * thing this business sells against the platforms — see `problems`, where
+ * "there's no real person to call" is the complaint it answers.
+ */
+export const askWidget = {
+  label: "Ask Grant",
+  heading: "Ask me anything",
+  // His own promise, already published in `WaysToStart`. Keep the two in step.
+  note: "I read every message myself and reply the same day.",
+  closeLabel: "Close",
+  options: [
+    {
+      label: "Text me",
+      hint: "Fastest",
+      href: `${site.smsHref}?&body=${encodeURIComponent(
+        "Hi Grant — I have a question about a website."
+      )}`,
+      event: "ask_widget_text",
+    },
+    {
+      label: "Email me",
+      // Not the address itself: at this width it truncated to
+      // "grant@ignitecreativeco...." and pushed the label onto two lines.
+      // Saying when to pick each one is more use than repeating a link
+      // that the footer and contact section both already carry.
+      hint: "For longer notes",
+      href: `mailto:${site.email}?subject=${encodeURIComponent(
+        "Question about a website"
+      )}`,
+      event: "ask_widget_email",
+    },
+  ],
+};
+
 export const hero = {
   eyebrow: "Websites for therapists, counselors & private practices",
   headlineLead: "Websites that give",

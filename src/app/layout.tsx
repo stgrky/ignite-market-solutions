@@ -5,6 +5,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 
 import { GrainOverlay } from "@/components/motion/GrainOverlay";
 import { DeferredScrollProgress } from "@/components/motion/Deferred";
+import { AskWidget } from "@/components/site/AskWidget";
 import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
 import { site } from "@/lib/content";
@@ -125,6 +126,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <AskWidget />
         {process.env.NEXT_PUBLIC_GA_ID ? (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         ) : null}
