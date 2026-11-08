@@ -582,6 +582,10 @@ function ThankYou({ firstName }: { firstName: string }) {
           href={bookingUrl}
           target="_blank"
           rel="noopener noreferrer"
+          // The calendar is Google's, on Google's domain, so everything after
+          // this click is invisible to our analytics. This is the last event
+          // we can see, which makes it the end of the funnel we can measure.
+          onClick={() => sendGAEvent("event", "booking_click")}
           className="mt-8 inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-[var(--color-accent-strong)]"
         >
           Book your 15 minutes

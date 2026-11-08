@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { AnnouncementBar } from "@/components/site/AnnouncementBar";
 import { Container } from "@/components/Container";
 import { nav } from "@/lib/content";
 
@@ -26,6 +27,10 @@ export function Header() {
           : "border-b border-transparent"
       }`}
     >
+      {/* Inside the sticky container, not beside it: a second `sticky top-0`
+          sibling would sit on top of this header instead of above it. */}
+      <AnnouncementBar />
+
       <Container className="flex h-16 items-center justify-between">
         {/* "/" rather than "#top": a bare hash only resolves on the home page,
             so from /get-started or /about this did nothing but add #top to the

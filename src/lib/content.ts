@@ -67,6 +67,29 @@ export const footerNav = [
   { label: "Start the intake form", href: "/get-started" },
 ];
 
+/**
+ * The offer bar above the header, and the matching line in the hero.
+ *
+ * Both read from here so the offer can never say two different things in two
+ * places. Every figure below is the published rate in `pricing` further down
+ * this file and in the signed agreements — $330 build, $120/year hosting.
+ *
+ * On the missing slot counter: scarcity is the strongest lever this bar has,
+ * but only with a real number, and only while that number is small. The cap
+ * is under review (Grant, 2026-11-08) and the client count is in single
+ * digits, so "8 of 100 taken" would read as roomy and argue against urgency
+ * rather than for it. Set `spotsLeft` to a number once the cap is settled and
+ * it is genuinely low; the bar picks it up with no other edit.
+ */
+export const announcement = {
+  badge: "Founding offer",
+  headline: "Your website build is free.",
+  detail: "Normally $330 \u2014 you pay hosting only, $120/year.",
+  cta: { label: "See the websites", href: "/#shop" },
+  /** e.g. 6 \u2192 renders "only 6 spots left". null hides it entirely. */
+  spotsLeft: null as number | null,
+};
+
 export const hero = {
   eyebrow: "Websites for therapists, counselors & private practices",
   headlineLead: "Websites that give",
@@ -77,8 +100,14 @@ export const hero = {
     "Websites built for therapists and private practices — yours to own, yours to edit, with no rising platform fees. Pick one of the finished sites below, we tailor it to your practice, and you're live in about a week or two.",
   // The cheap ask leads. Sending the first thing a visitor sees to a six-step
   // form asks for ten minutes from someone who has read one headline.
-  primaryCta: { label: "Get in touch", href: "/#ask" },
-  secondaryCta: { label: "See available websites", href: "/#shop" },
+  //
+  // Swapped 2026-11-08, same principle applied one step further: browsing the
+  // finished sites costs a visitor nothing, while "Get in touch" asks a
+  // stranger to start a conversation before they have seen a single thing we
+  // made. The first paid traffic averaged 8 seconds on this page, so the
+  // opening ask has to be the one with no cost attached.
+  primaryCta: { label: "See the websites", href: "/#shop" },
+  secondaryCta: { label: "Get in touch", href: "/#ask" },
   trustLine:
     "No cookie-cutter templates. No monthly platform ransom. No code degree required to update it. No surprise billing or shady sales tactics.",
 };
