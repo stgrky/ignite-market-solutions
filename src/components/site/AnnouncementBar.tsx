@@ -2,7 +2,7 @@
 
 import { sendGAEvent } from "@next/third-parties/google";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 import { Container } from "@/components/Container";
 import { announcement } from "@/lib/content";
@@ -10,50 +10,53 @@ import { announcement } from "@/lib/content";
 const DISMISS_KEY = "icc-announcement-dismissed";
 
 /**
- * The offer bar.
- *
- * Why this and not a modal: the first paid traffic arrived from a boosted
- * Facebook post, which means almost all of it is mobile and almost none of it
- * has heard of us. An interstitial on first load is the wrong move for that
- * audience on three counts — Google demotes intrusive interstitials on mobile
- * search, a popup is the opposite of the calm, unpushy tone the rest of the
- * site sells to therapists, and it hides the one thing a cold visitor came to
- * do, which is look at the websites.
- *
- * A bar costs ~40px, says the offer before anyone scrolls, and stays visible
- * on every page. It renders inside the Header's sticky container rather than
- * as its own sticky element: two `sticky top-0` siblings would overlap, and
- * any `top-[Npx]` offset breaks the moment the copy wraps to two lines on a
- * narrow phone.
- *
- * Dismissal is what makes a permanent bar acceptable — someone who has read
- * it once can take the space back, and we remember that.
+ * Dismissal lives outside React because it is browser state, not component
+ * state: it has to be readable during render without a post-mount `setState`,
+ * which is both a cascading render and a lint error. `useSyncExternalStore`
+ * is the supported way to read it, and the module-level listener list is what
+ * makes the dismiss button update this tab — the native `storage` event only
+ * fires in *other* tabs.
  */
-export function AnnouncementBar() {
-  // Starts visible so the server and the first client render agree, and so
-  // the offer is never missing for the (large) majority who have not
-  // dismissed it. A returning visitor sees it for one frame; the alternative
-  // is everyone seeing a blank gap until hydration.
-  const [dismissed, setDismissed] = useState(false);
+let listeners: Array<() => void> = [];
 
-  useEffect(() => {
-    try {
-      if (window.localStorage.getItem(DISMISS_KEY) === "1") setDismissed(true);
-    } catch {
-      // Private mode, or storage blocked. Showing the bar is the safe failure.
-    }
-  }, []);
+function subscribe(onChange: () => void) {
+  listeners.push(onChange);
+  return () => {
+    listeners = listeners.filter((l) => l !== onChange);
+  };
+}
+
+function getSnapshot() {
+  try {
+    return window.localStorage.getItem(DISMISS_KEY) === "1";
+  } catch {
+    // Private mode, or storage blocked. Showing the bar is the safe failure.
+    return false;
+  }
+}
+
+/** On the server nothing is dismissed, so the offer is in the HTML. */
+function getServerSnapshot() {
+  return false;
+}
+
+function dismiss() {
+  try {
+    window.localStorage.setItem(DISMISS_KEY, "1");
+  } catch {
+    // It will come back next visit, which is harmless.
+  }
+  listeners.forEach((l) => l());
+}
+
+export function AnnouncementBar() {
+  const dismissed = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot
+  );
 
   if (dismissed) return null;
-
-  function dismiss() {
-    setDismissed(true);
-    try {
-      window.localStorage.setItem(DISMISS_KEY, "1");
-    } catch {
-      // Nothing to do — it will show again next visit, which is harmless.
-    }
-  }
 
   return (
     <div className="relative bg-[var(--color-accent-strong)] text-white">

@@ -90,6 +90,53 @@ export const announcement = {
   spotsLeft: null as number | null,
 };
 
+/**
+ * The claim path — what to do, under the hero.
+ *
+ * Two steps, not three. An earlier version numbered browse / book / text
+ * 1-2-3, which was wrong: nobody books a call AND texts, they do one or the
+ * other. Numbering them in sequence claimed an order that does not exist and
+ * made the last step look like extra work rather than the shortcut it is.
+ * Numbers here encode the one thing that genuinely is sequential — you have
+ * to pick a site before there is anything to talk about.
+ *
+ * The text option pre-fills the message. "Text me" opening an empty compose
+ * window puts the burden of starting the conversation on a stranger, which
+ * is the friction the option exists to remove.
+ */
+export const claimPath = {
+  lead: "Two steps to claim yours",
+  step1: {
+    n: "1",
+    label: "Choose a website",
+    hint: "Browse the finished sites",
+    href: "/#shop",
+    event: "claim_browse",
+  },
+  step2: {
+    n: "2",
+    label: "Tell me which one",
+    options: [
+      {
+        label: "Book a call",
+        hint: "15 minutes",
+        href: "/book",
+        event: "claim_book",
+      },
+      {
+        label: "Text me",
+        hint: "Fastest",
+        // `?&body=` is the form that works on both iOS and Android; iOS wants
+        // the ampersand, Android tolerates it.
+        href: `${site.smsHref}?&body=${encodeURIComponent(
+          "Hi Grant — I'd like to claim a founding website spot."
+        )}`,
+        event: "claim_text",
+      },
+    ],
+  },
+};
+
 export const hero = {
   eyebrow: "Websites for therapists, counselors & private practices",
   headlineLead: "Websites that give",

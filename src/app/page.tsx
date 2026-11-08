@@ -3,10 +3,10 @@ import Link from "next/link";
 import { Container } from "@/components/Container";
 // Decoration, loaded after hydration — see components/motion/Deferred.tsx.
 import { DeferredGradientMesh, DeferredMarquee } from "@/components/motion/Deferred";
-import { MagneticButton } from "@/components/motion/MagneticButton";
 import { Reveal } from "@/components/motion/Reveal";
 import { TiltCard } from "@/components/motion/TiltCard";
 import { WordReveal } from "@/components/motion/WordReveal";
+import { ClaimPath } from "@/components/site/ClaimPath";
 import { ContactForm } from "@/components/site/ContactForm";
 import { WaysToStart } from "@/components/site/WaysToStart";
 import { HeroShowcase } from "@/components/site/HeroShowcase";
@@ -124,20 +124,8 @@ export default function HomePage() {
             </Reveal>
 
             <Reveal delay={0.5} distance={14} duration={0.8}>
-              <div className="mt-9 flex flex-wrap gap-4">
-                <MagneticButton
-                  href={hero.primaryCta.href}
-                  className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_14px_34px_-12px_var(--color-accent)] transition hover:bg-[var(--color-accent-strong)]"
-                >
-                  {hero.primaryCta.label}
-                  <span aria-hidden>→</span>
-                </MagneticButton>
-                <MagneticButton
-                  href={hero.secondaryCta.href}
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-[var(--color-foreground)]/15 px-7 py-3.5 text-sm font-semibold text-[var(--color-foreground)] transition hover:border-[var(--color-accent)]"
-                >
-                  {hero.secondaryCta.label}
-                </MagneticButton>
+              <div className="mt-9">
+                <ClaimPath />
               </div>
             </Reveal>
 
