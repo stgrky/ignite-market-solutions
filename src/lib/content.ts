@@ -105,11 +105,11 @@ export const announcement = {
  * is the friction the option exists to remove.
  */
 export const claimPath = {
-  lead: "Two steps to claim yours",
+  lead: "Two ways to start",
   step1: {
     n: "1",
-    label: "Choose a website",
-    hint: "Browse the finished sites",
+    label: "Start from a finished site",
+    hint: "Browse what's available",
     href: "/#shop",
     event: "claim_browse",
   },
@@ -203,8 +203,12 @@ export const hero = {
   headlineAccent1: "personality",
   headlineMid: "to your",
   headlineAccent2: "practice.",
+  // Reframed 2026-11-21. The old line read "Pick one of the finished sites
+  // below" and sat directly above a trust line promising "No cookie-cutter
+  // templates" — two sentences arguing with each other, which a skeptical
+  // reader settles against us. Leading with the choice removes the argument.
   subhead:
-    "Websites built for therapists and private practices — yours to own, yours to edit, with no rising platform fees. Pick one of the finished sites below, we tailor it to your practice, and you're live in about a week or two.",
+    "Websites built for therapists and private practices — yours to own, yours to edit, with no rising platform fees. Start from one of the finished sites below, or from a blank page, and you're live in about a week or two.",
   // The cheap ask leads. Sending the first thing a visitor sees to a six-step
   // form asks for ten minutes from someone who has read one headline.
   //
@@ -216,7 +220,7 @@ export const hero = {
   primaryCta: { label: "See the websites", href: "/#shop" },
   secondaryCta: { label: "Get in touch", href: "/#ask" },
   trustLine:
-    "No cookie-cutter templates. No monthly platform ransom. No code degree required to update it. No surprise billing or shady sales tactics.",
+    "Yours to own, and yours to take with you. No monthly platform ransom. No code degree required to update it. No surprise billing or shady sales tactics.",
 };
 
 export const marquee = [
@@ -255,8 +259,8 @@ export const value = {
     "Everything is built around one goal: making the right people feel confident reaching out to you.",
   cards: [
     {
-      title: "Custom design, not a template",
-      body: "A site designed around your business and your clients, not a theme thousands of other businesses are already using.",
+      title: "Designed around your practice",
+      body: "Built for your business and the people you work with — not a theme thousands of other businesses are already running.",
     },
     {
       title: "Calm by design",
@@ -285,7 +289,7 @@ export const system = {
   eyebrow: "We keep it fast & affordable",
   heading: "Start from a real website, not a blank page",
   intro:
-    "Every site in our collection is a complete, one-of-a-kind website we built ourselves. Not a mockup, not a recycled template. You pick the one closest to your vision, we tailor it to your brand, and once it's claimed we retire it and build something entirely new to take its place. That's how you get a genuinely custom site delivered in about a week or two, at a price your practice can justify.",
+    "Every site in the collection is one we designed and built ourselves, and each one is only ever used once. Start from the one closest to your vision and we tailor it to your brand; once it's claimed we retire it and build something new to take its place. That's how a site arrives in about a week or two at a price a practice can justify. Prefer to start from nothing? That's the $650 route, and it's the same five pages designed around your brief.",
   included: {
     title: "Customized to you",
     items: [
@@ -296,10 +300,15 @@ export const system = {
     ],
   },
   excluded: {
-    title: "Kept out of scope (it's how the price stays low)",
+    // "A brand-new concept designed from scratch around your specific brief"
+    // used to head this list. It was the single most expensive line on the
+    // site: it told anyone who wanted their own design that we do not do it,
+    // and they left rather than asking. It is now a priced option — see
+    // pricing.buildScratch — so what remains here is genuinely out of scope.
+    title: "Kept out of scope at this price (it's how the price stays low)",
     items: [
-      "A brand-new concept designed from scratch around your specific brief",
       "Unlimited open-ended revisions",
+      "Ongoing content writing or copywriting",
     ],
   },
   note: "Want something beyond the included scope? No problem. Extra work is simply quoted at $60/hour and agreed in writing before anything starts. No surprise invoices.",
@@ -381,10 +390,15 @@ export const styleDirections = {
   eyebrow: `${countWord} available website${s}`,
   headingCount: countWord,
   headingRest: ` website${s} currently available, ready to become yours`,
-  intro: `These aren't templates or mockups. These are ${countWord.toLowerCase()} complete, fully custom website${s}, live right now. Pick the one that already feels like your practice and we'll tailor it to your brand, with any reasonable finishing touches, until you're happy to put your name on it. Once a site is claimed it's retired for good and we build a new one to take its place — so what's available here changes regularly. If one feels like yours, reach out before someone else claims it.`,
+  intro: `${countWord} complete website${s}, built here and live right now — click any of them and you are on the real thing. Pick the one that already feels like your practice and we'll tailor it to your brand, with any reasonable finishing touches, until you're happy to put your name on it. Once a site is claimed it's retired for good and we build a new one to take its place — so what's available here changes regularly. If one feels like yours, reach out before someone else claims it.`,
   scopeLinkLabel: "See exact scope & pricing",
   designs: availableWebsites,
   note: "Every website above is real, live, and available right now. Feel free to click through and explore.",
+  // The exit the shelf never had. Someone who has scrolled all of these and
+  // liked none of them previously had nothing to do but leave, because the
+  // only other thing the site said about a bespoke design was that it was
+  // out of scope.
+  scratchNote: "None of them yours? They don't have to be the starting point — a site designed from scratch around your brief is $650.",
 };
 
 /**
@@ -478,17 +492,22 @@ export const process = {
 export const pricing = {
   heading: "Simple, transparent pricing",
   intro:
-    "It works in three steps: pick your website, keep it running, add anything extra. That's the whole model — you'll know your full cost before you pay a cent, and there are no hidden fees or surprise invoices six months in.",
+    "It works in three steps: choose where to start, keep it running, add anything extra. That's the whole model — you'll know your full cost before you pay a cent, and there are no hidden fees or surprise invoices six months in.",
   buildStep: "Step 1",
-  buildHeading: "Pick your website",
+  buildHeading: "Choose where to start",
+  // Reframed 2026-11-21. The offer was one door: pick a finished site. A
+  // brand-new concept was listed under "kept out of scope", so anyone who
+  // wanted their own thing read that and concluded we do not do it. Most
+  // people will still start from a finished site — it is faster and cheaper
+  // — but it has to be their choice rather than our constraint.
   buildStepIntro:
-    "Choose the one closest to your vision. We tailor it to your brand and hand it over, built and live — a single fee, paid once.",
+    "Two ways in. Start from one of the finished websites and we tailor it to your practice, or start from a blank page and we design yours around your brief. Either way the site is yours to own and yours to edit, and you know the full price before anything begins.",
   buildStepBackLink: {
     label: `Browse the ${countWord.toLowerCase()} available website${s}`,
     href: "#shop",
   },
   build: {
-    label: "One-time",
+    label: "One-time · Start from a finished site",
     name: "Initial Build",
     price: "$330",
     blurb:
@@ -504,6 +523,37 @@ export const pricing = {
     ],
     overageNote:
       "Need more than the included revisions? Extra work is $60/hour — always quoted and agreed in writing before it happens.",
+  },
+
+  /**
+   * The second door, added 2026-11-21.
+   *
+   * Before this, "a brand-new concept designed from scratch around your
+   * specific brief" appeared only in the excluded list, under the heading
+   * "Kept out of scope (it's how the price stays low)". So the site did not
+   * merely fail to sell custom work — it told people we do not do it, and
+   * anyone who wanted their own design left without asking.
+   *
+   * Flat price rather than hourly on purpose: an open meter makes a nervous
+   * buyer imagine the worst number, which is the objection this is meant to
+   * remove.
+   */
+  buildScratch: {
+    label: "One-time · Start from a blank page",
+    name: "Designed From Scratch",
+    price: "$650",
+    blurb:
+      "The same five pages, designed around your brief rather than adapted from an existing site. We start with what your practice is, who you work with, and how you want it to feel, and build from there.",
+    features: [
+      "Everything in the Initial Build",
+      "A design concept made for your practice, not adapted from another",
+      "Layout and structure shaped around your content, not the other way round",
+      "A round of concept review before the build starts",
+      "Up to 3 hours of revisions included (async)",
+      "Roughly two to three weeks, rather than one to two",
+    ],
+    overageNote:
+      "Most practices do not need this, and that is not a sales line — starting from a finished site is faster, costs less, and ends up just as much yours. This is here for when you have something specific in mind.",
   },
   tiersStep: "Step 2",
   tiersHeading: "Keep it running",

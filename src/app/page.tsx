@@ -420,6 +420,9 @@ export default function HomePage() {
                   Tell me which, and what your practice does. Five minutes, and
                   it replaces the discovery call.
                 </p>
+                <p className="mt-2.5 text-sm text-[var(--color-muted)]">
+                  {styleDirections.scratchNote}
+                </p>
               </div>
               <TrackedLink
                 href="/get-started"
@@ -544,6 +547,47 @@ export default function HomePage() {
                       </ul>
                       <p className="mt-6 border-t border-[var(--color-subtle)] pt-5 text-sm italic leading-relaxed text-[var(--color-muted)]">
                         {pricing.build.overageNote}
+                      </p>
+                    </div>
+                  </Reveal>
+
+                  {/* The second door. Rendered as an equal card rather than
+                      an upsell strip: the point of the reframe is that
+                      starting from scratch is a choice the buyer makes, not
+                      an exception we grant. */}
+                  <Reveal delay={0.16}>
+                    <div className="mx-auto mt-6 max-w-2xl rounded-2xl border border-[var(--color-subtle)] bg-[var(--color-background)] p-8 md:p-10">
+                      <div className="flex flex-wrap items-center justify-between gap-4">
+                        <div>
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--color-muted)]">
+                            {pricing.buildScratch.label}
+                          </p>
+                          <h3 className="mt-2 font-serif text-2xl font-bold text-[var(--color-foreground)]">
+                            {pricing.buildScratch.name}
+                          </h3>
+                        </div>
+                        <span className="font-serif text-5xl font-bold text-[var(--color-foreground)]">
+                          {pricing.buildScratch.price}
+                        </span>
+                      </div>
+                      <p className="mt-5 text-[15px] leading-relaxed text-[var(--color-muted)]">
+                        {pricing.buildScratch.blurb}
+                      </p>
+                      <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
+                        {pricing.buildScratch.features.map((f) => (
+                          <li
+                            key={f}
+                            className="flex items-start gap-2.5 text-[15px] text-[var(--color-foreground)]"
+                          >
+                            <span aria-hidden className="mt-0.5 font-bold text-[var(--color-accent)]">
+                              ✓
+                            </span>
+                            {f}
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="mt-6 border-t border-[var(--color-subtle)] pt-5 text-sm italic leading-relaxed text-[var(--color-muted)]">
+                        {pricing.buildScratch.overageNote}
                       </p>
                     </div>
                   </Reveal>
