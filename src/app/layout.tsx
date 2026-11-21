@@ -13,6 +13,9 @@ import { site } from "@/lib/content";
 
 import "./globals.css";
 
+/** True only on a real production deployment — not dev, not preview. */
+const IS_PRODUCTION = process.env.VERCEL_ENV === "production";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -129,14 +132,32 @@ export default function RootLayout({
         <Footer />
         <AskWidget />
         {process.env.NEXT_PUBLIC_GA_ID ? <ScrollDepth /> : null}
-        {process.env.NEXT_PUBLIC_GA_ID ? (
+        {/* Analytics loads on the real site only.
+         *
+         * Until 2026-11-21 the GA gate was "is NEXT_PUBLIC_GA_ID set", and
+         * it is set in .env.local — so every local dev session wrote to the
+         * production property. The HubSpot script had no gate at all. The
+         * damage is visible in the numbers: of 31 form submissions recorded
+         * since September, 12 came from `localhost/` and
+         * `localhost/get-started`. The real figure is 19.
+         *
+         * VERCEL_ENV is "production" only on a production deployment — it is
+         * "preview" on preview builds and undefined locally — so this one
+         * check excludes dev, previews, and any build off Vercel.
+         *
+         * It does NOT exclude someone browsing the live site, which is what
+         * IP exclusion in GA4 and HubSpot is for.
+         */}
+        {IS_PRODUCTION && process.env.NEXT_PUBLIC_GA_ID ? (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         ) : null}
-        <Script
-          id="hs-script-loader"
-          src="//js-na2.hs-scripts.com/246937212.js"
-          strategy="afterInteractive"
-        />
+        {IS_PRODUCTION ? (
+          <Script
+            id="hs-script-loader"
+            src="//js-na2.hs-scripts.com/246937212.js"
+            strategy="afterInteractive"
+          />
+        ) : null}
       </body>
     </html>
   );
