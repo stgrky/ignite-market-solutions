@@ -46,7 +46,7 @@ export default function BookPage() {
               href="/get-started"
               className="font-semibold text-[var(--color-accent-strong)] underline decoration-[var(--color-subtle)] underline-offset-4 transition hover:decoration-[var(--color-accent)]"
             >
-              Fill out the intake first
+              Fill out the Getting Started form first
             </Link>{" "}
             and I will have read it before we speak.
           </p>

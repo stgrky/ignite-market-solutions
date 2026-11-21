@@ -9,7 +9,7 @@ import { site } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Get started",
   description:
-    "A short intake so your website can be built around your practice — and so our call can be fifteen minutes rather than an hour.",
+    "A short form so your website can be built around your practice — and so our call can be fifteen minutes rather than an hour.",
   alternates: { canonical: "/get-started" },
 };
 

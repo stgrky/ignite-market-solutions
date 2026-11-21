@@ -64,7 +64,7 @@ export const footerNav = [
   // which only someone already committed to booking ever sees. Demoting it
   // from a card on the homepage was deliberate; making it findable only
   // after the decision it is supposed to inform was not.
-  { label: "Start the intake form", href: "/get-started" },
+  { label: "Getting Started form", href: "/get-started" },
 ];
 
 /**
@@ -130,7 +130,7 @@ export const claimPath = {
         // footer link. It sits in step 2 rather than step 1 because the
         // 2026-10-08 decision was right: do not invite someone into a form
         // before they have chosen anything. This invites them after.
-        label: "Start the intake",
+        label: "Start the Getting Started form",
         hint: "5 minutes, no call needed",
         href: "/get-started",
         event: "claim_intake",
@@ -433,7 +433,7 @@ export const process = {
       visual: "browsers",
     },
     {
-      title: "Fill out the intake",
+      title: "Fill out the Getting Started form",
       body:
         "Tell me which site you picked, what you'd keep, what you'd change, and how your brand should look and sound: colors, fonts, the works. Skip anything you're unsure about.",
       badge: "About 10 minutes",
@@ -443,7 +443,7 @@ export const process = {
     {
       title: "A quick 15-minute call",
       body:
-        "I'll have already read your intake, so we skip the small talk and confirm your scope, any add-ons, and timing.",
+        "I'll have already read your form, so we skip the small talk and confirm your scope, any add-ons, and timing.",
       badge: "15 minutes",
       visual: "calendar",
     },
@@ -586,7 +586,7 @@ export const pricing = {
   addOnsStepNote: "optional",
   addOnsHeading: "Add anything extra",
   addOnsIntro:
-    "À la carte, added at intake and billed once. The base package covers what most practices actually need — tap any add-on for the what, the why, and who it's for.",
+    "À la carte, chosen when you fill out the Getting Started form and billed once. The base package covers what most practices actually need — tap any add-on for the what, the why, and who it's for.",
   addOns: [
     {
       label: "Extra page",
@@ -702,11 +702,11 @@ export const pricing = {
     ],
   },
   addOnsCustomNote:
-    "Need something that isn't listed? Content writing, SEO, and most other digital work fall well within what I do — they're quoted per project rather than listed here, because scope varies too much to put a fixed number on. Mention it in your intake and you'll get a straight price in writing before anything starts.",
+    "Need something that isn't listed? Content writing, SEO, and most other digital work fall well within what I do — they're quoted per project rather than listed here, because scope varies too much to put a fixed number on. Mention it on the Getting Started form and you'll get a straight price in writing before anything starts.",
   addOnsNote:
     "Not planning to blog, but you'd like a contact form? Want a photo gallery on your services page? Just ask. We're glad to discuss swaps and small additions that keep the same overall scope and structure. The goal is a site you're genuinely happy with, not a rigid checklist.",
   footnote:
-    "Not sure what you need? Say so in the intake — that's what our 15-minute call is for. You'll have the full scope and final price in writing before you pay anything.",
+    "Not sure what you need? Say so on the form — that's what our 15-minute call is for. You'll have the full scope and final price in writing before you pay anything.",
 };
 
 /**
@@ -952,7 +952,7 @@ export const referral = {
 
 export const finalCta = {
   heading: "Ready to ignite your online presence?",
-  body: "Fill out the intake and we'll take fifteen minutes to confirm the details. No pressure, no jargon, no obligation. It reaches me directly, btw.",
+  body: "Fill out the Getting Started form and we'll take fifteen minutes to confirm the details. No pressure, no jargon, no obligation. It reaches me directly, btw.",
   primaryCta: { label: "Get in touch", href: "/#ask" },
   cta: { label: "Text me" },
   secondaryCta: { label: "Email me" },

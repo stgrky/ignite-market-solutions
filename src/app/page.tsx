@@ -429,7 +429,7 @@ export default function HomePage() {
                 event="shop_intake_click"
                 className="inline-flex shrink-0 items-center gap-2 self-start rounded-2xl bg-[var(--color-accent)] px-5 py-3.5 font-semibold text-white shadow-[0_14px_34px_-12px_var(--color-accent)] transition hover:bg-[var(--color-accent-strong)] sm:self-auto"
               >
-                Start the intake
+                Start the Getting Started form
               </TrackedLink>
             </div>
           </Reveal>
