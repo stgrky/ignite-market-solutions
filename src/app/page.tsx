@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { TrackedLink } from "@/components/site/TrackedLink";
+
 import { Container } from "@/components/Container";
 // Decoration, loaded after hydration — see components/motion/Deferred.tsx.
 import { DeferredGradientMesh, DeferredMarquee } from "@/components/motion/Deferred";
@@ -401,6 +403,32 @@ export default function HomePage() {
             <p className="mt-8 text-sm text-[var(--color-muted)]">
               {styleDirections.note}
             </p>
+          </Reveal>
+
+          {/* The decision point. Someone who has just scrolled the shelf has
+              done the choosing, so this is the moment to invite them into the
+              intake rather than the hero. Before this, /get-started — which
+              converts at 24% against the homepage's 1.4% — was reachable
+              from one footer link and nothing else. */}
+          <Reveal delay={0.26}>
+            <div className="mt-10 flex flex-col gap-5 rounded-2xl border border-[var(--color-accent-soft)] bg-[var(--color-accent-soft)] p-6 sm:flex-row sm:items-center sm:justify-between md:p-8">
+              <div>
+                <p className="font-serif text-xl font-bold leading-snug text-[var(--color-foreground)]">
+                  Seen one you like?
+                </p>
+                <p className="mt-1.5 text-sm text-[var(--color-muted)]">
+                  Tell me which, and what your practice does. Five minutes, and
+                  it replaces the discovery call.
+                </p>
+              </div>
+              <TrackedLink
+                href="/get-started"
+                event="shop_intake_click"
+                className="inline-flex shrink-0 items-center gap-2 self-start rounded-2xl bg-[var(--color-accent)] px-5 py-3.5 font-semibold text-white shadow-[0_14px_34px_-12px_var(--color-accent)] transition hover:bg-[var(--color-accent-strong)] sm:self-auto"
+              >
+                Start the intake
+              </TrackedLink>
+            </div>
           </Reveal>
         </Container>
       </section>
@@ -871,9 +899,9 @@ export default function HomePage() {
                   {site.phone}
                 </a>{" "}
                 &middot;{" "}
-                <a href={`mailto:${site.email}`} className="select-all text-white/80 underline decoration-white/25 underline-offset-4">
+                <TrackedLink href={`mailto:${site.email}`} event="email_click" params={{ location: "home_footer_cta" }} className="select-all text-white/80 underline decoration-white/25 underline-offset-4">
                   {site.email}
-                </a>
+                </TrackedLink>
               </p>
 
             </div>

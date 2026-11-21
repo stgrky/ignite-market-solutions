@@ -124,6 +124,18 @@ export const claimPath = {
         event: "claim_book",
       },
       {
+        // The intake is the highest-converting page on the site by a wide
+        // margin — 24% of its visitors submit, against 1.4% of the
+        // homepage's — and before this it was reachable only from one
+        // footer link. It sits in step 2 rather than step 1 because the
+        // 2026-10-08 decision was right: do not invite someone into a form
+        // before they have chosen anything. This invites them after.
+        label: "Start the intake",
+        hint: "5 minutes, no call needed",
+        href: "/get-started",
+        event: "claim_intake",
+      },
+      {
         label: "Text me",
         hint: "Fastest",
         // `?&body=` is the form that works on both iOS and Android; iOS wants

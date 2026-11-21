@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { Container } from "@/components/Container";
+import { TrackedLink } from "@/components/site/TrackedLink";
 import { site } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -75,12 +76,14 @@ export default function BookPage() {
               Open it in a new tab instead
             </a>
             , or just email me at{" "}
-            <a
+            <TrackedLink
               href={`mailto:${site.email}`}
+              event="email_click"
+              params={{ location: "book" }}
               className="font-semibold text-[var(--color-accent-strong)] underline decoration-[var(--color-subtle)] underline-offset-4 transition hover:decoration-[var(--color-accent)]"
             >
               {site.email}
-            </a>
+            </TrackedLink>
             .
           </p>
         </div>

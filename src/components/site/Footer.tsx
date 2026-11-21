@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { TrackedLink } from "@/components/site/TrackedLink";
+
 import { Container } from "@/components/Container";
 import { footerNav, nav, site } from "@/lib/content";
 
@@ -63,18 +65,22 @@ export function Footer() {
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-muted)]">
                 Get in touch
               </p>
-              <a
+              <TrackedLink
                 href={`mailto:${site.email}`}
+                event="email_click"
+                params={{ location: "footer" }}
                 className="text-sm text-[var(--color-foreground)] transition-colors hover:text-[var(--color-accent-strong)]"
               >
                 {site.email}
-              </a>
-              <a
+              </TrackedLink>
+              <TrackedLink
                 href={site.phoneHref}
+                event="phone_click"
+                params={{ location: "footer" }}
                 className="text-sm text-[var(--color-foreground)] transition-colors hover:text-[var(--color-accent-strong)]"
               >
                 {site.phone}
-              </a>
+              </TrackedLink>
               <Link
                 href="/#ask"
                 className="text-sm text-[var(--color-foreground)] transition-colors hover:text-[var(--color-accent-strong)]"
