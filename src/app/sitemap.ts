@@ -39,6 +39,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      // Linked from the main nav and from a homepage CTA, and it was left out
+      // of the sitemap until 2026-11-21 — so the one page aimed at a distinct
+      // audience, supervisees, was never advertised to search.
+      url: `${site.url}/supervisees`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${site.url}/privacy`,
       lastModified: new Date(),
       changeFrequency: "yearly",
