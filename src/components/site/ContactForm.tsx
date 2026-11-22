@@ -4,7 +4,7 @@ import { sendGAEvent } from "@next/third-parties/google";
 import Link from "next/link";
 import { useRef, useState } from "react";
 
-import { templateOptions } from "@/lib/intake-steps";
+import { buildRouteOptions, templateOptions } from "@/lib/intake-steps";
 
 /**
  * The short form on the home page: name, email, message.
@@ -29,6 +29,9 @@ export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  // Which door the visitor wants. Drives whether the template question is
+  // worth asking: on the scratch route there is no template to have seen.
+  const [buildRoute, setBuildRoute] = useState("");
 
   async function handleSubmit() {
     const form = formRef.current;
@@ -47,9 +50,13 @@ export function ContactForm() {
         body: JSON.stringify({
           firstName: data.get("firstName"),
           email: data.get("email"),
+          buildRoute: data.get("buildRoute") || undefined,
           // Empty string would fail the select's enum check; undefined is how
-          // every other optional answer is absent.
-          template: data.get("template") || undefined,
+          // every other optional answer is absent. Never sent on the scratch
+          // route: a template picked before switching must not be filed
+          // against someone who then asked for a design from a blank page.
+          template:
+            (buildRoute === "scratch" ? undefined : data.get("template")) || undefined,
           anythingElse: data.get("message"),
           completedStep: 1,
         }),
@@ -131,21 +138,47 @@ export function ContactForm() {
           />
         </div>
         <div>
-          <label className={labelClass} htmlFor="contact-template">
-            Seen one you like?
+          <label className={labelClass} htmlFor="contact-build-route">
+            How would you like to start?
           </label>
-          {/* Same list the intake asks from, so a site that gets claimed and
-              retired disappears from both at once. Optional: plenty of people
-              write in before they have looked. */}
-          <select id="contact-template" name="template" className={inputClass} defaultValue="">
+          {/* Same three options as the full intake, from the same array, so the
+              prices can never drift between the two forms. */}
+          <select
+            id="contact-build-route"
+            name="buildRoute"
+            className={inputClass}
+            value={buildRoute}
+            onChange={(event) => setBuildRoute(event.target.value)}
+          >
             <option value="">Choose one…</option>
-            {templateOptions.map((option) => (
+            {buildRouteOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
             ))}
           </select>
         </div>
+        {/* Hidden on the scratch route, where there is no existing design to
+            have liked. Unanswered still shows it — skipping the question above
+            must never take a question away. */}
+        {buildRoute !== "scratch" ? (
+          <div>
+            <label className={labelClass} htmlFor="contact-template">
+              Seen one you like?
+            </label>
+            {/* Same list the intake asks from, so a site that gets claimed and
+                retired disappears from both at once. Optional: plenty of people
+                write in before they have looked. */}
+            <select id="contact-template" name="template" className={inputClass} defaultValue="">
+              <option value="">Choose one…</option>
+              {templateOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        ) : null}
         <div>
           <label className={labelClass} htmlFor="contact-message">
             What&rsquo;s on your mind?

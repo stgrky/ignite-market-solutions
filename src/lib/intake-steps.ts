@@ -74,6 +74,17 @@ export const templateOptions: Option[] = [
   { value: "not_sure", label: "Not sure yet" },
 ];
 
+/**
+ * The two doors, and the undecided answer. Exported because the short contact
+ * form asks the same question — one array, so the prices in it can never drift
+ * between the two forms.
+ */
+export const buildRouteOptions: Option[] = [
+  { value: "adapted", label: "From one of the finished websites — $330" },
+  { value: "scratch", label: "From a blank page, designed around my practice — $650" },
+  { value: "not_sure", label: "Not sure yet — talk me through it" },
+];
+
 const NO_CLIENT_INFO =
   "Please don't include any information about your clients — this form isn't a secure channel for it, and nothing here needs it.";
 
@@ -238,11 +249,7 @@ export const intakeSteps: Step[] = [
         name: "buildRoute",
         label: "How would you like to start?",
         type: "radio",
-        options: [
-          { value: "adapted", label: "From one of the finished websites — $330" },
-          { value: "scratch", label: "From a blank page, designed around my practice — $650" },
-          { value: "not_sure", label: "Not sure yet — talk me through it" },
-        ],
+        options: buildRouteOptions,
         hint:
           "Starting from a finished website is faster and costs less, and it ends up just as much yours — we change the colors, fonts, photos and layout to fit your practice. Starting from a blank page means the design is drawn for you from the beginning. Either way you get the same five pages and the same login to edit them.",
       },
