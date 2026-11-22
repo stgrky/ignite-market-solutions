@@ -221,15 +221,46 @@ export const intakeSteps: Step[] = [
   },
   {
     id: "website",
-    title: "The website you picked",
+    title: "Your website",
     intro:
-      "Every site comes with five pages: Home, About, Services, Blog and Contact. If you haven't browsed the designs yet, that's fine — pick \"Not sure yet\".",
+      "Every site comes with five pages: Home, About, Services, Blog and Contact — whichever way you start. If you haven't browsed the designs yet, that's fine.",
     fields: [
+      // Added 2026-11-21. The site started offering two doors earlier that day
+      // and this form only ever asked about one of them, so which one a lead
+      // wanted had to be settled by hand on the call — and the price differs by
+      // $320. Asked first in this step because every question below it is
+      // specific to one door or the other.
+      //
+      // Deliberately NOT a new HubSpot property: the portal is on the free tier
+      // with a ten-property cap. The answer rides in the summary note, which is
+      // free. See ims-ops/INTAKE_FORM_HUBSPOT_MAPPING.md.
+      {
+        name: "buildRoute",
+        label: "How would you like to start?",
+        type: "radio",
+        options: [
+          { value: "adapted", label: "From one of the finished websites — $330" },
+          { value: "scratch", label: "From a blank page, designed around my practice — $650" },
+          { value: "not_sure", label: "Not sure yet — talk me through it" },
+        ],
+        hint:
+          "Starting from a finished website is faster and costs less, and it ends up just as much yours — we change the colors, fonts, photos and layout to fit your practice. Starting from a blank page means the design is drawn for you from the beginning. Either way you get the same five pages and the same login to edit them.",
+      },
+      {
+        name: "scratchBrief",
+        label: "What do you have in mind?",
+        type: "textarea",
+        hint:
+          "Anything helps — a feeling you want someone to have when they land on it, a practice whose site you admire, something you've never been able to find in an existing design. Don't worry about getting it right; this is a starting point for the conversation, not a specification.",
+        maxLength: 2000,
+        showWhen: { field: "buildRoute", equals: ["scratch"] },
+      },
       {
         name: "template",
         label: "Which one stood out?",
         type: "select",
         options: templateOptions,
+        showWhen: { field: "buildRoute", equals: ["adapted", "not_sure", ""] },
         // The one question here that can't be answered from this page. Opens in
         // a new tab so the form is never navigated away from; the saved draft
         // covers the visitor who comes back in this one anyway.
@@ -251,9 +282,22 @@ export const intakeSteps: Step[] = [
           { value: "feel", label: "The overall feel" },
           { value: "other", label: "Something else" },
         ],
+        showWhen: { field: "buildRoute", equals: ["adapted", "not_sure", ""] },
       },
-      { name: "keepAsIs", label: "Anything you'd keep exactly as it is?", type: "textarea", maxLength: 2000 },
-      { name: "changeOrSwap", label: "Anything you'd change or swap out?", type: "textarea", maxLength: 2000 },
+      {
+        name: "keepAsIs",
+        label: "Anything you'd keep exactly as it is?",
+        type: "textarea",
+        maxLength: 2000,
+        showWhen: { field: "buildRoute", equals: ["adapted", "not_sure", ""] },
+      },
+      {
+        name: "changeOrSwap",
+        label: "Anything you'd change or swap out?",
+        type: "textarea",
+        maxLength: 2000,
+        showWhen: { field: "buildRoute", equals: ["adapted", "not_sure", ""] },
+      },
       {
         name: "pageSwaps",
         label: "Do those five pages work, or would you swap one?",
